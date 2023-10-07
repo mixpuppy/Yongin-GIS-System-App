@@ -180,6 +180,9 @@ public class MapFragment extends Fragment
                     timerTask.cancel();
                 }
                 Log.d("mixpuppy", "시작버튼이 눌렸음");
+                // 메인엑티비티 스테틱 전역변수 버튼활성화 적용
+                MainActivity.isInitialMarkerSet=true;
+                startMarkerSetting();
                 // dialog 상자 생성 시작
                 AlertDialog.Builder dialog = new AlertDialog.Builder(requireContext());
                 dialog.setTitle("차량 번호");
@@ -234,6 +237,9 @@ public class MapFragment extends Fragment
             @Override
             public void onClick(View view) {
                 Log.d("mixpuppy", "정지버튼이 눌렸음");
+                // 메인엑티비티 스테틱 전역변수 버튼활성화 적용
+                MainActivity.isInitialMarkerSet=false;
+
                 if(timerTask != null){
                     timerTask.cancel();
                     Log.d("mixpuppy", "타이머 정지");
@@ -357,6 +363,33 @@ public class MapFragment extends Fragment
             myLocationMarker.setPosition(latLng);
         }
 
+    }
+
+    private void startMarkerSetting() {
+        if(mMap != null) {
+            LatLng latLng = new LatLng(mLat, mLng);
+            // 마커 옵션
+            MarkerOptions markerOptions = new MarkerOptions();
+            // 마커 이미지 사이즈 조절
+            //markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.location_pin));
+            Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.clean_truck_non);
+            int newWidth = 100;
+            int newHeight = 100;
+            // false : 크기 조절에 빠르고 효율. 약간 품질 저하될 수 있어도 대부분의 이미지 크기 조절 작업에 적합.
+            Bitmap resizedBitmap = Bitmap.createScaledBitmap(originalBitmap, newWidth, newHeight, false);
+
+            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizedBitmap));
+
+            markerOptions.position(latLng);
+            markerOptions.title("MyLocation");
+            // 마커 표시
+            Marker myMarker = mMap.addMarker(markerOptions);
+
+            // 마커에 Z 인덱스 설정
+            myMarker.setZIndex(1.0f);
+        } else {
+            Log.d("mixdog", "googleMap 이 널이여서 마커를 못찍음");
+        }
     }
 
     // JSON데이터 서버에 전송
