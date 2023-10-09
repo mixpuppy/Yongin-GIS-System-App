@@ -4,7 +4,7 @@
             "outputFile": "org.mixdog.yongin1.app-mergeDebugResources-45:/values-ldrtl-v17/values-ldrtl-v17.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\admin\\.gradle\\caches\\transforms-3\\6aa730011e901f80d1584f4facfa3307\\transformed\\material-1.8.0\\res\\values-ldrtl-v17\\values-ldrtl-v17.xml",
+                    "source": "C:\\Users\\82104\\.gradle\\caches\\transforms-3\\6aa730011e901f80d1584f4facfa3307\\transformed\\material-1.8.0\\res\\values-ldrtl-v17\\values-ldrtl-v17.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",

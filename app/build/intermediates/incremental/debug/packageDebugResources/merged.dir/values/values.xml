@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="blue">#0000ff</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="app_name">My Application</string>
+    <string name="main_question">차량 번호를 입력해 주세요</string>
+    <string name="main_title">용인시 청소 차량 App</string>
+    <style name="Base.Theme.Yongin1" parent="Theme.Material3.DayNight.NoActionBar">
+        
+        
+    </style>
+    <style name="Theme.Yongin1" parent="Base.Theme.Yongin1"/>
+</resources>
