@@ -2,6 +2,7 @@ R_DEF: Internal format may change without notice
 local
 color black
 color blue
+color ic_launcher_background
 color white
 drawable canva
 drawable clean_truck
@@ -10,6 +11,8 @@ drawable clean_truck_non2
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable pointer_route
+drawable thumbnail
+drawable thumbnail1
 drawable yonginlogo
 id action_mainFragment_to_mapFragment
 id btn_start
@@ -27,6 +30,7 @@ layout dialog
 layout fragment_main
 layout fragment_map
 mipmap ic_launcher
+mipmap ic_launcher_foreground
 mipmap ic_launcher_round
 navigation nav_graph
 string app_name

@@ -1452,6 +1452,7 @@ int color foreground_material_dark 0x7f050066
 int color foreground_material_light 0x7f050067
 int color highlighted_text_material_dark 0x7f050068
 int color highlighted_text_material_light 0x7f050069
+int color ic_launcher_background 0x7f05028b
 int color m3_appbar_overlay_color 0x7f05006a
 int color m3_assist_chip_icon_tint_color 0x7f05006b
 int color m3_assist_chip_stroke_color 0x7f05006c
@@ -2910,9 +2911,17 @@ int drawable notification_tile_bg 0x7f0700f3
 int drawable notify_panel_notification_icon_bg 0x7f0700f4
 int drawable pointer_route 0x7f0700f5
 int drawable test_level_drawable 0x7f0700f6
+<<<<<<< HEAD
 int drawable tooltip_frame_dark 0x7f0700f7
 int drawable tooltip_frame_light 0x7f0700f8
 int drawable yonginlogo 0x7f0700f9
+=======
+int drawable thumbnail 0x7f0700f7
+int drawable thumbnail1 0x7f0700fb
+int drawable tooltip_frame_dark 0x7f0700f8
+int drawable tooltip_frame_light 0x7f0700f9
+int drawable yonginlogo 0x7f0700fa
+>>>>>>> 773f78270110234803096280dab9472ec12e4598
 int id ALT 0x7f080000
 int id BOTTOM_END 0x7f080001
 int id BOTTOM_START 0x7f080002
@@ -3624,6 +3633,7 @@ int layout select_dialog_multichoice_material 0x7f0b006a
 int layout select_dialog_singlechoice_material 0x7f0b006b
 int layout support_simple_spinner_dropdown_item 0x7f0b006c
 int mipmap ic_launcher 0x7f0d0000
+int mipmap ic_launcher_foreground 0x7f0d0002
 int mipmap ic_launcher_round 0x7f0d0001
 int navigation nav_graph 0x7f0e0000
 int plurals mtrl_badge_content_description 0x7f0f0000

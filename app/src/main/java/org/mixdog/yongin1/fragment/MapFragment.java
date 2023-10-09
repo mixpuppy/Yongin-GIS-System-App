@@ -52,15 +52,24 @@ import org.mixdog.yongin1.LocationViewModel;
 import org.mixdog.yongin1.MainActivity;
 import org.mixdog.yongin1.R;
 
+import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
 
 public class MapFragment extends Fragment
         implements OnMapReadyCallback  {
+
+    //url port
+    private final String xyUrl = "http://172.30.1.55:8081/getXY";
+    private final String noiseUrl = "http://172.30.1.55:8081/getNoise";
+    private final String vibrationUrl = "http://172.30.1.55:8081/getVibration";
 
     // 지도 객체
     private GoogleMap mMap;
@@ -99,11 +108,13 @@ public class MapFragment extends Fragment
     private String mParam1;
     private String mParam2;
 
+    /////////////////////////////////////////전역변수 설정 끝////////////////////////////////////////
     public MapFragment() {
         // Required empty public constructor
     }
 
-    // TODO: Rename and change types and number of parameters
+
+    // 후속 프래그먼트 호출 시 사용 (현재 사용 x)
     public static MapFragment newInstance(String param1, String param2) {
         MapFragment fragment = new MapFragment();
         Bundle args = new Bundle();
@@ -113,6 +124,7 @@ public class MapFragment extends Fragment
         return fragment;
     }
 
+    // 프래그먼트 초기화
     @Override
     public void onCreate(Bundle savedInstanceState) {
         // 부모 클래스 정의된 초기화 작업
@@ -168,6 +180,9 @@ public class MapFragment extends Fragment
                     timerTask.cancel();
                 }
                 Log.d("mixpuppy", "시작버튼이 눌렸음");
+                // 메인엑티비티 스테틱 전역변수 버튼활성화 적용
+                MainActivity.isInitialMarkerSet=true;
+                startMarkerSetting();
                 // dialog 상자 생성 시작
                 AlertDialog.Builder dialog = new AlertDialog.Builder(requireContext());
                 dialog.setTitle("차량 번호");
@@ -194,11 +209,13 @@ public class MapFragment extends Fragment
                                         Log.d("mixpuppy", "타이머 위경도 잘찍혔나?");
                                         Log.d("mixpuppy", "위경도" + mLat + "/" + mLng);
                                         // Json 데이터 보내기
-                                        sendJsonData("http://218.234.109.166/test");
+                                        sendXYJsonData(xyUrl);
+                                        sendNoiseJsonData(noiseUrl);
+                                        sendVibrationData(vibrationUrl);
                                     }
                                 };
                                 // 기록 시작 (10초로 설정)
-                                timerCall.schedule(timerTask,0,5);
+                                timerCall.schedule(timerTask,0,10000);
                                 // 버튼 활성화/비활성화
                                 stopBtn.setEnabled(true);
                                 startBtn.setEnabled(false);
@@ -220,6 +237,9 @@ public class MapFragment extends Fragment
             @Override
             public void onClick(View view) {
                 Log.d("mixpuppy", "정지버튼이 눌렸음");
+                // 메인엑티비티 스테틱 전역변수 버튼활성화 적용
+                MainActivity.isInitialMarkerSet=false;
+
                 if(timerTask != null){
                     timerTask.cancel();
                     Log.d("mixpuppy", "타이머 정지");
@@ -236,7 +256,7 @@ public class MapFragment extends Fragment
         return rootView;
     }
 
-
+    //getMapAsync() 호출 시 자동실행 (맵 준비상태가 되면 실행)
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         Log.d("asdfqwerasdf", "아무거나" + googleMap);
@@ -255,6 +275,8 @@ public class MapFragment extends Fragment
 //        mMap.moveCamera(CameraUpdateFactory.newLatLng(choongang));
     }
 
+
+    ////////////////////////////////////////정의 메소드//////////////////////////////////////////////
     // 좌표 얻기 메소드
     private void getLastLocation() {
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && providerClient != null) {
@@ -343,15 +365,47 @@ public class MapFragment extends Fragment
 
     }
 
+    private void startMarkerSetting() {
+        if(mMap != null) {
+            LatLng latLng = new LatLng(mLat, mLng);
+            // 마커 옵션
+            MarkerOptions markerOptions = new MarkerOptions();
+            // 마커 이미지 사이즈 조절
+            //markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.location_pin));
+            Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.clean_truck_non);
+            int newWidth = 100;
+            int newHeight = 100;
+            // false : 크기 조절에 빠르고 효율. 약간 품질 저하될 수 있어도 대부분의 이미지 크기 조절 작업에 적합.
+            Bitmap resizedBitmap = Bitmap.createScaledBitmap(originalBitmap, newWidth, newHeight, false);
+
+            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizedBitmap));
+
+            markerOptions.position(latLng);
+            markerOptions.title("MyLocation");
+            // 마커 표시
+            Marker myMarker = mMap.addMarker(markerOptions);
+
+            // 마커에 Z 인덱스 설정
+            myMarker.setZIndex(1.0f);
+        } else {
+            Log.d("mixdog", "googleMap 이 널이여서 마커를 못찍음");
+        }
+    }
+
     // JSON데이터 서버에 전송
-    public void sendJsonData(String url){
-        // JSON 데이터 전송
+    public void sendXYJsonData(String url){
+        // 좌표 JSON 데이터 전송
+        LocalDate date = LocalDate.now();
+        LocalTime time = LocalTime.now();
         try {
             // JSON 객체 생성
             final JSONObject object = new JSONObject();
             object.put("carNum", carNum);
             object.put("latitude", mLat);
             object.put("longitude", mLng);
+            object.put("date", date);
+            object.put("time", time);
+            Log.d("json_log", object.toString());
             // 전송 준비
             JsonObjectRequest jsonRequest = new JsonObjectRequest(
                     Request.Method.POST,
@@ -383,7 +437,103 @@ public class MapFragment extends Fragment
         }
     }
 
+    public void sendNoiseJsonData(String url){
+        // 소음 JSON 데이터 전송 (now() 메소드를 사용하기 위해 minSDK 버전 26 상향 조정)
+        LocalDate date = LocalDate.now();
+        LocalTime time = LocalTime.now();
+        // 임의 랜덤 소음값
+        // noise 값을 60에서 100 사이의 랜덤 값으로 생성
+        double minNoise = 60.00;
+        double maxNoise = 100.00;
+        double noise = minNoise + (maxNoise - minNoise) * new Random().nextDouble();
+        // 소숫점 2자리까지 포맷팅
+        DecimalFormat df = new DecimalFormat("#.##");
+        String formattedNoise = df.format(noise);
+        try {
+            // JSON 객체 생성
+            final JSONObject object = new JSONObject();
+            object.put("carNum", carNum);
+            object.put("noise", formattedNoise);
+            object.put("date", date);
+            object.put("time", time);
+            Log.d("json_log", object.toString());
+            // 전송 준비
+            JsonObjectRequest jsonRequest = new JsonObjectRequest(
+                    Request.Method.POST,
+                    url,
+                    object,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            Log.d("mixpuppy", "json onResponse: ");
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.d("mixpuppy", "json onErrorResponse: " + error);
+                        }
+                    }){
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    HashMap headers = new HashMap();
+                    headers.put("Content-Type","application/json");
+                    return headers;
+                }
+            };
+            // 전송
+            queue.add(jsonRequest);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void sendVibrationData(String url) {
+        // 진동 JSON 데이터 전송 (now() 메소드를 사용하기 위해 minSDK 버전 26 상향 조정)
+        LocalDate date = LocalDate.now();
+        LocalTime time = LocalTime.now();
+        // 임의 랜덤 진동값
+        int minVibration = 1000;
+        int maxVibration = 2500;
+        int vibration = new Random().nextInt(maxVibration - minVibration + 1) + minVibration;
 
+        try {
+            // JSON 객체 생성
+            final JSONObject object = new JSONObject();
+            object.put("carNum", carNum);
+            object.put("vibration", vibration);
+            object.put("date", date);
+            object.put("time", time);
+            Log.d("json_log", object.toString());
+            // 전송 준비
+            JsonObjectRequest jsonRequest = new JsonObjectRequest(
+                    Request.Method.POST,
+                    url,
+                    object,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            Log.d("mixpuppy", "json onResponse: ");
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.d("mixpuppy", "json onErrorResponse: " + error);
+                        }
+                    }) {
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    HashMap headers = new HashMap();
+                    headers.put("Content-Type", "application/json");
+                    return headers;
+                }
+            };
+            // 전송
+            queue.add(jsonRequest);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
 }
