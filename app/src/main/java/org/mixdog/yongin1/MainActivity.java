@@ -12,6 +12,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.location.LocationListener;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -108,10 +109,6 @@ public class MainActivity extends AppCompatActivity
         mUi.setCompassEnabled(true);
         // 확대축소 컨트롤 추가
         mUi.setZoomControlsEnabled(true);
-//        // Add a marker in Sydney and move the camera
-//        LatLng choongang = new LatLng(37.5565844, 126.9451737);
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(choongang));
     }
 
     private void moveMap(double latitude, double longitude){

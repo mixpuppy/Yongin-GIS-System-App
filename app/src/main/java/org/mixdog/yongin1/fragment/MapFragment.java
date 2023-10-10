@@ -17,6 +17,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,13 +49,18 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.mixdog.yongin1.CsvFile;
 import org.mixdog.yongin1.LocationViewModel;
 import org.mixdog.yongin1.MainActivity;
 import org.mixdog.yongin1.R;
+import org.mixdog.yongin1.dto.LocationDto;
+import org.mixdog.yongin1.dto.NoiseDto;
+import org.mixdog.yongin1.dto.VibrationDto;
 
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,9 +73,13 @@ public class MapFragment extends Fragment
         implements OnMapReadyCallback  {
 
     //url port
-    private final String xyUrl = "http://172.30.1.55:8081/getXY";
-    private final String noiseUrl = "http://172.30.1.55:8081/getNoise";
-    private final String vibrationUrl = "http://172.30.1.55:8081/getVibration";
+//    private final String xyUrl = "http://172.30.1.55:8081/getXY";
+//    private final String noiseUrl = "http://172.30.1.55:8081/getNoise";
+//    private final String vibrationUrl = "http://172.30.1.55:8081/getVibration";
+
+    private final String xyUrl = "http://172.30.1.18:80/gis/temp/gps";
+    private final String noiseUrl = "http://172.30.1.18:80/gis/temp/noise";
+    private final String vibrationUrl = "http://172.30.1.18:80/gis/temp/rpm";
 
     // 지도 객체
     private GoogleMap mMap;
@@ -77,10 +87,7 @@ public class MapFragment extends Fragment
     private UiSettings mUi;
     // 위도 경도
     private double mLat, mLng;
-    // 구글 api
-    protected GoogleApiClient mGoogleApiClient;
-    // 로케이션 리퀘스트
-    protected LocationRequest mLocationRequest;
+
     // onConnected() 메소드를 사용할 수 있을때 사용하는 변수
     private FusedLocationProviderClient providerClient;
 
@@ -98,6 +105,16 @@ public class MapFragment extends Fragment
 
     //Marker 객체
     private Marker myLocationMarker;
+
+    // CSV FILE PATH
+    private String filePath;
+    // CSV 파일명
+
+    // CSV 파일 제작용 DTO LIST
+    private List<LocationDto> locationDtos;
+    private List<NoiseDto> noiseDtos;
+    private List<VibrationDto> vibrationDtos;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -136,6 +153,16 @@ public class MapFragment extends Fragment
 
         // 타이머 초기화
         timerCall = new Timer();
+
+        // csv 저장 path 설정
+        /**
+         * (프레그먼트에서는 직접 context를 상속받지 않아 별도로 getActivity() 를 호출해야 함
+         */
+        filePath = getActivity().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).getPath();
+
+        // 각 ArrayList 초기화
+        initDtoList();
+
         //프래그먼트 간에 데이터를 전달용
 //        if (getArguments() != null) {
 //            mParam1 = getArguments().getString(ARG_PARAM1);
@@ -239,6 +266,14 @@ public class MapFragment extends Fragment
                 Log.d("mixpuppy", "정지버튼이 눌렸음");
                 // 메인엑티비티 스테틱 전역변수 버튼활성화 적용
                 MainActivity.isInitialMarkerSet=false;
+
+                // csv 파일 생성
+                makeLocationCSV();
+                makeNoiseCSV();
+                makeVibrationCSV();
+
+                // dto list 초기화
+                initDtoList();
 
                 if(timerTask != null){
                     timerTask.cancel();
@@ -392,6 +427,13 @@ public class MapFragment extends Fragment
         }
     }
 
+    // list 초기화 메소드
+    public void initDtoList() {
+        locationDtos = new ArrayList<>();
+        noiseDtos = new ArrayList<>();
+        vibrationDtos = new ArrayList<>();
+    }
+
     // JSON데이터 서버에 전송
     public void sendXYJsonData(String url){
         // 좌표 JSON 데이터 전송
@@ -401,11 +443,16 @@ public class MapFragment extends Fragment
             // JSON 객체 생성
             final JSONObject object = new JSONObject();
             object.put("carNum", carNum);
-            object.put("latitude", mLat);
-            object.put("longitude", mLng);
+            object.put("lat", mLat);
+            object.put("lon", mLng);
             object.put("date", date);
             object.put("time", time);
             Log.d("json_log", object.toString());
+
+            // list 에 담을 dto 객체 생성
+            LocationDto locationDto = new LocationDto(carNum, date, time, mLat, mLng);
+            locationDtos.add(locationDto);
+
             // 전송 준비
             JsonObjectRequest jsonRequest = new JsonObjectRequest(
                     Request.Method.POST,
@@ -457,6 +504,11 @@ public class MapFragment extends Fragment
             object.put("date", date);
             object.put("time", time);
             Log.d("json_log", object.toString());
+
+            // list 에 담을 dto 객체 생성
+            NoiseDto noiseDto = new NoiseDto(carNum, date, time, formattedNoise);
+            noiseDtos.add(noiseDto);
+
             // 전송 준비
             JsonObjectRequest jsonRequest = new JsonObjectRequest(
                     Request.Method.POST,
@@ -500,10 +552,15 @@ public class MapFragment extends Fragment
             // JSON 객체 생성
             final JSONObject object = new JSONObject();
             object.put("carNum", carNum);
-            object.put("vibration", vibration);
+            object.put("rpm", vibration);
             object.put("date", date);
             object.put("time", time);
             Log.d("json_log", object.toString());
+
+            // list 에 담을 dto 객체 생성
+            VibrationDto vibrationDto = new VibrationDto(carNum, date, time, vibration);
+            vibrationDtos.add(vibrationDto);
+
             // 전송 준비
             JsonObjectRequest jsonRequest = new JsonObjectRequest(
                     Request.Method.POST,
@@ -533,6 +590,35 @@ public class MapFragment extends Fragment
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    //csv 파일 생성 메소드
+    public void makeLocationCSV() {
+        LocalDate date = LocalDate.now();
+        LocalTime time = LocalTime.now();
+        CsvFile csvFile = new CsvFile(filePath);
+        String fileName = carNum + "_" + date.toString() + "_" + time.toString() + "locationData.csv";
+        csvFile.locationDTOListToCsv(fileName, locationDtos);
+        Log.d("csvfile", "저장소 경로 : " + filePath);
+        Log.d("csvfile", "location csv 저장 성공");
+    }
+    public void makeNoiseCSV() {
+        LocalDate date = LocalDate.now();
+        LocalTime time = LocalTime.now();
+        CsvFile csvFile = new CsvFile(filePath);
+        String fileName = carNum + "_" + date.toString() + "_" + time.toString() +"noiseData.csv";
+        csvFile.noiseDTOListToCsv(fileName, noiseDtos);
+        Log.d("csvfile", "저장소 경로 : " + filePath);
+        Log.d("csvfile", "noise csv 저장 성공");
+    }
+    public void makeVibrationCSV() {
+        LocalDate date = LocalDate.now();
+        LocalTime time = LocalTime.now();
+        CsvFile csvFile = new CsvFile(filePath);
+        String fileName = carNum + "_" + date.toString() + "_" + time.toString() +"vibrationData.csv";
+        csvFile.vibrationDTOListToCsv(fileName, vibrationDtos);
+        Log.d("csvfile", "저장소 경로 : " + filePath);
+        Log.d("csvfile", "vibration csv 저장 성공");
     }
 
 

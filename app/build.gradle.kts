@@ -63,4 +63,8 @@ dependencies {
     implementation ("com.google.android.gms:play-services-maps:18.1.0")
     implementation ("com.google.android.gms:play-services-auth:18.0.0")
     implementation ("com.google.android.gms:play-services-location:18.0.0")
+
+    // CSV 파일 만드는 의존성
+    implementation ("com.opencsv:opencsv:5.5")
+
 }
