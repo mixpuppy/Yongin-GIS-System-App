@@ -226,6 +226,9 @@ public class MapFragment extends Fragment
 
                 // 드롭다운 목록에서 선택한 항목 가져오기
                 Spinner spinner = viewDialog.findViewById(R.id.spinner);
+                // 1. requireContext() : 앱의 정보를 담고 있음
+                // 2. layout id. 기본으로 제공되는 simple_spinner_item
+                // 3. 내가 작성한 차 목록 배열 집어넣기
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(
                         requireContext(), android.R.layout.simple_spinner_item, carNums);
                 spinner.setAdapter(adapter);
