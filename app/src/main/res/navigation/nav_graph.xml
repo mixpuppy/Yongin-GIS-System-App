@@ -1,15 +1,22 @@
 <?xml version ="1.0" encoding ="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http:// schemas.android.com/apk/res-auto"
-    xmlns:app2="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph" app2:startDestination="@id/mainFragment">
+    xmlns:app2="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app2:startDestination="@id/mainFragment">
 
-    <fragment android:id="@+id/mainFragment" android:name="org.mixdog.yongin1.fragment.MainFragment"
-        android:label="fragment_main" tools:layout="@layout/fragment_main">
-        <action android:id="@+id/action_mainFragment_to_mapFragment" app2:destination="@id/mapFragment"/>
+    <fragment android:id="@+id/mainFragment"
+        android:name="org.mixdog.yongin1.fragment.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main">
+        <action android:id="@+id/action_mainFragment_to_mapFragment"
+            app2:destination="@id/mapFragment"/>
     </fragment>
-    <fragment android:id="@+id/mapFragment" android:name="org.mixdog.yongin1.fragment.MapFragment"
-        android:label="fragment_question" tools:layout="@layout/fragment_map">
+    <fragment android:id="@+id/mapFragment"
+        android:name="org.mixdog.yongin1.fragment.MapFragment"
+        android:label="fragment_map"
+        tools:layout="@layout/fragment_map">
     </fragment>
     <!--
     <fragment android:id="@+id/resultFragment" android:name="com.example.myapplication.fragment.ResultFragment"

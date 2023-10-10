@@ -7,9 +7,32 @@
     <string name="app_name">용인시 청소차량 기록 앱</string>
     <string name="main_question">차량 번호를 입력해 주세요</string>
     <string name="main_title">용인시 청소 차량 App</string>
-    <style name="Base.Theme.Yongin1" parent="Theme.Material3.DayNight.NoActionBar">
+    <string name="user_location_permission_not_granted">
+        위치 정보 접근 권한이 허용되어 있지 않습니다. 현재 위치를 파악하기 위해 권한을 허용해주세요.
+    </string>
+    <string name="user_location_permission_required">
+        이 앱을 적절히 사용하기 위해서는 위치 정보 접근 권한이 필요합니다.
+    </string>
+    <style name="AlertDialogButton.Negative" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="AlertDialogButton.Positive" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert">
+        
+        <item name="android:background">#293661</item>
+    </style>
+    <style name="Base.Theme.Yongin1" parent="Theme.AppCompat.DayNight.NoActionBar">
         
         
+    </style>
+    <style name="SpinnerDropdownStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">200dp</item>
+
     </style>
     <style name="Theme.Yongin1" parent="Base.Theme.Yongin1"/>
 </resources>

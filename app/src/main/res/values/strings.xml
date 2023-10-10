@@ -2,4 +2,10 @@
     <string name="app_name">용인시 청소차량 기록 앱</string>
     <string name="main_title">용인시 청소 차량 App</string>
     <string name="main_question">차량 번호를 입력해 주세요</string>
+    <string name="user_location_permission_not_granted">
+        위치 정보 접근 권한이 허용되어 있지 않습니다. 현재 위치를 파악하기 위해 권한을 허용해주세요.
+    </string>
+    <string name="user_location_permission_required">
+        이 앱을 적절히 사용하기 위해서는 위치 정보 접근 권한이 필요합니다.
+    </string>
 </resources>
