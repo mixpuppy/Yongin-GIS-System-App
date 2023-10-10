@@ -2823,6 +2823,8 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable end_flag
+drawable end_marker
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable ic_arrow_back_black_24
@@ -2839,6 +2841,7 @@ drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_search_black_24
+drawable location
 drawable m3_appbar_background
 drawable m3_avd_hide_password
 drawable m3_avd_show_password
@@ -2911,6 +2914,10 @@ drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable pointer_route
+drawable rounded_button
+drawable start_button
+drawable start_circle
+drawable start_marker
 drawable test_level_drawable
 drawable thumbnail
 drawable thumbnail1
@@ -3278,6 +3285,7 @@ id radio
 id ratio
 id rectangles
 id report_drawn
+id resetBtn
 id reverseSawtooth
 id right
 id rightToLeft
@@ -3343,6 +3351,7 @@ id snapMargins
 id south
 id spacer
 id special_effects_controller_view_tag
+id spinner
 id spline
 id split_action_bar
 id spread
@@ -3564,6 +3573,7 @@ layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
 layout dialog
+layout dropdown_layout
 layout fragment_main
 layout fragment_map
 layout m3_alert_dialog
@@ -3810,8 +3820,13 @@ string searchview_navigation_content_description
 string side_sheet_accessibility_pane_title
 string side_sheet_behavior
 string status_bar_notification_info_overflow
+string user_location_permission_not_granted
+string user_location_permission_required
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
+style AlertDialogButton_Negative
+style AlertDialogButton_Positive
+style AlertDialogCustom
 style Animation_AppCompat_Dialog
 style Animation_AppCompat_DropDownUp
 style Animation_AppCompat_Tooltip
@@ -4199,6 +4214,7 @@ style ShapeAppearanceOverlay_MaterialComponents_MaterialCalendar_Day
 style ShapeAppearanceOverlay_MaterialComponents_MaterialCalendar_Window_Fullscreen
 style ShapeAppearanceOverlay_MaterialComponents_MaterialCalendar_Year
 style ShapeAppearanceOverlay_MaterialComponents_TextInputLayout_FilledBox
+style SpinnerDropdownStyle
 style TextAppearance_AppCompat
 style TextAppearance_AppCompat_Body1
 style TextAppearance_AppCompat_Body2

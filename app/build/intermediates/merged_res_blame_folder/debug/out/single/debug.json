@@ -4,68 +4,184 @@
         "source": "org.mixdog.yongin1.app-main-49:/mipmap-xhdpi/ic_launcher.webp"
     },
     {
-        "merged": "org.mixdog.yongin1.app-merged_res-47:/layout_fragment_main.xml.flat",
-        "source": "org.mixdog.yongin1.app-main-49:/layout/fragment_main.xml"
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/mipmap-xxhdpi_ic_launcher_foreground.webp.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/mipmap-xxhdpi/ic_launcher_foreground.webp"
     },
     {
-        "merged": "org.mixdog.yongin1.app-merged_res-47:/xml_network_security_config.xml.flat",
-        "source": "org.mixdog.yongin1.app-main-49:/xml/network_security_config.xml"
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/drawable_thumbnail.jpg.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/drawable/thumbnail.jpg"
     },
     {
-        "merged": "org.mixdog.yongin1.app-merged_res-47:/drawable_clean_truck.png.flat",
-        "source": "org.mixdog.yongin1.app-main-49:/drawable/clean_truck.png"
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/mipmap-mdpi/ic_launcher.webp"
     },
     {
-        "merged": "org.mixdog.yongin1.app-merged_res-47:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "org.mixdog.yongin1.app-main-49:/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/mipmap-xhdpi_ic_launcher_foreground.webp.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/mipmap-xhdpi/ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/drawable_end_flag.png.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/drawable/end_flag.png"
     },
     {
         "merged": "org.mixdog.yongin1.app-merged_res-47:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
         "source": "org.mixdog.yongin1.app-main-49:/mipmap-xxhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "org.mixdog.yongin1.app-merged_res-47:/drawable_thumbnail.jpg.flat",
-        "source": "org.mixdog.yongin1.app-main-49:/drawable/thumbnail.jpg"
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/mipmap-xxxhdpi_ic_launcher_foreground.webp.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/mipmap-xxxhdpi/ic_launcher_foreground.webp"
     },
     {
-        "merged": "org.mixdog.yongin1.app-merged_res-47:/xml_backup_rules.xml.flat",
-        "source": "org.mixdog.yongin1.app-main-49:/xml/backup_rules.xml"
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
-        "merged": "org.mixdog.yongin1.app-merged_res-47:/mipmap-xxxhdpi_ic_launcher_foreground.webp.flat",
-        "source": "org.mixdog.yongin1.app-main-49:/mipmap-xxxhdpi/ic_launcher_foreground.webp"
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/drawable_start_circle.png.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/drawable/start_circle.png"
     },
     {
-        "merged": "org.mixdog.yongin1.app-merged_res-47:/layout_dialog.xml.flat",
-        "source": "org.mixdog.yongin1.app-main-49:/layout/dialog.xml"
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/mipmap-xhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "org.mixdog.yongin1.app-merged_res-47:/layout_activity_main.xml.flat",
-        "source": "org.mixdog.yongin1.app-main-49:/layout/activity_main.xml"
-    },
-    {
-        "merged": "org.mixdog.yongin1.app-merged_res-47:/drawable_canva.jpg.flat",
-        "source": "org.mixdog.yongin1.app-main-49:/drawable/canva.jpg"
-    },
-    {
-        "merged": "org.mixdog.yongin1.app-merged_res-47:/drawable_pointer_route.png.flat",
-        "source": "org.mixdog.yongin1.app-main-49:/drawable/pointer_route.png"
-    },
-    {
-        "merged": "org.mixdog.yongin1.app-merged_res-47:/drawable_yonginlogo.png.flat",
-        "source": "org.mixdog.yongin1.app-main-49:/drawable/yonginlogo.png"
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/drawable_thumbnail1.jpg.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/drawable/thumbnail1.jpg"
     },
     {
         "merged": "org.mixdog.yongin1.app-merged_res-47:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
         "source": "org.mixdog.yongin1.app-main-49:/mipmap-xxxhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "org.mixdog.yongin1.app-merged_res-47:/drawable_clean_truck_non2.png.flat",
-        "source": "org.mixdog.yongin1.app-main-49:/drawable/clean_truck_non2.png"
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/layout_activity_main.xml.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/drawable_clean_truck.png.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/drawable/clean_truck.png"
+    },
+    {
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/drawable_ic_launcher_background.xml.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/layout_fragment_map.xml.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/layout/fragment_map.xml"
+    },
+    {
+        "merged": "org.mixdog.yongin1.app-merged_res-47:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "org.mixdog.yongin1.app-main-49:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/layout_dialog.xml.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/layout/dialog.xml"
+    },
+    {
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/layout_fragment_main.xml.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/layout/fragment_main.xml"
+    },
+    {
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/drawable_canva.jpg.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/drawable/canva.jpg"
+    },
+    {
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/drawable_yonginlogo.png.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/drawable/yonginlogo.png"
+    },
+    {
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/drawable_start_button.png.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/drawable/start_button.png"
+    },
+    {
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/layout_dropdown_layout.xml.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/layout/dropdown_layout.xml"
+    },
+    {
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/drawable_location.png.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/drawable/location.png"
+    },
+    {
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/mipmap-mdpi_ic_launcher_foreground.webp.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/mipmap-mdpi/ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "org.mixdog.yongin1.app-merged_res-47:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "org.mixdog.yongin1.app-main-49:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "org.mixdog.yongin1.app-merged_res-47:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "org.mixdog.yongin1.app-main-49:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/xml_backup_rules.xml.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/drawable_start_marker.png.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/drawable/start_marker.png"
+    },
+    {
+        "merged": "org.mixdog.yongin1.app-merged_res-47:/mipmap-hdpi_ic_launcher_foreground.webp.flat",
+        "source": "org.mixdog.yongin1.app-main-49:/mipmap-hdpi/ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/xml_data_extraction_rules.xml.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "org.mixdog.yongin1.app-merged_res-47:/mipmap-xxxhdpi_ic_launcher_foreground.webp.flat",
+        "source": "org.mixdog.yongin1.app-main-49:/mipmap-xxxhdpi/ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/drawable_clean_truck_non2.png.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/drawable/clean_truck_non2.png"
+    },
+    {
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/drawable_end_marker.png.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/drawable/end_marker.png"
     },
     {
         "merged": "org.mixdog.yongin1.app-merged_res-47:/mipmap-mdpi_ic_launcher.webp.flat",
         "source": "org.mixdog.yongin1.app-main-49:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/drawable_clean_truck_non.png.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/drawable/clean_truck_non.png"
     },
     {
         "merged": "org.mixdog.yongin1.app-merged_res-47:/mipmap-xhdpi_ic_launcher_foreground.webp.flat",
@@ -76,40 +192,28 @@
         "source": "org.mixdog.yongin1.app-main-49:/mipmap-hdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "org.mixdog.yongin1.app-merged_res-47:/drawable_ic_launcher_background.xml.flat",
-        "source": "org.mixdog.yongin1.app-main-49:/drawable/ic_launcher_background.xml"
-    },
-    {
-        "merged": "org.mixdog.yongin1.app-merged_res-47:/mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "org.mixdog.yongin1.app-main-49:/mipmap-xhdpi/ic_launcher_round.webp"
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/xml_network_security_config.xml.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/xml/network_security_config.xml"
     },
     {
         "merged": "org.mixdog.yongin1.app-merged_res-47:/mipmap-xxxhdpi_ic_launcher.webp.flat",
         "source": "org.mixdog.yongin1.app-main-49:/mipmap-xxxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "org.mixdog.yongin1.app-merged_res-47:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "org.mixdog.yongin1.app-main-49:/mipmap-anydpi-v26/ic_launcher_round.xml"
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/navigation_nav_graph.xml.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/navigation/nav_graph.xml"
     },
     {
-        "merged": "org.mixdog.yongin1.app-merged_res-47:/drawable_thumbnail1.jpg.flat",
-        "source": "org.mixdog.yongin1.app-main-49:/drawable/thumbnail1.jpg"
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/mipmap-hdpi_ic_launcher_foreground.webp.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/mipmap-hdpi/ic_launcher_foreground.webp"
     },
     {
-        "merged": "org.mixdog.yongin1.app-merged_res-47:/xml_data_extraction_rules.xml.flat",
-        "source": "org.mixdog.yongin1.app-main-49:/xml/data_extraction_rules.xml"
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/mipmap-xhdpi/ic_launcher.webp"
     },
     {
-        "merged": "org.mixdog.yongin1.app-merged_res-47:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "org.mixdog.yongin1.app-main-49:/drawable/ic_launcher_foreground.xml"
-    },
-    {
-        "merged": "org.mixdog.yongin1.app-merged_res-47:/mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "org.mixdog.yongin1.app-main-49:/mipmap-mdpi/ic_launcher_round.webp"
-    },
-    {
-        "merged": "org.mixdog.yongin1.app-merged_res-47:/layout_fragment_map.xml.flat",
-        "source": "org.mixdog.yongin1.app-main-49:/layout/fragment_map.xml"
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/drawable_pointer_route.png.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/drawable/pointer_route.png"
     },
     {
         "merged": "org.mixdog.yongin1.app-merged_res-47:/mipmap-mdpi_ic_launcher_foreground.webp.flat",
@@ -120,23 +224,11 @@
         "source": "org.mixdog.yongin1.app-main-49:/mipmap-hdpi/ic_launcher.webp"
     },
     {
-        "merged": "org.mixdog.yongin1.app-merged_res-47:/mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "org.mixdog.yongin1.app-main-49:/mipmap-xxhdpi/ic_launcher.webp"
-    },
-    {
         "merged": "org.mixdog.yongin1.app-merged_res-47:/mipmap-xxhdpi_ic_launcher_foreground.webp.flat",
         "source": "org.mixdog.yongin1.app-main-49:/mipmap-xxhdpi/ic_launcher_foreground.webp"
     },
     {
-        "merged": "org.mixdog.yongin1.app-merged_res-47:/navigation_nav_graph.xml.flat",
-        "source": "org.mixdog.yongin1.app-main-49:/navigation/nav_graph.xml"
-    },
-    {
-        "merged": "org.mixdog.yongin1.app-merged_res-47:/drawable_clean_truck_non.png.flat",
-        "source": "org.mixdog.yongin1.app-main-49:/drawable/clean_truck_non.png"
-    },
-    {
-        "merged": "org.mixdog.yongin1.app-merged_res-47:/mipmap-hdpi_ic_launcher_foreground.webp.flat",
-        "source": "org.mixdog.yongin1.app-main-49:/mipmap-hdpi/ic_launcher_foreground.webp"
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/drawable_rounded_button.xml.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/drawable/rounded_button.xml"
     }
 ]

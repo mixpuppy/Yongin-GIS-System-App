@@ -45,6 +45,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 public class MainActivity extends AppCompatActivity
         implements OnMapReadyCallback {
+    // ↳ 지도가 준비되면 원하는 작업 수행하도록 구현
 
     // 프레그먼트 네비게이션 사용
     private NavController navController;
@@ -59,17 +60,22 @@ public class MainActivity extends AppCompatActivity
     private FusedLocationProviderClient fusedLocationClient;
     private LocationRequest locationRequest;
     private LocationCallback locationCallback;
-    private static Marker nonStartMarker;
+    public static Marker nonStartMarker;
     // 시작버튼 활성화 여부 (true 시 활성화)
     public static boolean isInitialMarkerSet = false;
 
+    /**
+     * 액티비티가 실행되고 처음 시작될 때 호출
+     * @param savedInstanceState : 이전에 저장된 상태, 액티비티가 종료되었던 이전 상태정보 복원
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         // NavHostFragment 가져오기
-        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+        NavHostFragment navHostFragment =
+                (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
 
         // NavController 설정
         navController = navHostFragment.getNavController();
@@ -82,11 +88,13 @@ public class MainActivity extends AppCompatActivity
             Log.d("mixpuppy", "MainActivity Oncreate if 실행");
             mapFragment.getMapAsync(this); // 비동기적으로 Google Maps API 지도를 로드
         } else {
-            Log.d("mixpuppt", "MainActivity Oncreate else로 빠짐");
+            Log.d("mixpuppy", "MainActivity Oncreate else로 빠짐");
         }
 
         // 신규 방법 위치권한 확인 및 요청
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(
+                this, Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
             // 위치 권한이 이미 허용되어 있는 경우
             initializeLocation();
         } else {
@@ -104,31 +112,35 @@ public class MainActivity extends AppCompatActivity
         // 컨트롤러 올리기
         mUi = mMap.getUiSettings();
 
+        if (mMap != null) {
+            Log.d("MyApp", "onMapReady: 초기 좌표와 줌 레벨 설정");
+            // 초기 좌표와 줌 레벨 설정
+            LatLng initLatLng = new LatLng(37.2214872, 127.2218612);
+            float zoomLevel = 14.0f;
+
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(initLatLng, zoomLevel));
+        }
         // 나침반 추가
         mUi.setCompassEnabled(true);
         // 확대축소 컨트롤 추가
         mUi.setZoomControlsEnabled(true);
-//        // Add a marker in Sydney and move the camera
-//        LatLng choongang = new LatLng(37.5565844, 126.9451737);
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(choongang));
     }
 
     private void moveMap(double latitude, double longitude){
         if(mMap != null) {
         LatLng latLng = new LatLng(latitude, longitude);
         // 중심 좌표 생성
-        CameraPosition positon = CameraPosition.builder()
+        CameraPosition position = CameraPosition.builder()
                 .target(latLng)
-                .zoom(16f)
+                .zoom(17f)
                 .build();
         // 지도 중심 이동
-        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(positon));
+        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(position));
         setCurrentMarker(latLng);
         }
     }
 
-    // mMap 변수의 fragment 사용위한 메소드
+    // mMap 변수의 fragment 사용 위한 메소드
     public GoogleMap getMap() {
         return mMap;
     }
@@ -139,13 +151,14 @@ public class MainActivity extends AppCompatActivity
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         // 위치 업데이트에 대한 요청을 정의
         locationRequest = new LocationRequest();
-        // 5~10초 간격으로 위치 업데이트 ( 배터리 소모를 줄이거나 정확도를 조절)
+        // 5~10초 간격으로 위치 업데이트 (배터리 소모를 줄이거나 정확도를 조절)
         locationRequest.setInterval(10000);
         locationRequest.setFastestInterval(10000);
         // 정확도를 우선시하여 위치 업데이트를 요청
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
-        //ViewModel 로 providerClient 를 전달 (Android Architecture Components 라이브러리에서 제공하는 ViewModelProvider를 사용)
+        //ViewModel로 providerClient 를 전달
+        //(Android Architecture Components 라이브러리에서 제공하는 ViewModelProvider를 사용)
         LocationViewModel viewModel = new ViewModelProvider(this).get(LocationViewModel.class);
         viewModel.setProviderClient(fusedLocationClient);
 
@@ -158,7 +171,7 @@ public class MainActivity extends AppCompatActivity
                     Location location = locationResult.getLastLocation();
                     mLat = location.getLatitude();
                     mLng = location.getLongitude();
-                    Log.d("mixpuppy", "초기위치 | 위도 : " + mLat + ", 경도 : " + mLng);
+                    Log.d("mixpuppy", "MainActivity 위치정보 업데이트 | 위도 : " + mLat + ", 경도 : " + mLng);
                     moveMap(mLat, mLng);
                 }
             }
@@ -166,6 +179,7 @@ public class MainActivity extends AppCompatActivity
         // 위치 업데이트를 시작
         startLocationUpdates();
     }
+
     // 위치권한 요청하고 처리하는 메소드
     private void requestLocationPermission() {
         // ActivityResultLauncher : 권한 요청 결과를 처리하는 데 사용
@@ -179,13 +193,17 @@ public class MainActivity extends AppCompatActivity
                         // 권한이 허용된 경우
                         initializeLocation();
                     } else { // 거부된 경우 메시지를 표시
-                        Toast.makeText(this, "권한 거부됨", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this,
+                                R.string.user_location_permission_not_granted,
+                                Toast.LENGTH_LONG).show();
                     }
                 });
 
         if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
             // 권한 요청 이유를 설명하는 다이얼로그를 표시 가능
-            Toast.makeText(this, "이거 허용안하면 앱 못써요", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,
+                    R.string.user_location_permission_required,
+                    Toast.LENGTH_LONG).show();
         } else {
             // 권한을 직접 요청
             requestPermissionLauncher.launch(new String[]{Manifest.permission.ACCESS_FINE_LOCATION});
@@ -223,14 +241,15 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void setCurrentMarker(LatLng latLng) {
-        if (nonStartMarker == null) {
-            if(!isInitialMarkerSet) {
-                Log.d("MyApp", "중심 마커 찍기");
-                // 마커 속성을 설정하는 객체
-                MarkerOptions markerOptions = new MarkerOptions();
-                markerOptions.position(latLng);
-                markerOptions.title("내 위치\n");
-                markerOptions.snippet("GPS로 확인한 위치");
+
+        if (nonStartMarker == null) {   // 연한 트럭 마커를 한 번도 생성한 적 없을 때 (앱 최초 실행)
+            // 마커 속성을 설정하는 객체
+            if(!isInitialMarkerSet) {   // start 버튼을 누른 상태가 아니라면
+                Log.d("hanaBBun", "연한 트럭 마커 찍기");
+                MarkerOptions markerOptions = new MarkerOptions()
+                        .position(latLng)
+                        .title("내 위치\n")
+                        .snippet("GPS로 확인한 위치");
 
                 // 마커 이미지 사이즈 조절
                 //markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.location_pin));
@@ -243,14 +262,13 @@ public class MainActivity extends AppCompatActivity
                 markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizedBitmap));
                 nonStartMarker = mMap.addMarker(markerOptions);
                 // Z 인덱스 설정
-                nonStartMarker.setZIndex(1.1f);
+                nonStartMarker.setZIndex(1.7f);
             }
-        } else {
+        } else { // 연한 트럭 마커를 이전에 생성한 적 있을 때
             if(!isInitialMarkerSet) {
-                Log.d("MyApp", "마커 이동");
+                Log.d("hanaBBun", "연한 트럭 마커 이동");
                 nonStartMarker.setPosition(latLng);
             }
         }
-
     }
 }

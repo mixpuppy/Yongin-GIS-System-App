@@ -4,7 +4,7 @@
             "outputFile": "org.mixdog.yongin1.app-mergeDebugResources-45:/values-w600dp-land-v13/values-w600dp-land-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\82104\\.gradle\\caches\\transforms-3\\6aa730011e901f80d1584f4facfa3307\\transformed\\material-1.8.0\\res\\values-w600dp-land-v13\\values-w600dp-land-v13.xml",
+                    "source": "/Users/hanabbun/.gradle/caches/transforms-3/6aa730011e901f80d1584f4facfa3307/transformed/material-1.8.0/res/values-w600dp-land-v13/values-w600dp-land-v13.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
