@@ -1,5 +1,7 @@
 package org.mixdog.yongin1;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -13,5 +15,15 @@ public class LocationViewModel extends ViewModel {
 
     public void setProviderClient(FusedLocationProviderClient providerClient) {
         this.providerClient = providerClient;
+    }
+
+    private final MutableLiveData<String> action = new MutableLiveData<>();
+
+    public void setAction(String newAction) {
+        action.setValue(newAction);
+    }
+
+    public LiveData<String> getAction() {
+        return action;
     }
 }

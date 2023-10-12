@@ -2785,6 +2785,8 @@ drawable abc_textfield_search_activated_mtrl_alpha
 drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
+drawable app_icon
+drawable arrow_down
 drawable avd_hide_password
 drawable avd_show_password
 drawable btn_checkbox_checked_mtrl
@@ -2823,7 +2825,6 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
-drawable end_flag
 drawable end_marker
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
@@ -2841,7 +2842,6 @@ drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_search_black_24
-drawable location
 drawable m3_appbar_background
 drawable m3_avd_hide_password
 drawable m3_avd_show_password
@@ -2915,8 +2915,6 @@ drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable pointer_route
 drawable rounded_button
-drawable start_button
-drawable start_circle
 drawable start_marker
 drawable test_level_drawable
 drawable thumbnail
@@ -3031,7 +3029,6 @@ id buttonPanel
 id cache_measures
 id callMeasure
 id cancel_button
-id car_num
 id carryVelocity
 id center
 id centerCrop
@@ -3352,6 +3349,7 @@ id south
 id spacer
 id special_effects_controller_view_tag
 id spinner
+id spinner_text
 id spline
 id split_action_bar
 id spread
@@ -3572,8 +3570,9 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
-layout dialog
+layout dropdown_inner_layout
 layout dropdown_layout
+layout dropdown_outer_layout
 layout fragment_main
 layout fragment_map
 layout m3_alert_dialog
@@ -3820,8 +3819,11 @@ string searchview_navigation_content_description
 string side_sheet_accessibility_pane_title
 string side_sheet_behavior
 string status_bar_notification_info_overflow
+string user_alarm_permission_not_granted
+string user_alarm_permission_required
 string user_location_permission_not_granted
 string user_location_permission_required
+string user_permissions_required
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style AlertDialogButton_Negative

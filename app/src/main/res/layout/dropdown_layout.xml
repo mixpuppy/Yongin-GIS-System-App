@@ -21,13 +21,17 @@
         android:id="@+id/spinner"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:textSize="20sp"
-        android:layout_marginLeft="20dp"
+        android:textSize="50sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="8dp"
         android:spinnerMode="dropdown"
+        android:overlapAnchor="false"
         android:layout_gravity="center"
-        android:theme="@style/SpinnerDropdownStyle" /><!-- 스피너 스타일 적용 -->
+        style="@style/SpinnerDropdownStyle"
+         />
+    <!-- 스피너 스타일 적용 : android:theme="@style/SpinnerDropdownStyle"-->
 
 
 </LinearLayout>

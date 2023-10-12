@@ -1,32 +1,22 @@
 package org.mixdog.yongin1;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Location;
-import android.location.LocationListener;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -42,7 +32,8 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.tasks.OnSuccessListener;
+
+import org.mixdog.yongin1.permission.PermissionSupport;
 
 public class MainActivity extends AppCompatActivity
         implements OnMapReadyCallback {
@@ -65,14 +56,33 @@ public class MainActivity extends AppCompatActivity
     // 시작버튼 활성화 여부 (true 시 활성화)
     public static boolean isInitialMarkerSet = false;
 
+    //// 포어그라운드 서비스 관련
+    private Intent serviceIntent;
+
+    //// 권한 처리 관련 클래스 선언
+    private PermissionSupport permission = new PermissionSupport(this, this);
+
+    // 권한 요청 시 발생하는 창에 대한 결과값을 받기 위해 지정해주는 int 형
+    // 원하는 임의의 숫자 지정 - 단지 결과 처리할 때 특정 요청을 식별하기 위한 도구로 사용됨!
+    // 요청에 대한 결과값 확인을 위해 RequestCode를 final로 정의
+    private final int MY_PERMISSIONS_REQUEST = 1004;
+
     /**
      * 액티비티가 실행되고 처음 시작될 때 호출
      * @param savedInstanceState : 이전에 저장된 상태, 액티비티가 종료되었던 이전 상태정보 복원
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("mixdog", "--------------------------우아시작!!!---------------------------");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Log.d("mixdog", "1");
+
+        Log.d("hanaBBun", "onCreate 위치/알림 권한 허용 상태 : " + permission.locationPermissionGranted + "/" + permission.notificationPermissionGranted);
+        Log.d("hanaBBun", "onCreate 위치/알림 권한 거절 횟수 : " + permission.locationDeniedCount + "/" + permission.notificationDeniedCount);
+        // 권한 체크
+        permissionCheck();
 
         // NavHostFragment 가져오기
         NavHostFragment navHostFragment =
@@ -91,18 +101,6 @@ public class MainActivity extends AppCompatActivity
         } else {
             Log.d("mixpuppy", "MainActivity Oncreate else로 빠짐");
         }
-
-        // 신규 방법 위치권한 확인 및 요청
-        if (ContextCompat.checkSelfPermission(
-                this, Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
-            // 위치 권한이 이미 허용되어 있는 경우
-            initializeLocation();
-        } else {
-            // 위치 권한을 요청하는 메소드
-            requestLocationPermission();
-        }
-
     }
 
     // 인터페이스 구현체
@@ -181,40 +179,56 @@ public class MainActivity extends AppCompatActivity
         startLocationUpdates();
     }
 
-    // 위치권한 요청하고 처리하는 메소드
-    private void requestLocationPermission() {
-        // ActivityResultLauncher : 권한 요청 결과를 처리하는 데 사용
-        ActivityResultLauncher<String[]> requestPermissionLauncher = registerForActivityResult(
-                new ActivityResultContracts.RequestMultiplePermissions(),
-                // 권한 요청 결과로 전달되는 맵(Map) 형태의 변수
-                // 이 맵은 권한 이름(문자열)과 권한이 허용되었는지 여부(Boolean)를 포함
-                permissions -> {
-                    // 권한이 허용되었는지 확인
-                    if (permissions.values().stream().allMatch(Boolean::booleanValue)) {
-                        // 권한이 허용된 경우
-                        initializeLocation();
-                    } else { // 거부된 경우 메시지를 표시
-                        Toast.makeText(this,
-                                R.string.user_location_permission_not_granted,
-                                Toast.LENGTH_LONG).show();
-                    }
-                });
-
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
-            // 권한 요청 이유를 설명하는 다이얼로그를 표시 가능
-            Toast.makeText(this,
-                    R.string.user_location_permission_required,
-                    Toast.LENGTH_LONG).show();
+    // 권한 체크
+    private void permissionCheck() {
+        // PermissionSupport.java 클래스 객체 생성
+        //permission = new PermissionSupport(this, this);
+        Log.d("mixdog", "2");
+        // 권한 체크 후 리턴이 false로 들어오면
+        if (!permission.checkPermissions()){
+            // 권한 요청
+            Log.d("mixdog", "3");
+            permission.requestPermission();
+            Log.d("mixdog", "탈출성공인가?");
         } else {
-            // 권한을 직접 요청
-            requestPermissionLauncher.launch(new String[]{Manifest.permission.ACCESS_FINE_LOCATION});
+            // 모든 권한이 이미 허용된 경우
+            initializeLocation();
         }
     }
+
+    /**
+     * 권한 요청 작업 수행 후 시스템으로부터 권한 요청 결과 처리 위해 사용
+     * ActivityCompat.requestPermissions() 를 호출한 뒤 권한 요청에 응답하면 자동 호출됨
+     * -> 승인 여부에 대한 작업 수행 가능;
+     *    승인된 권한을 사용해 원하는 작업하거나, 거부된 권한에 대해서 사용자에게 메시지 표시 및 대안 작업 제안
+     * - int reqeustCode : 권한 요청을 구별하기 위한 요청 코드
+     * - String[] permissions : 권한 요청에 포함된 권한 배열
+     * - int[] grantResults : 승인 승인 결과 배열;
+     *                        권한이 승인되면 PackageManager.PERMISSIONS_GRANTED = 1, 아니면 0
+     */
+    @Override
+    public void onRequestPermissionsResult(
+            int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        Log.d("mixdog", "5");
+        // 권한 승인 여부를 확인하고, 승인되지 않은 경우에만 거부 횟수 증가시킴
+        permission.permissionResult(requestCode, permissions, grantResults);
+        Log.d("mixdog", "8");
+        permission.handlePermissionRequest();
+        Log.d("mixdog", "10");
+        if(permission.locationPermissionGranted) {
+            initializeLocation();
+        }
+    }
+
 
     // 위치 업데이트를 시작하는 역할
     private void startLocationUpdates() {
         // 만약 권한이 부여되어 있다면
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(
+                this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             /**
              * locationRequest : 위치 업데이트의 주기와 우선순위를 설정한 객체
              * locationCallback : 위치 업데이트 이벤트를 처리하는 콜백 함수를 설정한 객체
@@ -225,7 +239,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    // 메모리 누수를 방지 (베터리 소모 방지)
+    // 메모리 누수를 방지 (배터리 소모 방지)
     // 액티비티가 파괴될 때 호출되는 메소드
     @Override
     protected void onDestroy() {

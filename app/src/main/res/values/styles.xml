@@ -2,24 +2,26 @@
 <resources>
     <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert">
         <!-- 다이얼로그 배경색 -->
-        <item name="android:background">#293661</item>
+        <item name="android:background">#f1efeb</item>
+        <!-- 글꼴 설정 -->
+        <item name="android:typeface">monospace</item>
+        <item name="android:textColor">@color/black</item>
+        <!-- 테두리 스타일 및 두께 설정 -->
+        <item name="android:windowBackground"></item>
     </style>
 "
     <style name="SpinnerDropdownStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">200dp</item>
-
     </style>
 
-    <!-- 긍정적인 버튼 스타일 -->
+    <!-- 긍정 버튼 스타일 -->
     <style name="AlertDialogButton.Positive" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
-        <!-- 텍스트 색상을 여기서 설정 -->
         <item name="android:textColor">@color/black</item>
     </style>
 
-    <!-- 부정적인 버튼 스타일 -->
+    <!-- 부정 버튼 스타일 -->
     <style name="AlertDialogButton.Negative" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
-        <!-- 텍스트 색상을 여기서 설정 -->
         <item name="android:textColor">@color/black</item>
     </style>
 
