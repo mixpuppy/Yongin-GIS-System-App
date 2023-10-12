@@ -14,6 +14,7 @@ import android.location.LocationListener;
 import android.location.LocationRequest;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
@@ -53,6 +54,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.mixdog.yongin1.CsvFile;
@@ -62,6 +64,7 @@ import org.mixdog.yongin1.R;
 import org.mixdog.yongin1.dto.LocationDto;
 import org.mixdog.yongin1.dto.NoiseDto;
 import org.mixdog.yongin1.dto.VibrationDto;
+import org.mixdog.yongin1.utils.NetworkUtils;
 
 import java.text.DecimalFormat;
 import java.time.LocalDate;
@@ -84,9 +87,15 @@ public class MapFragment extends Fragment
 //    private final String noiseUrl = "http://172.30.1.55:8081/getNoise";
 //    private final String vibrationUrl = "http://172.30.1.55:8081/getVibration";
 
-    private final String xyUrl = "http://172.30.1.18:80/gis/temp/gps";
-    private final String noiseUrl = "http://172.30.1.18:80/gis/temp/noise";
-    private final String vibrationUrl = "http://172.30.1.18:80/gis/temp/rpm";
+    private final String xyUrl = "http://172.30.1.73:80/gis/temp/gps";
+    private final String noiseUrl = "http://172.30.1.73:80/gis/temp/noise";
+    private final String vibrationUrl = "http://172.30.1.73:80/gis/temp/rpm";
+    private final String requestCarNumUrl = "http://172.30.1.73:80/gis/car";
+    private final String startSendUrl = "http://172.30.1.73:80/gis/start";
+    private final String stopSendUrl = "http://172.30.1.73:80/gis/stop";
+
+    // DB 차량 넘버 조회
+    private List<String> serverCarNums;
 
     // 지도 객체
     private GoogleMap mMap;
@@ -133,16 +142,6 @@ public class MapFragment extends Fragment
     private List<NoiseDto> noiseDtos;
     private List<VibrationDto> vibrationDtos;
 
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     /////////////////////////////////////////전역변수 설정 끝////////////////////////////////////////
     public MapFragment() {
         // Required empty public constructor
@@ -152,10 +151,7 @@ public class MapFragment extends Fragment
     // 후속 프래그먼트 호출 시 사용 (현재 사용 x)
     public static MapFragment newInstance(String param1, String param2) {
         MapFragment fragment = new MapFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -180,12 +176,8 @@ public class MapFragment extends Fragment
 
         // 각 ArrayList 초기화
         initDtoList();
-
-        //프래그먼트 간에 데이터를 전달용
-//        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
-//        }
+        // 차량넘버 초기화
+        serverCarNums = new ArrayList<>();
 
     }
 
@@ -223,6 +215,9 @@ public class MapFragment extends Fragment
         stopBtn = rootView.findViewById(R.id.stopBtn);
         resetBtn = rootView.findViewById(R.id.resetBtn);
 
+        // 원격 서버 DB 에서 차량번호 정보 조회 요청
+        requestCarNum(requestCarNumUrl);
+
         /**
          * startBtn 클릭 이벤트 리스너
          */
@@ -243,25 +238,24 @@ public class MapFragment extends Fragment
                  * ; 차량 번호를 선택하면 해당 선택을 처리하는 리스너 호출
                  *   선택 완료 버튼 클릭 시 선택된 차량 번호를 처리하는 로직 이어감
                  */
-                // 차량 드롭다운 목록에서 선택할 차량 번호 목록 준비
-                List<String> carNums = Arrays.asList("103하2414", "114하6585");
-
                 // dialog 상자 생성 시작
                 AlertDialog.Builder dialog = new AlertDialog.Builder(requireContext(), R.style.AlertDialogCustom);
                 dialog.setTitle("차량 번호 선택");
 
                 // View.inflate 로 dialog 레이아웃을 뷰로 구현
                 viewDialog = (View) View.inflate(requireContext(), R.layout.dropdown_layout, null);
-                // setView 함수로 뷰를 dialog 변수에 전달
-                dialog.setView(viewDialog);
 
                 // 드롭다운 목록에서 선택한 항목 가져오기
                 Spinner spinner = viewDialog.findViewById(R.id.spinner);
+
+                // setView 함수로 뷰를 dialog 변수에 전달
+                dialog.setView(viewDialog);
+
                 // 1. requireContext() : 앱의 정보를 담고 있음
                 // 2. layout id. 기본으로 제공되는 simple_spinner_item
                 // 3. 내가 작성한 차 목록 배열 집어넣기
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                        requireContext(), android.R.layout.simple_spinner_item, carNums);
+                        requireContext(), android.R.layout.simple_spinner_item, serverCarNums);
                 spinner.setAdapter(adapter);
 
                 // 드롭다운 목록에서 선택 항목 가져오기
@@ -270,7 +264,7 @@ public class MapFragment extends Fragment
                     public void onItemSelected(
                             AdapterView<?> parent, View view, int position, long id) {
                         // 선택된 차량 번호를 carNum 변수 값으로 할당하기
-                        carNum = carNums.get(position);
+                        carNum = serverCarNums.get(position);
                         // 선택한 차량 번호를 활용한 원하는 작업 수행 가능 ...
                         Log.d("hanaBBun", "선택된 차량 번호 : " + carNum);
                     }
@@ -320,6 +314,19 @@ public class MapFragment extends Fragment
                                 // 버튼 활성화/비활성화
                                 stopBtn.setEnabled(true);
                                 startBtn.setEnabled(false);
+
+                                // 원격 서버에 시작했음을 알리는 트리거
+                                NetworkUtils.sendGETRequest(startSendUrl, requireContext(),
+                                        (response, error) -> {
+                                            if (response != null) {
+                                                // response 변수에 응답 데이터가 전달
+                                                Log.d("network", "util Get 요청 성공!!");
+                                            } else {
+                                                // error 변수에 에러 정보가 전달됩니다.
+                                                Log.d("network", "util Get 요청 실패ㅜㅜ : " + error);
+                                            }
+                                        }
+                                );
                             }
                 });
 
@@ -364,6 +371,20 @@ public class MapFragment extends Fragment
                 } else  {
                     Log.d("mixpuppy", "정지 눌렀으나 timerTask 가 null 로 인식");
                 }
+
+                // 원격 서버에 시작했음을 알리는 트리거
+                NetworkUtils.sendGETRequest(stopSendUrl, requireContext(),
+                        (response, error) -> {
+                            if (response != null) {
+                                // response 변수에 응답 데이터가 전달
+                                Log.d("network", "util Get 요청 성공!!");
+                            } else {
+                                // error 변수에 에러 정보가 전달됩니다.
+                                Log.d("network", "util Get 요청 실패ㅜㅜ : " + error);
+                            }
+                        }
+                );
+
                 // 버튼 활성화/비활성화
                 startBtn.setEnabled(true);
                 stopBtn.setEnabled(false);
@@ -390,8 +411,42 @@ public class MapFragment extends Fragment
                 endMarkerList.clear();
             }
         });
-        // rootView를 반환합니다.
+        // rootView를 반환
         return rootView;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        // 프래그먼트 내에서 뒤로가기 키 이벤트 처리
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                // 뒤로가기 키를 눌렀을 때 확인 다이얼로그 표시
+                AlertDialog.Builder dialog = new AlertDialog.Builder(requireContext());
+
+                dialog.setMessage("앱을 종료하시겠습니까?")
+                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // 강제로 종료 버튼을 누르게 함
+                                stopBtn.performClick();
+                                // 앱 종료
+                                requireActivity().finish();
+                            }
+                        })
+                        .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // 다이얼로그 닫기
+                                dialog.cancel();
+                            }
+                        });
+
+                dialog.show();
+            }
+        });
     }
 
     //getMapAsync() 호출 시 자동실행 (맵 준비상태가 되면 실행)
@@ -792,5 +847,46 @@ public class MapFragment extends Fragment
         Log.d("csvfile", "vibration csv 저장 성공");
     }
 
+    public void requestCarNum(String url){
+        Log.d("------------------------------", "get 리퀘스트 요청 시작");
+        // 전송 준비
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(
+                Request.Method.GET,
+                url,
+                null,         // 데이터를 보내지 않으므로 null
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d("mixdogg", "json onResponse: " + response);
+                        try {
+                            // 서버응답으로 부터 carNum 키에 해당하는 JSON 배열 추출
+                            JSONArray carNumArray = response.getJSONArray("carNum");
+
+                            for (int i = 0; i < carNumArray.length(); i++) {
+                                String carNumber = carNumArray.getString(i);
+                                serverCarNums.add(carNumber);
+                            }
+
+                        } catch (JSONException e){
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("mixdogg", "json onErrorResponse: " + error);
+                    }
+                }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap headers = new HashMap();
+                headers.put("Content-Type","application/json");
+                return headers;
+            }
+        };
+        // 전송
+        queue.add(jsonRequest);
+    }
 
 }

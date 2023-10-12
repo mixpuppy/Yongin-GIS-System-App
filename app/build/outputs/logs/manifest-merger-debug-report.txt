@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:2:1-53:12
-INJECTED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:2:1-53:12
-INJECTED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:2:1-53:12
-INJECTED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:2:1-53:12
+ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:2:1-48:12
+INJECTED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:2:1-48:12
+INJECTED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:2:1-48:12
+INJECTED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:2:1-48:12
 MERGED from [androidx.navigation:navigation-common:2.7.3] C:\Users\82104\.gradle\caches\transforms-3\563ad5cd9b1c8830c04c692ed3a70a07\transformed\navigation-common-2.7.3\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.navigation:navigation-fragment:2.7.3] C:\Users\82104\.gradle\caches\transforms-3\7ae9c95a2765cb803e3ffc7468e61033\transformed\navigation-fragment-2.7.3\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.navigation:navigation-runtime:2.7.3] C:\Users\82104\.gradle\caches\transforms-3\86a2a7479550020db96fd6618315523d\transformed\navigation-runtime-2.7.3\AndroidManifest.xml:17:1-22:12
@@ -78,32 +78,32 @@ MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\82104\.gradle\cache
 	xmlns:android
 		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:2:11-69
 uses-permission#android.permission.ACCESS_FINE_LOCATION
-ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:5:5-78
-	android:name
-		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:5:22-76
-uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:6:5-79
-MERGED from [com.google.android.gms:play-services-maps:18.1.0] C:\Users\82104\.gradle\caches\transforms-3\d7ee015761efd859e8d90df76087bbee\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:23:5-79
-MERGED from [com.google.android.gms:play-services-maps:18.1.0] C:\Users\82104\.gradle\caches\transforms-3\d7ee015761efd859e8d90df76087bbee\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:23:5-79
 	android:name
 		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:6:22-76
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:7:5-79
+MERGED from [com.google.android.gms:play-services-maps:18.1.0] C:\Users\82104\.gradle\caches\transforms-3\d7ee015761efd859e8d90df76087bbee\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:23:5-79
+MERGED from [com.google.android.gms:play-services-maps:18.1.0] C:\Users\82104\.gradle\caches\transforms-3\d7ee015761efd859e8d90df76087bbee\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:23:5-79
+	android:name
+		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:7:22-76
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:7:5-80
+ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:8:5-81
 	android:name
-		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:7:22-78
+		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:8:22-78
 uses-permission#android.permission.INTERNET
-ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:8:5-66
+ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:9:5-67
 MERGED from [com.google.android.gms:play-services-maps:18.1.0] C:\Users\82104\.gradle\caches\transforms-3\d7ee015761efd859e8d90df76087bbee\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:24:5-67
 MERGED from [com.google.android.gms:play-services-maps:18.1.0] C:\Users\82104\.gradle\caches\transforms-3\d7ee015761efd859e8d90df76087bbee\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:24:5-67
 	android:name
-		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:8:22-64
+		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:9:22-64
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
 ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:11:5-81
 	android:name
 		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:11:22-78
 application
-ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:14:5-51:19
-INJECTED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:14:5-51:19
+ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:13:5-46:19
+INJECTED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:13:5-46:19
 MERGED from [com.google.android.material:material:1.8.0] C:\Users\82104\.gradle\caches\transforms-3\6aa730011e901f80d1584f4facfa3307\transformed\material-1.8.0\AndroidManifest.xml:24:5-20
 MERGED from [com.google.android.material:material:1.8.0] C:\Users\82104\.gradle\caches\transforms-3\6aa730011e901f80d1584f4facfa3307\transformed\material-1.8.0\AndroidManifest.xml:24:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\82104\.gradle\caches\transforms-3\d4d1381655255a026f5b1787a2a805bc\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
@@ -141,65 +141,65 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\82104\.gradle\cach
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.9.0] C:\Users\82104\.gradle\caches\transforms-3\36384791e541cef573ccc5e0e263c7fd\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:22:9-35
+		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:21:9-35
 	android:label
-		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:19:9-41
+		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:18:9-41
 	android:fullBackupContent
-		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:17:9-54
+		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:16:9-54
 	android:roundIcon
-		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:21:9-54
+		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:20:9-54
 	tools:targetApi
-		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:25:9-29
+		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:24:9-29
 	android:icon
-		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:18:9-43
+		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:17:9-43
 	android:allowBackup
-		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:15:9-35
+		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:14:9-35
 	android:theme
-		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:23:9-45
+		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:22:9-45
 	android:networkSecurityConfig
-		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:20:9-69
+		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:19:9-69
 	android:dataExtractionRules
-		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:16:9-65
+		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:15:9-65
 	android:usesCleartextTraffic
-		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:24:9-44
+		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:23:9-44
 uses-library#org.apache.http.legacy
-ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:27:9-87
+ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:26:9-28:40
 MERGED from [com.google.android.gms:play-services-maps:18.1.0] C:\Users\82104\.gradle\caches\transforms-3\d7ee015761efd859e8d90df76087bbee\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:39:9-41:40
 MERGED from [com.google.android.gms:play-services-maps:18.1.0] C:\Users\82104\.gradle\caches\transforms-3\d7ee015761efd859e8d90df76087bbee\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:39:9-41:40
 	android:required
-		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:27:61-85
+		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:28:13-37
 	android:name
-		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:27:23-60
+		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:27:13-50
 meta-data#com.google.android.gms.version
-ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:29:9-30:68
+ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:29:9-31:69
 MERGED from [com.google.android.gms:play-services-basement:18.0.0] C:\Users\82104\.gradle\caches\transforms-3\f0e555df091dcfb2a3b6b8ae871b6268\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:21:9-23:69
 MERGED from [com.google.android.gms:play-services-basement:18.0.0] C:\Users\82104\.gradle\caches\transforms-3\f0e555df091dcfb2a3b6b8ae871b6268\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:21:9-23:69
 	android:value
-		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:30:13-66
+		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:31:13-66
 	android:name
-		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:29:20-65
+		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:30:13-58
 activity#org.mixdog.yongin1.MainActivity
-ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:32:9-40:20
+ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:33:9-41:20
 	android:exported
-		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:34:13-36
+		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:35:13-36
 	android:name
-		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:33:13-41
+		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:34:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:35:13-39:29
+ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:36:13-40:29
 action#android.intent.action.MAIN
-ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:36:17-69
+ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:37:17-69
 	android:name
-		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:36:25-66
+		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:37:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:38:17-77
+ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:39:17-77
 	android:name
-		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:38:27-74
+		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:39:27-74
 meta-data#com.google.android.geo.API_KEY
-ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:45:9-47:72
+ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:43:9-45:71
 	android:value
-		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:47:14-69
+		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:45:13-68
 	android:name
-		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:46:14-59
+		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:44:13-58
 uses-sdk
 INJECTED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml

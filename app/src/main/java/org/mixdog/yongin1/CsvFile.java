@@ -111,14 +111,15 @@ public class CsvFile {
             CSVWriter csvWriter = new CSVWriter(fw);
 
             // CSV 헤더 작성
-            String[] header = {"carNum", "date", "time", "latitude", "longitude"};
+            String[] header = {"date", "time", "car_num", "lon", "lat"};
             csvWriter.writeNext(header);
 
             // DTO 리스트를 CSV 파일로 저장
             for (LocationDto dto : dtoList) {
-                String[] data = {dto.getCarNum(), String.valueOf(dto.getDate()),
-                        String.valueOf(dto.getTime()), String.valueOf(dto.getLatitude()),
-                        String.valueOf(dto.getLongitude())};
+                String[] data = {String.valueOf(dto.getDate()), String.valueOf(dto.getTime()),
+                        dto.getCarNum(), String.valueOf(dto.getLongitude()),
+                        String.valueOf(dto.getLatitude())
+                        };
                 csvWriter.writeNext(data);
             }
 
@@ -136,13 +137,13 @@ public class CsvFile {
             CSVWriter csvWriter = new CSVWriter(fw);
 
             // CSV 헤더 작성
-            String[] header = {"carNum", "date", "time", "dB"};
+            String[] header = {"date", "time", "car_num", "noise"};
             csvWriter.writeNext(header);
 
             // DTO 리스트를 CSV 파일로 저장
             for (NoiseDto dto : dtoList) {
-                String[] data = {dto.getCarNum(), String.valueOf(dto.getDate()),
-                        String.valueOf(dto.getTime()), String.valueOf(dto.getNoise())};
+                String[] data = {String.valueOf(dto.getDate()), String.valueOf(dto.getTime()),
+                        dto.getCarNum(), String.valueOf(dto.getNoise())};
                 csvWriter.writeNext(data);
             }
 
@@ -160,13 +161,13 @@ public class CsvFile {
             CSVWriter csvWriter = new CSVWriter(fw);
 
             // CSV 헤더 작성
-            String[] header = {"carNum", "date", "time", "rpm"};
+            String[] header = {"date", "time", "car_num", "rpm"};
             csvWriter.writeNext(header);
 
             // DTO 리스트를 CSV 파일로 저장
             for (VibrationDto dto : dtoList) {
-                String[] data = {dto.getCarNum(), String.valueOf(dto.getDate()),
-                        String.valueOf(dto.getTime()), String.valueOf(dto.getVibration())};
+                String[] data = {String.valueOf(dto.getDate()), String.valueOf(dto.getTime()),
+                        dto.getCarNum(), String.valueOf(dto.getVibration())};
                 csvWriter.writeNext(data);
             }
 
