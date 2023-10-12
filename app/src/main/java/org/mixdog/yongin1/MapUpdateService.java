@@ -79,38 +79,6 @@ public class MapUpdateService extends Service {
     private void startForegroundService() {
         Log.d("hanaBBun", "MapUpdateService | startForegroundService() 호출 성공");
 
-        /* 이거 대신에 MapNotification에 적은 걸로 해보자
-        //Intent notificationIntent = new Intent(this, MainActivity.class);
-        //Intent notificationIntent = new Intent(getApplicationContext(), MainActivity.class);
-        Intent notificationIntent = new Intent(this, MapFragment.class);
-        PendingIntent pendingIntent =
-                PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_IMMUTABLE);
-
-        // Android 8.0 이상에서는 알림 채널 설정
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-        NotificationChannel channel =
-                new NotificationChannel(
-                        "channel",
-                        "포어그라운드 서비스 알림",
-                        NotificationManager.IMPORTANCE_DEFAULT);
-        // Notification과 채널 연결
-        NotificationManager notificationManager =
-                ((NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE));
-        notificationManager.createNotificationChannel(channel);
-
-        // ⭐️️️️️️️️️️️️️️️️⭐️포어그라운드 서비스를 사용하기 위해 Notification 생성 필수!⭐️⭐️
-        NotificationCompat.Builder notification =
-                new NotificationCompat.Builder(getApplicationContext(), "channel")
-                        .setContentTitle("용인시 청소차 기록관리 앱")
-                        .setContentText("청소 차량이 주행 기록 중입니다.")
-                        .setSmallIcon(R.drawable.app_icon)
-                        .setContentIntent(pendingIntent);
-
-        notificationManager.notify(NOTIFICATION_ID, notification.build());
-        startForeground(NOTIFICATION_ID, notification.build());
-        }
-    */
-
     Notification notification = MapNotification.createNotification(this);
     // 알림 표시; 이것 실행 없으면 백그라운드 상태에서 1분 뒤 서비스 소멸됨!
     // startForeground 메서드가 사용되어야, onStartCommand 가 호출되며 포그라운드 서비스 시작!

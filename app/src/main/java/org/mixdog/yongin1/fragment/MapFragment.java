@@ -121,12 +121,9 @@ public class MapFragment extends Fragment
     // dialog 변수
     private String carNum;
     private View viewDialog;
-    private View viewDropdown;
 
     //Marker 객체
-    private Marker startMarker;
     private Marker myLocationMarker;
-    private Marker endMarker;
     private List<Marker> startMarkerList = new ArrayList<>();
     private List<Marker> endMarkerList = new ArrayList<>();
     private List<Marker> markerList = new ArrayList<>();
@@ -170,7 +167,6 @@ public class MapFragment extends Fragment
         // 부모 클래스 정의된 초기화 작업
         super.onCreate(savedInstanceState);
         Log.d("mixpuppy", "MapFragment onCreate 성공실행");
-
 
         // RequestQueue 초기화
         queue = Volley.newRequestQueue(requireContext());
@@ -229,8 +225,10 @@ public class MapFragment extends Fragment
             @Override
             public void onChanged(String action) {
                 if (Actions.start.equals(action)){
+                    Log.d("hanaBBun", "알림창의 주행시작 버튼 눌림");
                     startBtn.performClick();
                 } else if (Actions.end.equals(action)) {
+                    Log.d("hanaBBun", "알림창의 주행종료 버튼 눌림");
                     stopBtn.performClick();
                 }
             }
@@ -384,9 +382,10 @@ public class MapFragment extends Fragment
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(requireContext(), MapUpdateService.class);
-                intent.setAction(Actions.STOP_FOREGROUND);
-                requireContext().startService(intent);
+                // 포어그라운드 서비스; 알림창이 사라짐
+                //Intent intent = new Intent(requireContext(), MapUpdateService.class);
+                //intent.setAction(Actions.STOP_FOREGROUND);
+                //requireContext().startService(intent);
 
                 Log.d("mixpuppy", "정지버튼이 눌렸음");
                 // 메인엑티비티 스테틱 전역변수 버튼활성화 적용

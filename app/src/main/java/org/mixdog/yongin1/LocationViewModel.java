@@ -17,6 +17,7 @@ public class LocationViewModel extends ViewModel {
         this.providerClient = providerClient;
     }
 
+    // 포어그라운드 서비스 관련
     private final MutableLiveData<String> action = new MutableLiveData<>();
 
     public void setAction(String newAction) {

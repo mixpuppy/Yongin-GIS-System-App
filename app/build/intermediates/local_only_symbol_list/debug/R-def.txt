@@ -28,14 +28,11 @@ id nav_graph
 id nav_host_fragment
 id resetBtn
 id spinner
-id spinner_text
 id startBtn
 id stopBtn
 id textView
 layout activity_main
-layout dropdown_inner_layout
 layout dropdown_layout
-layout dropdown_outer_layout
 layout fragment_main
 layout fragment_map
 mipmap ic_launcher

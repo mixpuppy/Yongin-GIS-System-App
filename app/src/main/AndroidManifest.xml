@@ -8,12 +8,11 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <!-- 네트워크 통신 관련 권한 등록 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!-- 백그라운드 작업 위한 포어그라운드 서비스 권한 등록 -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <!-- 알림 권한 허용 요청 -->
-    <uses-permission android:name="android.permisson.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <!-- 포어그라운드가 안돼서 알림창만 띄우는 권한 등록..했는데 필요 없을 듯!
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -44,8 +43,10 @@
         <meta-data android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version"/>
 
+        <!-- android:launchMode="singleTask" : 알림창에서 이동하다가 MainActivity가 여러 개 생기지 않도록! -->
         <activity
             android:name=".MainActivity"
+            android:launchMode="singleTask"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

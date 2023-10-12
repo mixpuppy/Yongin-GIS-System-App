@@ -110,20 +110,12 @@ ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/Android
 	android:name
 		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:14:22-74
 uses-permission#android.permisson.POST_NOTIFICATIONS
-ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:19:5-76
+ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:16:5-76
 	android:name
-		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:19:22-73
-uses-permission#android.permission.ACCESS_NOTIFICATION_POLICY
-ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:21:5-85
-	android:name
-		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:21:22-82
-uses-permission#android.permission.WAKE_LOCK
-ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:22:5-68
-	android:name
-		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:22:22-65
+		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:16:22-73
 application
-ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:24:5-68:19
-INJECTED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:24:5-68:19
+ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:22:5-68:19
+INJECTED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:22:5-68:19
 MERGED from [com.google.android.material:material:1.8.0] /Users/hanabbun/.gradle/caches/transforms-3/6aa730011e901f80d1584f4facfa3307/transformed/material-1.8.0/AndroidManifest.xml:24:5-20
 MERGED from [com.google.android.material:material:1.8.0] /Users/hanabbun/.gradle/caches/transforms-3/6aa730011e901f80d1584f4facfa3307/transformed/material-1.8.0/AndroidManifest.xml:24:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/hanabbun/.gradle/caches/transforms-3/d4d1381655255a026f5b1787a2a805bc/transformed/constraintlayout-2.1.4/AndroidManifest.xml:9:5-20
@@ -161,57 +153,59 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/hanabbun/.gradle/cac
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.9.0] /Users/hanabbun/.gradle/caches/transforms-3/36384791e541cef573ccc5e0e263c7fd/transformed/core-1.9.0/AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:32:9-35
+		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:30:9-35
 	android:label
-		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:29:9-41
+		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:27:9-41
 	android:fullBackupContent
-		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:27:9-54
+		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:25:9-54
 	android:roundIcon
-		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:31:9-54
+		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:29:9-54
 	tools:targetApi
-		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:35:9-29
+		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:33:9-29
 	android:icon
-		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:28:9-43
+		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:26:9-43
 	android:allowBackup
-		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:25:9-35
+		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:23:9-35
 	android:theme
-		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:33:9-45
+		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:31:9-45
 	android:networkSecurityConfig
-		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:30:9-69
+		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:28:9-69
 	android:dataExtractionRules
-		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:26:9-65
+		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:24:9-65
 	android:usesCleartextTraffic
-		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:34:9-44
+		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:32:9-44
 service#org.mixdog.yongin1.MapUpdateService
-ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:41:9-43:51
+ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:39:9-41:51
 	android:enabled
-		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:42:17-39
+		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:40:17-39
 	android:exported
-		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:43:17-40
+		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:41:17-40
 	android:name
-		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:41:18-50
+		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:39:18-50
 uses-library#org.apache.http.legacy
-ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:44:9-87
+ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:42:9-87
 MERGED from [com.google.android.gms:play-services-maps:18.1.0] /Users/hanabbun/.gradle/caches/transforms-3/d7ee015761efd859e8d90df76087bbee/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:39:9-41:40
 MERGED from [com.google.android.gms:play-services-maps:18.1.0] /Users/hanabbun/.gradle/caches/transforms-3/d7ee015761efd859e8d90df76087bbee/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:39:9-41:40
 	android:required
-		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:44:61-85
+		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:42:61-85
 	android:name
-		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:44:23-60
+		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:42:23-60
 meta-data#com.google.android.gms.version
-ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:46:9-47:68
+ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:44:9-45:68
 MERGED from [com.google.android.gms:play-services-basement:18.0.0] /Users/hanabbun/.gradle/caches/transforms-3/f0e555df091dcfb2a3b6b8ae871b6268/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:21:9-23:69
 MERGED from [com.google.android.gms:play-services-basement:18.0.0] /Users/hanabbun/.gradle/caches/transforms-3/f0e555df091dcfb2a3b6b8ae871b6268/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:21:9-23:69
 	android:value
-		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:47:13-66
+		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:45:13-66
 	android:name
-		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:46:20-65
+		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:44:20-65
 activity#org.mixdog.yongin1.MainActivity
-ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:49:9-57:20
+ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:48:9-57:20
+	android:launchMode
+		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:50:13-44
 	android:exported
 		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:51:13-36
 	android:name
-		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:50:13-41
+		ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:49:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
 ADDED from /Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:52:13-56:29
 action#android.intent.action.MAIN

@@ -19,11 +19,7 @@
     <!-- 백그라운드 작업 위한 포어그라운드 서비스 권한 등록 -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <!-- 알림 권한 허용 요청 -->
-    <!-- <uses-permission android:name="android.permisson.REQUEST_NOTIFICATIONS" /> -->
     <uses-permission android:name="android.permisson.POST_NOTIFICATIONS" />
-    <!-- 포어그라운드가 안돼서 알림창만 띄우는 권한 등록..했는데 필요 없을 듯! -->
-    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <uses-feature
         android:glEsVersion="0x00020000"
@@ -40,7 +36,11 @@
         android:protectionLevel="signature" />
 
     <uses-permission android:name="org.mixdog.yongin1.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-
+    <!--
+ 포어그라운드가 안돼서 알림창만 띄우는 권한 등록..했는데 필요 없을 듯!
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    -->
     <application
         android:allowBackup="true"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -77,9 +77,11 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
+        <!-- android:launchMode="singleTask" : 알림창에서 이동하다가 MainActivity가 여러 개 생기지 않도록! -->
         <activity
             android:name="org.mixdog.yongin1.MainActivity"
-            android:exported="true" >
+            android:exported="true"
+            android:launchMode="singleTask" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

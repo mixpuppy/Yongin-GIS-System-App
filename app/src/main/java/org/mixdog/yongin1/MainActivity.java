@@ -77,8 +77,6 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Log.d("mixdog", "1");
-
         Log.d("hanaBBun", "onCreate 위치/알림 권한 허용 상태 : " + permission.locationPermissionGranted + "/" + permission.notificationPermissionGranted);
         Log.d("hanaBBun", "onCreate 위치/알림 권한 거절 횟수 : " + permission.locationDeniedCount + "/" + permission.notificationDeniedCount);
         // 권한 체크
@@ -181,15 +179,10 @@ public class MainActivity extends AppCompatActivity
 
     // 권한 체크
     private void permissionCheck() {
-        // PermissionSupport.java 클래스 객체 생성
-        //permission = new PermissionSupport(this, this);
-        Log.d("mixdog", "2");
         // 권한 체크 후 리턴이 false로 들어오면
         if (!permission.checkPermissions()){
             // 권한 요청
-            Log.d("mixdog", "3");
             permission.requestPermission();
-            Log.d("mixdog", "탈출성공인가?");
         } else {
             // 모든 권한이 이미 허용된 경우
             initializeLocation();
@@ -212,12 +205,9 @@ public class MainActivity extends AppCompatActivity
 
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        Log.d("mixdog", "5");
         // 권한 승인 여부를 확인하고, 승인되지 않은 경우에만 거부 횟수 증가시킴
         permission.permissionResult(requestCode, permissions, grantResults);
-        Log.d("mixdog", "8");
         permission.handlePermissionRequest();
-        Log.d("mixdog", "10");
         if(permission.locationPermissionGranted) {
             initializeLocation();
         }

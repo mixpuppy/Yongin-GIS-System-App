@@ -3,7 +3,6 @@ package org.mixdog.yongin1.permission;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.util.Log;
@@ -67,7 +66,6 @@ public class PermissionSupport {
 
     // 배열로 선언한 권한에 대한 사용자에게 허용 요청
     public void requestPermission() {
-        Log.d("mixdog", "4");
         ActivityCompat.requestPermissions(
                 activity, (String[]) permissionList.toArray(
                         new String[permissionList.size()]), MY_PERMISSONS_REQUEST);
@@ -77,18 +75,15 @@ public class PermissionSupport {
     public void permissionResult(
             int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
-        Log.d("mixdog", "6");
         // 각 권한에 대해 허용했는지 상태 나타냄
         if (requestCode == MY_PERMISSONS_REQUEST) {
             for (int i = 0; i < permissions.length; i++) {
-                Log.d("mixdog", "반복"+ i + "length" + permissions.length + "permissions[i]" + permissions[i]);
                 if (permissions[i].equals(Manifest.permission.ACCESS_FINE_LOCATION)
                         && grantResults[i] == PackageManager.PERMISSION_GRANTED) {
                     locationPermissionGranted = true;
                     locationDeniedCount = 0;
                 } else if (permissions[i].equals(Manifest.permission.ACCESS_FINE_LOCATION)
                         && grantResults[i] != PackageManager.PERMISSION_GRANTED){
-                    Log.d("mixdog", "7-1");
                     locationDeniedCount++;
                 } else if (permissions[i].equals(Manifest.permission.POST_NOTIFICATIONS)
                         && grantResults[i] == PackageManager.PERMISSION_GRANTED) {
@@ -96,7 +91,6 @@ public class PermissionSupport {
                     notificationDeniedCount = 0;
                 } else if (permissions[i].equals(Manifest.permission.POST_NOTIFICATIONS)
                         && grantResults[i] != PackageManager.PERMISSION_GRANTED){
-                    Log.d("mixdog", "7-2");
                     notificationDeniedCount++;
                 }
             }
@@ -108,8 +102,6 @@ public class PermissionSupport {
     public void handlePermissionRequest() {
 
         Log.d("hanaBBun", "위치/알림 권한 거절 횟수 : " + locationDeniedCount + "/" + notificationDeniedCount);
-
-        Log.d("mixdog", "9");
 
         // 위치 1 알림 0 : 위치만 1차 요청 -> 위치 2 : Toast2 + 앱 종료
         if (locationDeniedCount == 1 && notificationDeniedCount == 0) {
