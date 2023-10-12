@@ -2785,6 +2785,8 @@ drawable abc_textfield_search_activated_mtrl_alpha
 drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
+drawable app_icon
+drawable arrow_down
 drawable avd_hide_password
 drawable avd_show_password
 drawable background_spinner_option
@@ -3029,7 +3031,6 @@ id buttonPanel
 id cache_measures
 id callMeasure
 id cancel_button
-id car_num
 id carryVelocity
 id center
 id centerCrop
@@ -3570,7 +3571,6 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
-layout dialog
 layout dropdown_layout
 layout fragment_main
 layout fragment_map
@@ -3818,8 +3818,11 @@ string searchview_navigation_content_description
 string side_sheet_accessibility_pane_title
 string side_sheet_behavior
 string status_bar_notification_info_overflow
+string user_alarm_permission_not_granted
+string user_alarm_permission_required
 string user_location_permission_not_granted
 string user_location_permission_required
+string user_permissions_required
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style AlertDialogButton_Negative

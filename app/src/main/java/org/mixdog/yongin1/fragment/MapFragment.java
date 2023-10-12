@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,6 +13,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationRequest;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.activity.OnBackPressedCallback;
@@ -19,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Environment;
@@ -31,6 +34,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -57,9 +61,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.mixdog.yongin1.Actions;
 import org.mixdog.yongin1.CsvFile;
 import org.mixdog.yongin1.LocationViewModel;
 import org.mixdog.yongin1.MainActivity;
+import org.mixdog.yongin1.MapUpdateService;
 import org.mixdog.yongin1.R;
 import org.mixdog.yongin1.dto.LocationDto;
 import org.mixdog.yongin1.dto.NoiseDto;
@@ -108,9 +114,9 @@ public class MapFragment extends Fragment
     // onConnected() 메소드를 사용할 수 있을때 사용하는 변수
     private FusedLocationProviderClient providerClient;
 
-    // 버튼 선언
-    private Button startBtn;
-    private Button stopBtn;
+    // 버튼 선언; 포어그라운드 서비스에서 활용하기 위해 public으로 바꿔보았다.
+    public Button startBtn;
+    public Button stopBtn;
     private Button resetBtn;
 
     // Http 통신을 위한 변수
@@ -146,7 +152,6 @@ public class MapFragment extends Fragment
     public MapFragment() {
         // Required empty public constructor
     }
-
 
     // 후속 프래그먼트 호출 시 사용 (현재 사용 x)
     public static MapFragment newInstance(String param1, String param2) {
@@ -210,6 +215,19 @@ public class MapFragment extends Fragment
         // 프래그먼트의 레이아웃을 인플레이트.
         View rootView = inflater.inflate(R.layout.fragment_map, container, false);
 
+        ////// 일단 무시 -------------------------
+        // 포어그라운드 서비스 관련 코드; viewModel로부터 action 값 얻어오기
+        viewModel.getAction().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String action) {
+                if (Actions.start.equals(action)){
+                    startBtn.performClick();
+                } else if (Actions.end.equals(action)) {
+                    stopBtn.performClick();
+                }
+            }
+        });
+
         // Btns를 레이아웃에서 찾기
         startBtn = rootView.findViewById(R.id.startBtn);
         stopBtn = rootView.findViewById(R.id.stopBtn);
@@ -224,6 +242,7 @@ public class MapFragment extends Fragment
         startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 // timerTask가 취소되지 않은 상태면 취소하고 시작
                 if(timerTask != null){
                     timerTask.cancel();
@@ -283,6 +302,11 @@ public class MapFragment extends Fragment
 
                                 Log.d("hanaBBun", "차량 번호 입력 완료");
 
+                                // 주행시작을 알리는 알림창 나타남
+                                Intent intent = new Intent(requireContext(), MapUpdateService.class);
+                                intent.setAction(Actions.START_FOREGROUND);
+                                requireContext().startService(intent);
+
                                 // 메인엑티비티 스테틱 전역변수 버튼활성화 적용
                                 MainActivity.isInitialMarkerSet=true;
                                 //MainActivity.nonStartMarker.remove();
@@ -295,10 +319,24 @@ public class MapFragment extends Fragment
 
                                 // 반복할 코드
                                 timerTask = new TimerTask() {
+                                    // TimerTask의 run() 메소드는 백그라운드 스레드에서 실행된다!
+                                    // 그래서 getLastLocation() 과 같이 UI 관련 작업을 수행하려면 메인 스레드에서 실행되도록 설정해줘야!
                                     @Override
                                     public void run() {
                                         // 위도경도 정보 얻기
-                                        getLastLocation();
+                                        //getLastLocation();
+                                        // UI 스레드(메인 스레드)에서 작업 수행을 위한 메소드
+                                        // : 안드로이드에서는 UI 요소에 접근 및 조작 작업이 주로 메인 스레드에서 수행되어야 하기 때문에
+                                        //   백그라운드 스레드에서 UI와 관련된 작업을 수행할 경우
+                                        //   runOnUiThread를 사용하여 메인 스레드에서 해당 작업을 실행한다.
+                                        // ... 근데 이건 액티비티의 메소드임으로 여기선 그냥 못 쓰기 때문에 앞에 getActivity() 붙이기!
+                                        getActivity().runOnUiThread(new Runnable() {
+                                           @Override
+                                           public void run() {
+                                               getLastLocation();
+                                           }
+                                        });
+
                                         LatLng latLng = new LatLng(mLat, mLng);
                                         //routeMarkerSetting(latLng);
                                         Log.d("mixpuppy", "타이머 위경도 잘찍혔나?");
@@ -311,9 +349,14 @@ public class MapFragment extends Fragment
                                 };
                                 // 기록 시작 (10초로 설정)
                                 timerCall.schedule(timerTask,0,10000);
+
                                 // 버튼 활성화/비활성화
-                                stopBtn.setEnabled(true);
+                                startBtn.setVisibility(View.INVISIBLE);
+                                stopBtn.setVisibility(View.VISIBLE);
                                 startBtn.setEnabled(false);
+                                stopBtn.setEnabled(true);
+                                resetBtn.setEnabled(false);
+                                resetBtn.setVisibility(View.INVISIBLE);
 
                                 // 원격 서버에 시작했음을 알리는 트리거
                                 NetworkUtils.sendGETRequest(startSendUrl, requireContext(),
@@ -347,6 +390,11 @@ public class MapFragment extends Fragment
         stopBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Intent intent = new Intent(requireContext(), MapUpdateService.class);
+                intent.setAction(Actions.STOP_FOREGROUND);
+                requireContext().startService(intent);
+
                 Log.d("mixpuppy", "정지버튼이 눌렸음");
                 // 메인엑티비티 스테틱 전역변수 버튼활성화 적용
                 MainActivity.isInitialMarkerSet=false;
@@ -386,8 +434,12 @@ public class MapFragment extends Fragment
                 );
 
                 // 버튼 활성화/비활성화
+                startBtn.setVisibility(View.VISIBLE);
+                stopBtn.setVisibility(View.INVISIBLE);
                 startBtn.setEnabled(true);
                 stopBtn.setEnabled(false);
+                resetBtn.setEnabled(true);
+                resetBtn.setVisibility(View.VISIBLE);
             }
         });
 
@@ -592,7 +644,7 @@ public class MapFragment extends Fragment
             startMarkerList.add(startMarker);
 
             // 마커에 Z 인덱스 설정
-            startMarker.setZIndex(1.1f);
+            startMarker.setZIndex(1.2f);
         } else {
             Log.d("mixdog", "googleMap 이 널이여서 마커를 못찍음");
         }
@@ -647,7 +699,7 @@ public class MapFragment extends Fragment
 
 
             // 마커에 Z 인덱스 설정
-            endMarker.setZIndex(1.5f);
+            endMarker.setZIndex(1.1f);
         } else {
             Log.d("mixdog", "googleMap 이 널이여서 마커를 못찍음");
         }
