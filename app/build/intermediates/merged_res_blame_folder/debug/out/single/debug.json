@@ -56,6 +56,10 @@
         "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
+        "merged": "org.mixdog.yongin1.app-merged_res-47:/drawable_notification_button.xml.flat",
+        "source": "org.mixdog.yongin1.app-main-49:/drawable/notification_button.xml"
+    },
+    {
         "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/drawable_ic_launcher_foreground.xml.flat",
         "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/drawable/ic_launcher_foreground.xml"
     },
@@ -96,12 +100,12 @@
         "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/layout/fragment_map.xml"
     },
     {
-        "merged": "org.mixdog.yongin1.app-merged_res-47:/layout_permission_dialog_layout.xml.flat",
-        "source": "org.mixdog.yongin1.app-main-49:/layout/permission_dialog_layout.xml"
-    },
-    {
         "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/drawable_clean_truck_non.png.flat",
         "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/drawable/clean_truck_non.png"
+    },
+    {
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/layout_permission_dialog_layout.xml.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/layout/permission_dialog_layout.xml"
     },
     {
         "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/xml_network_security_config.xml.flat",
@@ -162,5 +166,9 @@
     {
         "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/drawable_rounded_button.xml.flat",
         "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/drawable/rounded_button.xml"
+    },
+    {
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/drawable_permission_dialog_background.xml.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/drawable/permission_dialog_background.xml"
     }
 ]

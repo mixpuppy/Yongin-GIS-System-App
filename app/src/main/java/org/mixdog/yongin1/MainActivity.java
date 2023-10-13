@@ -4,14 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
-import android.content.Intent;
+import android.app.AlertDialog;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -55,10 +57,6 @@ public class MainActivity extends AppCompatActivity
     public static Marker nonStartMarker;
     // 시작버튼 활성화 여부 (true 시 활성화)
     public static boolean isInitialMarkerSet = false;
-
-    //// 포어그라운드 서비스 관련
-    private Intent serviceIntent;
-    //private LocationViewModel locationViewModel;
 
     //// 권한 처리 관련 클래스 선언
     private PermissionSupport permission = new PermissionSupport(this, this);

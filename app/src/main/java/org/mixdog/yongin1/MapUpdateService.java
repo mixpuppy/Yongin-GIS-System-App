@@ -5,6 +5,7 @@ import static org.mixdog.yongin1.fragment.MapFragment.stopBtn;
 
 import android.app.Notification;
 
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.os.Build;
@@ -70,41 +71,21 @@ public class MapUpdateService extends Service {
                 case Actions.STOP_FOREGROUND:
                     Log.d("hanaBBun", "Stop Foreground 인텐트 받음");
                     // 주행 종료 버튼 누르면 알림창 사라지게 함
-                    //stopForegroundService();
+                    stopForegroundService();
                     break;
                 case Actions.start:
-                    // 뷰의 주행 시작 버튼이 눌러진 상태
-                    // 알림창의 주행 종료 버튼 누르면 뷰의 주행 종료 버튼 누른 것과 같다.
+                    // 알림창의 '주행 시작' 버튼을 클릭하면 뷰의 주행 시작 버튼이 눌러진 상태
                     Log.d("hanaBBun", "start 인텐트 받음");
-                    stopBtn.performClick();
+                    startBtn.performClick();
                     break;
                 case Actions.end:
-                    // 뷰의 주행 종료 버튼이 눌러진 상태
-                    // 알림창의 주행 시작 버튼 누르면 뷰의 주행 시작 버튼 누른 것과 같다.
+                    // 알림창의 '주행 종료' 버튼을 클릭하면 뷰의 주행 종료 버튼이 눌러진 상태
                     Log.d("hanaBBun", "end 인텐트 받음");
-                    startBtn.performClick();
+                    stopBtn.performClick();
                     break;
             }
         }
 
-        // viewModel로부터 action 값 얻어와서, 알림창의 버튼 이벤트 구현하기
-        // MapFragment.viewModel.getAction().observe(getViewLifecycleOwner(), new Observer<String>() {
-        // ↳ getViewLifecycleOwner()는 프레그먼트에서만 쓸 수 있는 것!
-
-        /*
-        locationViewModel.getAction().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(String action) {
-                if (Actions.start.equals(action)){
-                    Log.d("hanaBBun", "알림창의 주행시작 버튼 눌림");
-                    startBtn.performClick();
-                } else if (Actions.end.equals(action)) {
-                    Log.d("hanaBBun", "알림창의 주행종료 버튼 눌림");
-                    stopBtn.performClick();
-                }
-            }
-        });
-         */
         return START_STICKY;
 
         // START_NOT_STICKY : 서비스가 죽어도 시스템에서 다시 재생성하지 않는다.
@@ -147,7 +128,6 @@ public class MapUpdateService extends Service {
         }
         stopSelf();
     }
-
 
     // 위치 업데이트를 여기서 하라고 한다...
     // onCreate()나 onStartCommand() 메소드에서 startLocationUpdate()를 호출하는 방식으로 구현 가능

@@ -2,10 +2,12 @@ package org.mixdog.yongin1;
 
 import static org.mixdog.yongin1.MainActivity.isInitialMarkerSet;
 
+import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -17,6 +19,7 @@ import org.mixdog.yongin1.fragment.MapFragment;
 public class MapNotification {
     public static final String CHANNEL_ID = "foreground_service_channel"; // 임의의 채널 ID
 
+    @SuppressLint("NotificationTrampoline")
     public static Notification createNotification(Context context) {
         // 알림 클릭시 MapFragment로 이동
         Intent mapFragmentIntent = new Intent(context, MainActivity.class);
@@ -40,23 +43,24 @@ public class MapNotification {
         Intent endIntent = new Intent(context, MapUpdateService.class);
         endIntent.setAction(Actions.end);
         PendingIntent endPendingIntent =
-                PendingIntent.getService(context, 0, startIntent, PendingIntent.FLAG_IMMUTABLE);
+                PendingIntent.getService(context, 0, endIntent, PendingIntent.FLAG_IMMUTABLE);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setContentTitle("용인시 청소차량 APP")
                 .setContentText("용인시 청소차량 추적 앱이 실행 중입니다.")
                 .setSmallIcon(R.drawable.app_icon)
-                .setPriority(NotificationCompat.PRIORITY_HIGH) // 알림 표시될 때 화면 상단에도 알림 표시될까?
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setWhen(System.currentTimeMillis())
                 .setOngoing(true);
 
         // fragment의 start 버튼 클릭 여부를 뜻함
         // addAction()을 이용해서 알림에 버튼 넣기 가능; Android N 이후로는 아이콘 정의해도 어차피 타이틀만 보인다고?
         // 각 버튼을 누르면 정의해둔 PendingIntent가 작동하게 됨
+        // ... 근데 버튼이 바뀌지 않았다. 알림창에 딱히 주행 시작 버튼이 필요하지 않아서 최종 사용되진 않았다.
         if (isInitialMarkerSet) { // 주행 시작된 경우; 알림 창에 주행 종료만 보인다.
-            builder.addAction(android.R.drawable.button_onoff_indicator_off, "주행 종료", endPendingIntent);
+            builder.addAction(android.R.drawable.btn_default, "주행 종료", endPendingIntent);
         } else {
-            builder.addAction(android.R.drawable.button_onoff_indicator_on, "주행 시작", startPendingIntent);
+            builder.addAction(android.R.drawable.btn_default, "주행 시작", startPendingIntent);
         }
         Notification notification = builder.setContentIntent(mapFragmentPendingIntent).build();
 
@@ -65,7 +69,7 @@ public class MapNotification {
             NotificationChannel serviceChannel = new NotificationChannel(
                     CHANNEL_ID,
                     "용인시 청소차 포어그라운드 서비스 알림", // 채널표시명
-                    NotificationManager.IMPORTANCE_DEFAULT
+                    NotificationManager.IMPORTANCE_HIGH // 알림창이 생성될 때 푸시(헤드업) 알림으로 뜨도록!
             );
             NotificationManager manager =
                     (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);

@@ -122,13 +122,10 @@ public class PermissionSupport {
 //                Toast.makeText(activity,
 //                        R.string.user_location_permission_required,
 //                        Toast.LENGTH_SHORT).show();
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity);
+                AlertDialog.Builder alertDialogBuilder =
+                        new AlertDialog.Builder(activity, R.style.permissionAlertDialogStyle);
                 alertDialogBuilder.setMessage(R.string.user_location_permission_required);
                 alertDialogBuilder.setTitle("안내");
-                // View.inflate 로 dialog 레이아웃을 뷰로 구현
-                viewDialog = (View) View.inflate(activity, R.layout.permission_dialog_layout, null);
-                // setView 함수로 뷰를 dialog 변수에 전달
-                alertDialogBuilder.setView(viewDialog);
 
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 alertDialog.show();
@@ -142,7 +139,7 @@ public class PermissionSupport {
                             alertDialog.dismiss();
                         }
                     }
-                }, 3000);
+                }, 3500);
             }
             new Handler().postDelayed(new Runnable() {
                 @Override
@@ -151,7 +148,7 @@ public class PermissionSupport {
                     ActivityCompat.requestPermissions(
                             activity, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSONS_REQUEST);
                 }
-            }, 3000);
+            }, 3500);
         }
         // 위치 2 알림 0 or 위치 2 알림 1 or 위치 2 알림 2 : 위치 Toast2 + 앱 종료
         else if ( locationDeniedCount == 2 ) {
@@ -160,13 +157,10 @@ public class PermissionSupport {
 //                    R.string.user_location_permission_not_granted,
 //                    Toast.LENGTH_SHORT).show();
 
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity);
+            AlertDialog.Builder alertDialogBuilder =
+                    new AlertDialog.Builder(activity, R.style.permissionAlertDialogStyle);
             alertDialogBuilder.setMessage(R.string.user_location_permission_not_granted);
             alertDialogBuilder.setTitle("안내");
-            // View.inflate 로 dialog 레이아웃을 뷰로 구현
-            viewDialog = (View) View.inflate(activity, R.layout.permission_dialog_layout, null);
-            // setView 함수로 뷰를 dialog 변수에 전달
-            alertDialogBuilder.setView(viewDialog);
 
             AlertDialog alertDialog = alertDialogBuilder.create();
             alertDialog.show();
@@ -177,7 +171,7 @@ public class PermissionSupport {
                         alertDialog.dismiss();
                     }
                 }
-            }, 3000);
+            }, 3500);
 
             // 약간의 딜레이 후 앱 종료
             new Handler().postDelayed(new Runnable() {
@@ -186,7 +180,7 @@ public class PermissionSupport {
                     // 3초 후 앱 종료
                     activity.finish();
                 }
-            }, 3000);
+            }, 3500);
         }
         // 위치 1 알림 1 : 둘 다 1차 요청
         else if (locationDeniedCount == 1 && notificationDeniedCount == 1) {
@@ -194,13 +188,10 @@ public class PermissionSupport {
 //                    R.string.user_permissions_required,
 //                    Toast.LENGTH_SHORT).show();
 
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity);
+            AlertDialog.Builder alertDialogBuilder =
+                    new AlertDialog.Builder(activity, R.style.permissionAlertDialogStyle);
             alertDialogBuilder.setMessage(R.string.user_permissions_required);
             alertDialogBuilder.setTitle("안내");
-            // View.inflate 로 dialog 레이아웃을 뷰로 구현
-            viewDialog = (View) View.inflate(activity, R.layout.permission_dialog_layout, null);
-            // setView 함수로 뷰를 dialog 변수에 전달
-            alertDialogBuilder.setView(viewDialog);
 
             AlertDialog alertDialog = alertDialogBuilder.create();
             alertDialog.show();
@@ -231,13 +222,10 @@ public class PermissionSupport {
 //                        R.string.user_alarm_permission_required,
 //                        Toast.LENGTH_SHORT).show();
 
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity);
+                AlertDialog.Builder alertDialogBuilder =
+                        new AlertDialog.Builder(activity, R.style.permissionAlertDialogStyle);
                 alertDialogBuilder.setMessage(R.string.user_alarm_permission_required);
                 alertDialogBuilder.setTitle("안내");
-                // View.inflate 로 dialog 레이아웃을 뷰로 구현
-                viewDialog = (View) View.inflate(activity, R.layout.permission_dialog_layout, null);
-                // setView 함수로 뷰를 dialog 변수에 전달
-                alertDialogBuilder.setView(viewDialog);
 
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 alertDialog.show();
@@ -270,10 +258,6 @@ public class PermissionSupport {
                     new AlertDialog.Builder(activity, R.style.permissionAlertDialogStyle);
             alertDialogBuilder.setMessage(R.string.user_alarm_permission_not_granted);
             alertDialogBuilder.setTitle("안내");
-            // View.inflate 로 dialog 레이아웃을 뷰로 구현
-            //viewDialog = (View) View.inflate(activity, R.layout.permission_dialog_layout, null);
-            // setView 함수로 뷰를 dialog 변수에 전달
-            //alertDialogBuilder.setView(viewDialog);
 
             AlertDialog alertDialog = alertDialogBuilder.create();
             alertDialog.show();
@@ -284,7 +268,7 @@ public class PermissionSupport {
                         alertDialog.dismiss();
                     }
                 }
-            }, 3000);
+            }, 3500);
         }
     }
 }

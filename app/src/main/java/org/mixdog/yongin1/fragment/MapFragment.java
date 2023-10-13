@@ -1,6 +1,7 @@
 package org.mixdog.yongin1.fragment;
 
 
+import static org.mixdog.yongin1.MainActivity.isInitialMarkerSet;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -309,7 +310,8 @@ public class MapFragment extends Fragment
 
 
                                 // 메인엑티비티 스테틱 전역변수 버튼활성화 적용
-                                MainActivity.isInitialMarkerSet=true;
+                                isInitialMarkerSet=true;
+                                Log.d("hanaBBun", "isInitialMarkerSet : " + isInitialMarkerSet);
                                 //MainActivity.nonStartMarker.remove();
                                 MainActivity.nonStartMarker.setVisible(false);
                                 if (myLocationMarker != null) {
@@ -380,17 +382,14 @@ public class MapFragment extends Fragment
             public void onClick(View view) {
 
                 // 포어그라운드 서비스; 알림창이 사라짐
-                //Intent intent = new Intent(requireContext(), MapUpdateService.class);
-                //intent.setAction(Actions.STOP_FOREGROUND);
-                //requireContext().startService(intent);
-
-                // 뷰모델로 서비스에 데이터를 넘기려했는데 실패
-                //viewModel.setAction(Actions.end);
-                //Log.d("hanaBBun", "viewModel의 Action : " + viewModel.getAction());
+                Intent intent = new Intent(requireContext(), MapUpdateService.class);
+                intent.setAction(Actions.STOP_FOREGROUND);
+                requireContext().startService(intent);
 
                 Log.d("mixpuppy", "정지버튼이 눌렸음");
                 // 메인엑티비티 스테틱 전역변수 버튼활성화 적용
-                MainActivity.isInitialMarkerSet=false;
+                isInitialMarkerSet=false;
+                Log.d("hanaBBun", "isInitialMarkerSet : " + isInitialMarkerSet);
                 MainActivity.nonStartMarker.setVisible(true);
                 // stop 버튼을 눌렀을 때 연한 트럭이 start 버튼 누르기 전의 위치에 처음 찍혀있어서 아래 코드를 추가해봤다.
                 MainActivity.nonStartMarker.setPosition(new LatLng(mLat, mLng));

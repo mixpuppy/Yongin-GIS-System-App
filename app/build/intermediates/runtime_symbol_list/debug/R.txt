@@ -1442,6 +1442,7 @@ int color design_fab_stroke_top_inner_color 0x7f05005c
 int color design_fab_stroke_top_outer_color 0x7f05005d
 int color design_icon_tint 0x7f05005e
 int color design_snackbar_background_color 0x7f05005f
+int color dialog_background 0x7f05028c
 int color dim_foreground_disabled_material_dark 0x7f050060
 int color dim_foreground_disabled_material_light 0x7f050061
 int color dim_foreground_material_dark 0x7f050062
@@ -1453,6 +1454,7 @@ int color foreground_material_light 0x7f050067
 int color highlighted_text_material_dark 0x7f050068
 int color highlighted_text_material_light 0x7f050069
 int color ic_launcher_background 0x7f05006a
+int color light_purple 0x7f05028d
 int color m3_appbar_overlay_color 0x7f05006b
 int color m3_assist_chip_icon_tint_color 0x7f05006c
 int color m3_assist_chip_stroke_color 0x7f05006d
@@ -2907,11 +2909,13 @@ int drawable notification_bg_low_normal 0x7f0700ef
 int drawable notification_bg_low_pressed 0x7f0700f0
 int drawable notification_bg_normal 0x7f0700f1
 int drawable notification_bg_normal_pressed 0x7f0700f2
+int drawable notification_button 0x7f070102
 int drawable notification_icon_background 0x7f0700f3
 int drawable notification_template_icon_bg 0x7f0700f4
 int drawable notification_template_icon_low_bg 0x7f0700f5
 int drawable notification_tile_bg 0x7f0700f6
 int drawable notify_panel_notification_icon_bg 0x7f0700f7
+int drawable permission_dialog_background 0x7f070101
 int drawable pointer_route 0x7f0700f8
 int drawable rounded_button 0x7f0700f9
 int drawable start_marker 0x7f0700fa
@@ -3628,7 +3632,6 @@ int layout notification_template_custom_big 0x7f0b0067
 int layout notification_template_icon_group 0x7f0b0068
 int layout notification_template_part_chronometer 0x7f0b0069
 int layout notification_template_part_time 0x7f0b006a
-int layout permission_dialog_layout 0x7f0b006f
 int layout select_dialog_item_material 0x7f0b006b
 int layout select_dialog_multichoice_material 0x7f0b006c
 int layout select_dialog_singlechoice_material 0x7f0b006d
@@ -3818,6 +3821,7 @@ int string side_sheet_behavior 0x7f1000b0
 int string status_bar_notification_info_overflow 0x7f1000b1
 int string user_alarm_permission_not_granted 0x7f1000b4
 int string user_alarm_permission_required 0x7f1000b5
+int string user_location_permission_needed 0x7f1000b7
 int string user_location_permission_not_granted 0x7f1000b2
 int string user_location_permission_required 0x7f1000b3
 int string user_permissions_required 0x7f1000b6
@@ -4920,6 +4924,7 @@ int style Widget_MaterialComponents_Toolbar_PrimarySurface 0x7f110447
 int style Widget_MaterialComponents_Toolbar_Surface 0x7f110448
 int style Widget_MaterialComponents_Tooltip 0x7f110449
 int style Widget_Support_CoordinatorLayout 0x7f11044a
+int style permissionAlertDialogStyle 0x7f11044b
 int[] styleable ActionBar { 0x7f03004a, 0x7f030051, 0x7f030052, 0x7f030129, 0x7f03012a, 0x7f03012b, 0x7f03012c, 0x7f03012d, 0x7f03012e, 0x7f030155, 0x7f03016c, 0x7f03016d, 0x7f03018c, 0x7f030207, 0x7f03020f, 0x7f030215, 0x7f030216, 0x7f03021a, 0x7f03022d, 0x7f030243, 0x7f0302c4, 0x7f030348, 0x7f03037f, 0x7f030387, 0x7f030388, 0x7f030408, 0x7f03040c, 0x7f03048f, 0x7f03049d }
 int styleable ActionBar_background 0
 int styleable ActionBar_backgroundSplit 1

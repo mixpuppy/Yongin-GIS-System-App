@@ -682,6 +682,7 @@
     <color name="design_fab_stroke_top_inner_color">#1AFFFFFF</color>
     <color name="design_fab_stroke_top_outer_color">#2EFFFFFF</color>
     <color name="design_snackbar_background_color">#323232</color>
+    <color name="dialog_background">#f1efeb</color>
     <color name="dim_foreground_disabled_material_dark">#80bebebe</color>
     <color name="dim_foreground_disabled_material_light">#80323232</color>
     <color name="dim_foreground_material_dark">#ffbebebe</color>
@@ -693,6 +694,7 @@
     <color name="highlighted_text_material_dark">#6680cbc4</color>
     <color name="highlighted_text_material_light">#66009688</color>
     <color name="ic_launcher_background">#FDFDFD</color>
+    <color name="light_purple">#e6e8f0</color>
     <color name="m3_ref_palette_black">#ff000000</color>
     <color name="m3_ref_palette_error0">#ff000000</color>
     <color name="m3_ref_palette_error10">#ff410e0b</color>
@@ -1979,43 +1981,47 @@
     <string name="side_sheet_behavior" translatable="false">com.google.android.material.sidesheet.SideSheetBehavior</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="user_alarm_permission_not_granted">
-        알림 권한이 허용되어 있지 않습니다. \n
-        주행 기록 상태를 파악하기 위해 \n
-        앱 정보 > 권한 승인 후 이용해주세요.
+        알림 권한이 허용되어 있지 않습니다.
+        \n주행 기록 상태를 파악하기 위해
+        \n앱 정보 > 권한 승인 후 이용해주세요.
     </string>
     <string name="user_alarm_permission_required">
-        이 앱을 사용해 주행 중일 시 \n
-        알림창을 띄우기 위해서 알림 권한 허용이 필요합니다.
+        주행 중일 시 알림창을 띄우기 위해서
+        \n알림 권한 허용이 필요합니다.
+    </string>
+    <string name="user_location_permission_needed">
+        위치 권한이 허용되어 있지 않은 상태입니다.
+        \n위치 정보 없이 이 앱을 사용할 수 없으므로
+        \n앱 정보 > 권한 승인 후 이용해주세요.
     </string>
     <string name="user_location_permission_not_granted">
-        위치 권한 허용이 다시 거절되었습니다. \n
-        위치 정보 없이 이 앱을 사용할 수 없으므로 종료하겠습니다.
+        위치 권한 허용이 다시 거절되었습니다.
+        \n위치 정보 없이 이 앱을 사용할 수 없으므로
+        \n앱을 종료하겠습니다.
     </string>
     <string name="user_location_permission_required">
-        위치 정보 접근 권한이 허용되어 있지 않습니다. \n
-        이 앱을 사용해 위치 추적 및 청소 기록을 하기 위해서는 \n
-        위치 정보 접근 권한을 허용해주세요.
+        위치 권한이 허용되어 있지 않습니다.
+        \n위치 추적 및 청소 기록을 하기 위해서는
+        \n위치 정보 접근 권한을 허용해주세요.
     </string>
     <string name="user_permissions_required">
-        위치와 알림 권한이 허용되어 있지 않습니다. \n
-        이 앱을 적절히 사용하기 위해서는 두 권한을 허용해주세요.
+        위치 및 알림 권한이 허용되어 있지 않습니다.
+        \n앱의 적절한 사용을 위해
+        \n두 권한을 허용해주세요.
     </string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>
     <style name="AlertDialogButton.Negative" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
-        <item name="android:textColor">@color/black</item>
+        
+        <item name="android:textColor">#00418c</item>
     </style>
     <style name="AlertDialogButton.Positive" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
-        <item name="android:textColor">@color/black</item>
+        
+        <item name="android:textColor">#00418c</item>
     </style>
     <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert">
         
         <item name="android:background">#f1efeb</item>
-        
-        <item name="android:typeface">monospace</item>
-        <item name="android:textColor">@color/black</item>
-        
-        <item name="android:windowBackground"/>
     </style>
     <style name="Animation.AppCompat.Dialog" parent="Base.Animation.AppCompat.Dialog"/>
     <style name="Animation.AppCompat.DropDownUp" parent="Base.Animation.AppCompat.DropDownUp"/>
@@ -5752,7 +5758,10 @@
   </style>
     <style name="SpinnerDropdownStyle">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">200dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:background">@color/white</item>
+        
+
     </style>
     <style name="TextAppearance.AppCompat" parent="Base.TextAppearance.AppCompat"/>
     <style name="TextAppearance.AppCompat.Body1" parent="Base.TextAppearance.AppCompat.Body1"/>
@@ -8791,6 +8800,13 @@
   </style>
     <style name="Widget.Support.CoordinatorLayout" parent="android:Widget">
         <item name="statusBarBackground">#000000</item>
+    </style>
+    <style name="permissionAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/permission_dialog_background</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:paddingVertical">4dp</item>
+        <item name="android:paddingHorizontal">4dp</item>
     </style>
     <declare-styleable name="ActionBar">
         
