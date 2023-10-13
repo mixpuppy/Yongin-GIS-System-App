@@ -1,19 +1,17 @@
 package org.mixdog.yongin1.fragment;
 
+
+import static org.mixdog.yongin1.MainActivity.isInitialMarkerSet;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.Notification;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationRequest;
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.activity.OnBackPressedCallback;
@@ -32,7 +30,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -43,8 +40,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -110,14 +105,16 @@ public class MapFragment extends Fragment
     // 위도 경도
     private double mLat, mLng;
 
-
     // onConnected() 메소드를 사용할 수 있을때 사용하는 변수
     private FusedLocationProviderClient providerClient;
 
     // 버튼 선언; 포어그라운드 서비스에서 활용하기 위해 public으로 바꿔보았다.
-    public Button startBtn;
-    public Button stopBtn;
+    public static Button startBtn;
+    public static Button stopBtn;
     private Button resetBtn;
+
+    // 서비스에 버튼 클릭 상태를 전달하기 위한 intent 객체
+    Intent viewBtnIntent;
 
     // Http 통신을 위한 변수
     private RequestQueue queue;
@@ -129,12 +126,9 @@ public class MapFragment extends Fragment
     // dialog 변수
     private String carNum;
     private View viewDialog;
-    private View viewDropdown;
 
     //Marker 객체
-    private Marker startMarker;
     private Marker myLocationMarker;
-    private Marker endMarker;
     private List<Marker> startMarkerList = new ArrayList<>();
     private List<Marker> endMarkerList = new ArrayList<>();
     private List<Marker> markerList = new ArrayList<>();
@@ -196,8 +190,15 @@ public class MapFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        // ViewModel 에서 위치정보 객체 참조
-        // ; 앱 데이터 및 로직 관리 위한 ViewModel, providerClient 초기화
+        /*
+        ViewModel 에서 위치정보 객체 참조
+         : 앱 데이터 및 로직 관리 위한 ViewModel, providerClient 초기화
+         - ViewModelProvider : 액티비티 또는 프래그먼트와 같은 구성요소에서 뷰 모델 생성 및 관리하는 데 사용
+                              뷰모델을 생성하고 이미 생성된 뷰모델을 반환하여 데이터 유지 및 관리하도록 도와줌
+         */
+
+        // owner 자리에 requireActivity() 대신 this를 적어줬는데 제대로 된 것 맞을까.
+        // this는 현재 액티비티 또는 프래그먼트 / requireAcivity()는 MainActivity인 듯.
         LocationViewModel viewModel = new ViewModelProvider(requireActivity()).get(LocationViewModel.class);
         providerClient = viewModel.getProviderClient();
 
@@ -214,19 +215,6 @@ public class MapFragment extends Fragment
         }
         // 프래그먼트의 레이아웃을 인플레이트.
         View rootView = inflater.inflate(R.layout.fragment_map, container, false);
-
-        ////// 일단 무시 -------------------------
-        // 포어그라운드 서비스 관련 코드; viewModel로부터 action 값 얻어오기
-        viewModel.getAction().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(String action) {
-                if (Actions.start.equals(action)){
-                    startBtn.performClick();
-                } else if (Actions.end.equals(action)) {
-                    stopBtn.performClick();
-                }
-            }
-        });
 
         // Btns를 레이아웃에서 찾기
         startBtn = rootView.findViewById(R.id.startBtn);
@@ -300,6 +288,9 @@ public class MapFragment extends Fragment
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
 
+                                // 현재 위치 얻기
+                                //getLastLocation();
+
                                 Log.d("hanaBBun", "차량 번호 입력 완료");
 
                                 // 주행시작을 알리는 알림창 나타남
@@ -307,8 +298,19 @@ public class MapFragment extends Fragment
                                 intent.setAction(Actions.START_FOREGROUND);
                                 requireContext().startService(intent);
 
+                                // viewModel로 액션 상태 데이터를 서비스로 전달할랬는데 실패
+                                // 서비스와 뷰 사이에 데이터 공유하기 위해서 intent를 사용하는 거다.
+                                //viewModel.setAction(Actions.start);
+                                //Log.d("hanaBBun", "viewModel의 Action : " + viewModel.getAction());
+
+                                viewBtnIntent = new Intent(getActivity(), MapUpdateService.class);
+                                viewBtnIntent.putExtra("action", Actions.start);
+                                getContext().startService(viewBtnIntent);
+
+
                                 // 메인엑티비티 스테틱 전역변수 버튼활성화 적용
-                                MainActivity.isInitialMarkerSet=true;
+                                isInitialMarkerSet=true;
+                                Log.d("hanaBBun", "isInitialMarkerSet : " + isInitialMarkerSet);
                                 //MainActivity.nonStartMarker.remove();
                                 MainActivity.nonStartMarker.setVisible(false);
                                 if (myLocationMarker != null) {
@@ -358,18 +360,18 @@ public class MapFragment extends Fragment
                                 resetBtn.setEnabled(false);
                                 resetBtn.setVisibility(View.INVISIBLE);
 
-                                // 원격 서버에 시작했음을 알리는 트리거
-                                NetworkUtils.sendGETRequest(startSendUrl, requireContext(),
-                                        (response, error) -> {
-                                            if (response != null) {
-                                                // response 변수에 응답 데이터가 전달
-                                                Log.d("network", "util Get 요청 성공!!");
-                                            } else {
-                                                // error 변수에 에러 정보가 전달됩니다.
-                                                Log.d("network", "util Get 요청 실패ㅜㅜ : " + error);
-                                            }
-                                        }
-                                );
+//                                // 원격 서버에 시작했음을 알리는 트리거
+//                                NetworkUtils.sendGETRequest(startSendUrl, requireContext(),
+//                                        (response, error) -> {
+//                                            if (response != null) {
+//                                                // response 변수에 응답 데이터가 전달
+//                                                Log.d("network", "util Get 요청 성공!!");
+//                                            } else {
+//                                                // error 변수에 에러 정보가 전달됩니다.
+//                                                Log.d("network", "util Get 요청 실패ㅜㅜ : " + error);
+//                                            }
+//                                        }
+//                                );
                             }
                 });
 
@@ -391,13 +393,15 @@ public class MapFragment extends Fragment
             @Override
             public void onClick(View view) {
 
+                // 포어그라운드 서비스; 알림창이 사라짐
                 Intent intent = new Intent(requireContext(), MapUpdateService.class);
                 intent.setAction(Actions.STOP_FOREGROUND);
                 requireContext().startService(intent);
 
                 Log.d("mixpuppy", "정지버튼이 눌렸음");
                 // 메인엑티비티 스테틱 전역변수 버튼활성화 적용
-                MainActivity.isInitialMarkerSet=false;
+                isInitialMarkerSet=false;
+                Log.d("hanaBBun", "isInitialMarkerSet : " + isInitialMarkerSet);
                 MainActivity.nonStartMarker.setVisible(true);
                 // stop 버튼을 눌렀을 때 연한 트럭이 start 버튼 누르기 전의 위치에 처음 찍혀있어서 아래 코드를 추가해봤다.
                 MainActivity.nonStartMarker.setPosition(new LatLng(mLat, mLng));
@@ -420,18 +424,18 @@ public class MapFragment extends Fragment
                     Log.d("mixpuppy", "정지 눌렀으나 timerTask 가 null 로 인식");
                 }
 
-                // 원격 서버에 시작했음을 알리는 트리거
-                NetworkUtils.sendGETRequest(stopSendUrl, requireContext(),
-                        (response, error) -> {
-                            if (response != null) {
-                                // response 변수에 응답 데이터가 전달
-                                Log.d("network", "util Get 요청 성공!!");
-                            } else {
-                                // error 변수에 에러 정보가 전달됩니다.
-                                Log.d("network", "util Get 요청 실패ㅜㅜ : " + error);
-                            }
-                        }
-                );
+//                // 원격 서버에 시작했음을 알리는 트리거
+//                NetworkUtils.sendGETRequest(stopSendUrl, requireContext(),
+//                        (response, error) -> {
+//                            if (response != null) {
+//                                // response 변수에 응답 데이터가 전달
+//                                Log.d("network", "util Get 요청 성공!!");
+//                            } else {
+//                                // error 변수에 에러 정보가 전달됩니다.
+//                                Log.d("network", "util Get 요청 실패ㅜㅜ : " + error);
+//                            }
+//                        }
+//                );
 
                 // 버튼 활성화/비활성화
                 startBtn.setVisibility(View.VISIBLE);
@@ -463,7 +467,7 @@ public class MapFragment extends Fragment
                 endMarkerList.clear();
             }
         });
-        // rootView를 반환
+        // rootView를 반환합니다.
         return rootView;
     }
 

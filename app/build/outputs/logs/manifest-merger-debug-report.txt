@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:2:1-64:12
-INJECTED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:2:1-64:12
-INJECTED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:2:1-64:12
-INJECTED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:2:1-64:12
+ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:2:1-66:12
+INJECTED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:2:1-66:12
+INJECTED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:2:1-66:12
+INJECTED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:2:1-66:12
 MERGED from [androidx.navigation:navigation-common:2.7.3] C:\Users\82104\.gradle\caches\transforms-3\563ad5cd9b1c8830c04c692ed3a70a07\transformed\navigation-common-2.7.3\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.navigation:navigation-fragment:2.7.3] C:\Users\82104\.gradle\caches\transforms-3\7ae9c95a2765cb803e3ffc7468e61033\transformed\navigation-fragment-2.7.3\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.navigation:navigation-runtime:2.7.3] C:\Users\82104\.gradle\caches\transforms-3\86a2a7479550020db96fd6618315523d\transformed\navigation-runtime-2.7.3\AndroidManifest.xml:17:1-22:12
@@ -110,8 +110,8 @@ ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:15:5-77
 	android:name
 		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:15:22-74
 application
-ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:21:5-62:19
-INJECTED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:21:5-62:19
+ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:21:5-64:19
+INJECTED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:21:5-64:19
 MERGED from [com.google.android.material:material:1.8.0] C:\Users\82104\.gradle\caches\transforms-3\6aa730011e901f80d1584f4facfa3307\transformed\material-1.8.0\AndroidManifest.xml:24:5-20
 MERGED from [com.google.android.material:material:1.8.0] C:\Users\82104\.gradle\caches\transforms-3\6aa730011e901f80d1584f4facfa3307\transformed\material-1.8.0\AndroidManifest.xml:24:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\82104\.gradle\caches\transforms-3\d4d1381655255a026f5b1787a2a805bc\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
@@ -195,27 +195,29 @@ MERGED from [com.google.android.gms:play-services-basement:18.0.0] C:\Users\8210
 	android:name
 		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:43:20-65
 activity#org.mixdog.yongin1.MainActivity
-ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:46:9-54:20
+ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:47:9-56:20
+	android:launchMode
+		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:49:13-44
 	android:exported
-		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:48:13-36
+		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:50:13-36
 	android:name
-		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:47:13-41
+		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:48:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:49:13-53:29
+ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:51:13-55:29
 action#android.intent.action.MAIN
-ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:50:17-69
+ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:52:17-69
 	android:name
-		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:50:25-66
+		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:52:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:52:17-77
+ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:54:17-77
 	android:name
-		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:52:27-74
+		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:54:27-74
 meta-data#com.google.android.geo.API_KEY
-ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:59:9-61:71
+ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:61:9-63:71
 	android:value
-		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:61:13-68
+		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:63:13-68
 	android:name
-		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:60:13-58
+		ADDED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml:62:13-58
 uses-sdk
 INJECTED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\app\yonginapp\appprac\app\src\main\AndroidManifest.xml
