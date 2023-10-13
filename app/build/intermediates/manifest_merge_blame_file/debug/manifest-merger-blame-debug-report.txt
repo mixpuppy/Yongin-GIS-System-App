@@ -24,253 +24,250 @@
 16    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 16-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:6:5-79
 16-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:6:22-76
-17    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-17-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:11:5-77
-17-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:11:22-74
-18    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-18-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:12:5-81
-18-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:12:22-78
-19    <!-- 백그라운드 작업 위한 포어그라운드 서비스 권한 등록 -->
-20    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-20-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:14:5-77
-20-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:14:22-74
-21    <!-- 알림 권한 허용 요청 -->
-22    <uses-permission android:name="android.permisson.POST_NOTIFICATIONS" />
-22-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:16:5-76
-22-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:16:22-73
-23
-24    <uses-feature
-24-->[com.google.android.gms:play-services-maps:18.1.0] /Users/hanabbun/.gradle/caches/transforms-3/d7ee015761efd859e8d90df76087bbee/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:26:5-28:35
-25        android:glEsVersion="0x00020000"
-25-->[com.google.android.gms:play-services-maps:18.1.0] /Users/hanabbun/.gradle/caches/transforms-3/d7ee015761efd859e8d90df76087bbee/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:27:9-41
-26        android:required="true" />
-26-->[com.google.android.gms:play-services-maps:18.1.0] /Users/hanabbun/.gradle/caches/transforms-3/d7ee015761efd859e8d90df76087bbee/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:28:9-32
-27
-28    <queries>
-28-->[com.google.android.gms:play-services-maps:18.1.0] /Users/hanabbun/.gradle/caches/transforms-3/d7ee015761efd859e8d90df76087bbee/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:30:5-34:15
-29
-30        <!-- Needs to be explicitly declared on Android R+ -->
-31        <package android:name="com.google.android.apps.maps" />
-31-->[com.google.android.gms:play-services-maps:18.1.0] /Users/hanabbun/.gradle/caches/transforms-3/d7ee015761efd859e8d90df76087bbee/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:33:9-64
-31-->[com.google.android.gms:play-services-maps:18.1.0] /Users/hanabbun/.gradle/caches/transforms-3/d7ee015761efd859e8d90df76087bbee/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:33:18-61
-32    </queries>
-33
-34    <permission
-34-->[androidx.core:core:1.9.0] /Users/hanabbun/.gradle/caches/transforms-3/36384791e541cef573ccc5e0e263c7fd/transformed/core-1.9.0/AndroidManifest.xml:22:5-24:47
-35        android:name="org.mixdog.yongin1.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-35-->[androidx.core:core:1.9.0] /Users/hanabbun/.gradle/caches/transforms-3/36384791e541cef573ccc5e0e263c7fd/transformed/core-1.9.0/AndroidManifest.xml:23:9-81
-36        android:protectionLevel="signature" />
-36-->[androidx.core:core:1.9.0] /Users/hanabbun/.gradle/caches/transforms-3/36384791e541cef573ccc5e0e263c7fd/transformed/core-1.9.0/AndroidManifest.xml:24:9-44
-37
-38    <uses-permission android:name="org.mixdog.yongin1.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-38-->[androidx.core:core:1.9.0] /Users/hanabbun/.gradle/caches/transforms-3/36384791e541cef573ccc5e0e263c7fd/transformed/core-1.9.0/AndroidManifest.xml:26:5-97
-38-->[androidx.core:core:1.9.0] /Users/hanabbun/.gradle/caches/transforms-3/36384791e541cef573ccc5e0e263c7fd/transformed/core-1.9.0/AndroidManifest.xml:26:22-94
-39    <!--
-40 포어그라운드가 안돼서 알림창만 띄우는 권한 등록..했는데 필요 없을 듯!
-41    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
-42    <uses-permission android:name="android.permission.WAKE_LOCK" />
-43    -->
-44    <application
-44-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:22:5-68:19
-45        android:allowBackup="true"
-45-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:23:9-35
-46        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-46-->[androidx.core:core:1.9.0] /Users/hanabbun/.gradle/caches/transforms-3/36384791e541cef573ccc5e0e263c7fd/transformed/core-1.9.0/AndroidManifest.xml:28:18-86
-47        android:dataExtractionRules="@xml/data_extraction_rules"
-47-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:24:9-65
-48        android:debuggable="true"
-49        android:extractNativeLibs="false"
-50        android:fullBackupContent="@xml/backup_rules"
-50-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:25:9-54
-51        android:icon="@mipmap/ic_launcher"
-51-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:26:9-43
-52        android:label="@string/app_name"
-52-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:27:9-41
-53        android:networkSecurityConfig="@xml/network_security_config"
-53-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:28:9-69
-54        android:roundIcon="@mipmap/ic_launcher_round"
-54-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:29:9-54
-55        android:supportsRtl="true"
-55-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:30:9-35
-56        android:testOnly="true"
-57        android:theme="@style/Theme.Yongin1"
-57-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:31:9-45
-58        android:usesCleartextTraffic="true" >
-58-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:32:9-44
-59
-60        <!--
-61             포어그라운드 서비스 등록
-62            android:enabled="true"
-63            android:exported="true"
-64            android:process=":mapUpdateService"
-65            android:stopWithTask="false"
-66        -->
-67        <service
-67-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:39:9-41:51
-68            android:name="org.mixdog.yongin1.MapUpdateService"
-68-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:39:18-50
-69            android:enabled="true"
-69-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:40:17-39
-70            android:exported="true" />
-70-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:41:17-40
-71
-72        <uses-library
-72-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:42:9-87
-73            android:name="org.apache.http.legacy"
-73-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:42:23-60
-74            android:required="false" />
-74-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:42:61-85
-75        <!-- Google Play 서비스의 버전 정보를 지정 -->
-76        <meta-data
-76-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:44:9-45:68
-77            android:name="com.google.android.gms.version"
-77-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:44:20-65
-78            android:value="@integer/google_play_services_version" />
-78-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:45:13-66
-79
-80        <!-- android:launchMode="singleTask" : 알림창에서 이동하다가 MainActivity가 여러 개 생기지 않도록! -->
-81        <activity
-81-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:48:9-57:20
-82            android:name="org.mixdog.yongin1.MainActivity"
-82-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:49:13-41
-83            android:exported="true"
-83-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:51:13-36
-84            android:launchMode="singleTask" >
-84-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:50:13-44
-85            <intent-filter>
-85-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:52:13-56:29
-86                <action android:name="android.intent.action.MAIN" />
-86-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:53:17-69
-86-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:53:25-66
-87
-88                <category android:name="android.intent.category.LAUNCHER" />
-88-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:55:17-77
-88-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:55:27-74
-89            </intent-filter>
-90        </activity>
-91
-92        <!-- <meta-data android:name="com.google.android.maps.v2.API_KEY" -->
-93        <!-- android:value="AIzaSyA2WNJUImxc9erkWZE6GYbQ3lo0GMwMZ74"/> -->
-94
-95        <meta-data
-95-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:62:9-64:72
-96            android:name="com.google.android.geo.API_KEY"
-96-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:63:14-59
-97            android:value="AIzaSyCaqew2vUjeTvX9zgAe15n6jCysWoVhzdg" />
-97-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:64:14-69
-98        <!-- <meta-data -->
-99        <!-- android:name="com.google.android.geo.API_KEY" -->
-100        <!-- android:value="AIzaSyCaqew2vUjeTvX9zgAe15n6jCysWoVhzdg" /> -->
-101        <provider
-101-->[androidx.emoji2:emoji2:1.2.0] /Users/hanabbun/.gradle/caches/transforms-3/136e30140ce6342fbc2de54d99bb42c3/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
-102            android:name="androidx.startup.InitializationProvider"
-102-->[androidx.emoji2:emoji2:1.2.0] /Users/hanabbun/.gradle/caches/transforms-3/136e30140ce6342fbc2de54d99bb42c3/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:25:13-67
-103            android:authorities="org.mixdog.yongin1.androidx-startup"
-103-->[androidx.emoji2:emoji2:1.2.0] /Users/hanabbun/.gradle/caches/transforms-3/136e30140ce6342fbc2de54d99bb42c3/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:26:13-68
-104            android:exported="false" >
-104-->[androidx.emoji2:emoji2:1.2.0] /Users/hanabbun/.gradle/caches/transforms-3/136e30140ce6342fbc2de54d99bb42c3/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:27:13-37
-105            <meta-data
-105-->[androidx.emoji2:emoji2:1.2.0] /Users/hanabbun/.gradle/caches/transforms-3/136e30140ce6342fbc2de54d99bb42c3/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
-106                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-106-->[androidx.emoji2:emoji2:1.2.0] /Users/hanabbun/.gradle/caches/transforms-3/136e30140ce6342fbc2de54d99bb42c3/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:30:17-75
-107                android:value="androidx.startup" />
-107-->[androidx.emoji2:emoji2:1.2.0] /Users/hanabbun/.gradle/caches/transforms-3/136e30140ce6342fbc2de54d99bb42c3/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:31:17-49
-108            <meta-data
-108-->[androidx.lifecycle:lifecycle-process:2.6.2] /Users/hanabbun/.gradle/caches/transforms-3/72196f3b1b3611823997e54c2ba0e450/transformed/jetified-lifecycle-process-2.6.2/AndroidManifest.xml:29:13-31:52
-109                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-109-->[androidx.lifecycle:lifecycle-process:2.6.2] /Users/hanabbun/.gradle/caches/transforms-3/72196f3b1b3611823997e54c2ba0e450/transformed/jetified-lifecycle-process-2.6.2/AndroidManifest.xml:30:17-78
-110                android:value="androidx.startup" />
-110-->[androidx.lifecycle:lifecycle-process:2.6.2] /Users/hanabbun/.gradle/caches/transforms-3/72196f3b1b3611823997e54c2ba0e450/transformed/jetified-lifecycle-process-2.6.2/AndroidManifest.xml:31:17-49
-111            <meta-data
-111-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:29:13-31:52
-112                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-112-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:30:17-85
-113                android:value="androidx.startup" />
-113-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:31:17-49
-114        </provider>
-115
-116        <activity
-116-->[com.google.android.gms:play-services-auth:18.0.0] /Users/hanabbun/.gradle/caches/transforms-3/79f00da4ed14f648105acb3d1b34bc1f/transformed/jetified-play-services-auth-18.0.0/AndroidManifest.xml:23:9-27:75
-117            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
-117-->[com.google.android.gms:play-services-auth:18.0.0] /Users/hanabbun/.gradle/caches/transforms-3/79f00da4ed14f648105acb3d1b34bc1f/transformed/jetified-play-services-auth-18.0.0/AndroidManifest.xml:24:13-93
-118            android:excludeFromRecents="true"
-118-->[com.google.android.gms:play-services-auth:18.0.0] /Users/hanabbun/.gradle/caches/transforms-3/79f00da4ed14f648105acb3d1b34bc1f/transformed/jetified-play-services-auth-18.0.0/AndroidManifest.xml:25:13-46
-119            android:exported="false"
-119-->[com.google.android.gms:play-services-auth:18.0.0] /Users/hanabbun/.gradle/caches/transforms-3/79f00da4ed14f648105acb3d1b34bc1f/transformed/jetified-play-services-auth-18.0.0/AndroidManifest.xml:26:13-37
-120            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-120-->[com.google.android.gms:play-services-auth:18.0.0] /Users/hanabbun/.gradle/caches/transforms-3/79f00da4ed14f648105acb3d1b34bc1f/transformed/jetified-play-services-auth-18.0.0/AndroidManifest.xml:27:13-72
-121        <!--
-122            Service handling Google Sign-In user revocation. For apps that do not integrate with
-123            Google Sign-In, this service will never be started.
-124        -->
-125        <service
-125-->[com.google.android.gms:play-services-auth:18.0.0] /Users/hanabbun/.gradle/caches/transforms-3/79f00da4ed14f648105acb3d1b34bc1f/transformed/jetified-play-services-auth-18.0.0/AndroidManifest.xml:33:9-36:110
-126            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
-126-->[com.google.android.gms:play-services-auth:18.0.0] /Users/hanabbun/.gradle/caches/transforms-3/79f00da4ed14f648105acb3d1b34bc1f/transformed/jetified-play-services-auth-18.0.0/AndroidManifest.xml:34:13-89
-127            android:exported="true"
-127-->[com.google.android.gms:play-services-auth:18.0.0] /Users/hanabbun/.gradle/caches/transforms-3/79f00da4ed14f648105acb3d1b34bc1f/transformed/jetified-play-services-auth-18.0.0/AndroidManifest.xml:35:13-36
-128            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION" />
-128-->[com.google.android.gms:play-services-auth:18.0.0] /Users/hanabbun/.gradle/caches/transforms-3/79f00da4ed14f648105acb3d1b34bc1f/transformed/jetified-play-services-auth-18.0.0/AndroidManifest.xml:36:13-107
-129
-130        <activity
-130-->[com.google.android.gms:play-services-base:18.0.1] /Users/hanabbun/.gradle/caches/transforms-3/dd61f4f03f5550add21efc50239b1a78/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
-131            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-131-->[com.google.android.gms:play-services-base:18.0.1] /Users/hanabbun/.gradle/caches/transforms-3/dd61f4f03f5550add21efc50239b1a78/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:19-85
-132            android:exported="false"
-132-->[com.google.android.gms:play-services-base:18.0.1] /Users/hanabbun/.gradle/caches/transforms-3/dd61f4f03f5550add21efc50239b1a78/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:22:19-43
-133            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-133-->[com.google.android.gms:play-services-base:18.0.1] /Users/hanabbun/.gradle/caches/transforms-3/dd61f4f03f5550add21efc50239b1a78/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:21:19-78
-134
-135        <uses-library
-135-->[androidx.window:window:1.0.0] /Users/hanabbun/.gradle/caches/transforms-3/47ffe86106d4ecc5f6f69fc8d2f487c7/transformed/jetified-window-1.0.0/AndroidManifest.xml:25:9-27:40
-136            android:name="androidx.window.extensions"
-136-->[androidx.window:window:1.0.0] /Users/hanabbun/.gradle/caches/transforms-3/47ffe86106d4ecc5f6f69fc8d2f487c7/transformed/jetified-window-1.0.0/AndroidManifest.xml:26:13-54
-137            android:required="false" />
-137-->[androidx.window:window:1.0.0] /Users/hanabbun/.gradle/caches/transforms-3/47ffe86106d4ecc5f6f69fc8d2f487c7/transformed/jetified-window-1.0.0/AndroidManifest.xml:27:13-37
-138        <uses-library
-138-->[androidx.window:window:1.0.0] /Users/hanabbun/.gradle/caches/transforms-3/47ffe86106d4ecc5f6f69fc8d2f487c7/transformed/jetified-window-1.0.0/AndroidManifest.xml:28:9-30:40
-139            android:name="androidx.window.sidecar"
-139-->[androidx.window:window:1.0.0] /Users/hanabbun/.gradle/caches/transforms-3/47ffe86106d4ecc5f6f69fc8d2f487c7/transformed/jetified-window-1.0.0/AndroidManifest.xml:29:13-51
-140            android:required="false" />
-140-->[androidx.window:window:1.0.0] /Users/hanabbun/.gradle/caches/transforms-3/47ffe86106d4ecc5f6f69fc8d2f487c7/transformed/jetified-window-1.0.0/AndroidManifest.xml:30:13-37
-141
-142        <receiver
-142-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:34:9-52:20
-143            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-143-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:35:13-76
-144            android:directBootAware="false"
-144-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:36:13-44
-145            android:enabled="true"
-145-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:37:13-35
-146            android:exported="true"
-146-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:38:13-36
-147            android:permission="android.permission.DUMP" >
-147-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:39:13-57
-148            <intent-filter>
-148-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:40:13-42:29
-149                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-149-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:41:17-91
-149-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:41:25-88
-150            </intent-filter>
-151            <intent-filter>
-151-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:43:13-45:29
-152                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-152-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:44:17-85
-152-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:44:25-82
-153            </intent-filter>
-154            <intent-filter>
-154-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:46:13-48:29
-155                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-155-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:47:17-88
-155-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:47:25-85
-156            </intent-filter>
-157            <intent-filter>
-157-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:49:13-51:29
-158                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-158-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:50:17-95
-158-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:50:25-92
-159            </intent-filter>
-160        </receiver>
-161    </application>
-162
-163</manifest>
+17    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+17-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:11:5-81
+17-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:11:22-78
+18    <!-- 백그라운드 작업 위한 포어그라운드 서비스 권한 등록 -->
+19    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+19-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:13:5-77
+19-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:13:22-74
+20    <!-- 알림 권한 허용 요청 -->
+21    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+21-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:15:5-77
+21-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:15:22-74
+22
+23    <uses-feature
+23-->[com.google.android.gms:play-services-maps:18.1.0] /Users/hanabbun/.gradle/caches/transforms-3/d7ee015761efd859e8d90df76087bbee/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:26:5-28:35
+24        android:glEsVersion="0x00020000"
+24-->[com.google.android.gms:play-services-maps:18.1.0] /Users/hanabbun/.gradle/caches/transforms-3/d7ee015761efd859e8d90df76087bbee/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:27:9-41
+25        android:required="true" />
+25-->[com.google.android.gms:play-services-maps:18.1.0] /Users/hanabbun/.gradle/caches/transforms-3/d7ee015761efd859e8d90df76087bbee/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:28:9-32
+26
+27    <queries>
+27-->[com.google.android.gms:play-services-maps:18.1.0] /Users/hanabbun/.gradle/caches/transforms-3/d7ee015761efd859e8d90df76087bbee/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:30:5-34:15
+28
+29        <!-- Needs to be explicitly declared on Android R+ -->
+30        <package android:name="com.google.android.apps.maps" />
+30-->[com.google.android.gms:play-services-maps:18.1.0] /Users/hanabbun/.gradle/caches/transforms-3/d7ee015761efd859e8d90df76087bbee/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:33:9-64
+30-->[com.google.android.gms:play-services-maps:18.1.0] /Users/hanabbun/.gradle/caches/transforms-3/d7ee015761efd859e8d90df76087bbee/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:33:18-61
+31    </queries>
+32
+33    <permission
+33-->[androidx.core:core:1.9.0] /Users/hanabbun/.gradle/caches/transforms-3/36384791e541cef573ccc5e0e263c7fd/transformed/core-1.9.0/AndroidManifest.xml:22:5-24:47
+34        android:name="org.mixdog.yongin1.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+34-->[androidx.core:core:1.9.0] /Users/hanabbun/.gradle/caches/transforms-3/36384791e541cef573ccc5e0e263c7fd/transformed/core-1.9.0/AndroidManifest.xml:23:9-81
+35        android:protectionLevel="signature" />
+35-->[androidx.core:core:1.9.0] /Users/hanabbun/.gradle/caches/transforms-3/36384791e541cef573ccc5e0e263c7fd/transformed/core-1.9.0/AndroidManifest.xml:24:9-44
+36
+37    <uses-permission android:name="org.mixdog.yongin1.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+37-->[androidx.core:core:1.9.0] /Users/hanabbun/.gradle/caches/transforms-3/36384791e541cef573ccc5e0e263c7fd/transformed/core-1.9.0/AndroidManifest.xml:26:5-97
+37-->[androidx.core:core:1.9.0] /Users/hanabbun/.gradle/caches/transforms-3/36384791e541cef573ccc5e0e263c7fd/transformed/core-1.9.0/AndroidManifest.xml:26:22-94
+38    <!--
+39 포어그라운드가 안돼서 알림창만 띄우는 권한 등록..했는데 필요 없을 듯!
+40    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+41    <uses-permission android:name="android.permission.WAKE_LOCK" />
+42    -->
+43    <application
+43-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:21:5-67:19
+44        android:allowBackup="true"
+44-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:22:9-35
+45        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+45-->[androidx.core:core:1.9.0] /Users/hanabbun/.gradle/caches/transforms-3/36384791e541cef573ccc5e0e263c7fd/transformed/core-1.9.0/AndroidManifest.xml:28:18-86
+46        android:dataExtractionRules="@xml/data_extraction_rules"
+46-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:23:9-65
+47        android:debuggable="true"
+48        android:extractNativeLibs="false"
+49        android:fullBackupContent="@xml/backup_rules"
+49-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:24:9-54
+50        android:icon="@mipmap/ic_launcher"
+50-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:25:9-43
+51        android:label="@string/app_name"
+51-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:26:9-41
+52        android:networkSecurityConfig="@xml/network_security_config"
+52-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:27:9-69
+53        android:roundIcon="@mipmap/ic_launcher_round"
+53-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:28:9-54
+54        android:supportsRtl="true"
+54-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:29:9-35
+55        android:testOnly="true"
+56        android:theme="@style/Theme.Yongin1"
+56-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:30:9-45
+57        android:usesCleartextTraffic="true" >
+57-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:31:9-44
+58
+59        <!--
+60             포어그라운드 서비스 등록
+61            android:enabled="true"
+62            android:exported="true"
+63            android:process=":mapUpdateService"
+64            android:stopWithTask="false"
+65        -->
+66        <service
+66-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:38:9-40:51
+67            android:name="org.mixdog.yongin1.MapUpdateService"
+67-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:38:18-50
+68            android:enabled="true"
+68-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:39:17-39
+69            android:exported="true" />
+69-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:40:17-40
+70
+71        <uses-library
+71-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:41:9-87
+72            android:name="org.apache.http.legacy"
+72-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:41:23-60
+73            android:required="false" />
+73-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:41:61-85
+74        <!-- Google Play 서비스의 버전 정보를 지정 -->
+75        <meta-data
+75-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:43:9-44:68
+76            android:name="com.google.android.gms.version"
+76-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:43:20-65
+77            android:value="@integer/google_play_services_version" />
+77-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:44:13-66
+78
+79        <!-- android:launchMode="singleTask" : 알림창에서 이동하다가 MainActivity가 여러 개 생기지 않도록! -->
+80        <activity
+80-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:47:9-56:20
+81            android:name="org.mixdog.yongin1.MainActivity"
+81-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:48:13-41
+82            android:exported="true"
+82-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:50:13-36
+83            android:launchMode="singleTask" >
+83-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:49:13-44
+84            <intent-filter>
+84-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:51:13-55:29
+85                <action android:name="android.intent.action.MAIN" />
+85-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:52:17-69
+85-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:52:25-66
+86
+87                <category android:name="android.intent.category.LAUNCHER" />
+87-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:54:17-77
+87-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:54:27-74
+88            </intent-filter>
+89        </activity>
+90
+91        <!-- <meta-data android:name="com.google.android.maps.v2.API_KEY" -->
+92        <!-- android:value="AIzaSyA2WNJUImxc9erkWZE6GYbQ3lo0GMwMZ74"/> -->
+93
+94        <meta-data
+94-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:61:9-63:72
+95            android:name="com.google.android.geo.API_KEY"
+95-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:62:14-59
+96            android:value="AIzaSyCaqew2vUjeTvX9zgAe15n6jCysWoVhzdg" />
+96-->/Users/hanabbun/Documents/sundoProject/yonginApp/app/src/main/AndroidManifest.xml:63:14-69
+97        <!-- <meta-data -->
+98        <!-- android:name="com.google.android.geo.API_KEY" -->
+99        <!-- android:value="AIzaSyCaqew2vUjeTvX9zgAe15n6jCysWoVhzdg" /> -->
+100        <provider
+100-->[androidx.emoji2:emoji2:1.2.0] /Users/hanabbun/.gradle/caches/transforms-3/136e30140ce6342fbc2de54d99bb42c3/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+101            android:name="androidx.startup.InitializationProvider"
+101-->[androidx.emoji2:emoji2:1.2.0] /Users/hanabbun/.gradle/caches/transforms-3/136e30140ce6342fbc2de54d99bb42c3/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:25:13-67
+102            android:authorities="org.mixdog.yongin1.androidx-startup"
+102-->[androidx.emoji2:emoji2:1.2.0] /Users/hanabbun/.gradle/caches/transforms-3/136e30140ce6342fbc2de54d99bb42c3/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:26:13-68
+103            android:exported="false" >
+103-->[androidx.emoji2:emoji2:1.2.0] /Users/hanabbun/.gradle/caches/transforms-3/136e30140ce6342fbc2de54d99bb42c3/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:27:13-37
+104            <meta-data
+104-->[androidx.emoji2:emoji2:1.2.0] /Users/hanabbun/.gradle/caches/transforms-3/136e30140ce6342fbc2de54d99bb42c3/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+105                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+105-->[androidx.emoji2:emoji2:1.2.0] /Users/hanabbun/.gradle/caches/transforms-3/136e30140ce6342fbc2de54d99bb42c3/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:30:17-75
+106                android:value="androidx.startup" />
+106-->[androidx.emoji2:emoji2:1.2.0] /Users/hanabbun/.gradle/caches/transforms-3/136e30140ce6342fbc2de54d99bb42c3/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:31:17-49
+107            <meta-data
+107-->[androidx.lifecycle:lifecycle-process:2.6.2] /Users/hanabbun/.gradle/caches/transforms-3/72196f3b1b3611823997e54c2ba0e450/transformed/jetified-lifecycle-process-2.6.2/AndroidManifest.xml:29:13-31:52
+108                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+108-->[androidx.lifecycle:lifecycle-process:2.6.2] /Users/hanabbun/.gradle/caches/transforms-3/72196f3b1b3611823997e54c2ba0e450/transformed/jetified-lifecycle-process-2.6.2/AndroidManifest.xml:30:17-78
+109                android:value="androidx.startup" />
+109-->[androidx.lifecycle:lifecycle-process:2.6.2] /Users/hanabbun/.gradle/caches/transforms-3/72196f3b1b3611823997e54c2ba0e450/transformed/jetified-lifecycle-process-2.6.2/AndroidManifest.xml:31:17-49
+110            <meta-data
+110-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:29:13-31:52
+111                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+111-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:30:17-85
+112                android:value="androidx.startup" />
+112-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:31:17-49
+113        </provider>
+114
+115        <activity
+115-->[com.google.android.gms:play-services-auth:18.0.0] /Users/hanabbun/.gradle/caches/transforms-3/79f00da4ed14f648105acb3d1b34bc1f/transformed/jetified-play-services-auth-18.0.0/AndroidManifest.xml:23:9-27:75
+116            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+116-->[com.google.android.gms:play-services-auth:18.0.0] /Users/hanabbun/.gradle/caches/transforms-3/79f00da4ed14f648105acb3d1b34bc1f/transformed/jetified-play-services-auth-18.0.0/AndroidManifest.xml:24:13-93
+117            android:excludeFromRecents="true"
+117-->[com.google.android.gms:play-services-auth:18.0.0] /Users/hanabbun/.gradle/caches/transforms-3/79f00da4ed14f648105acb3d1b34bc1f/transformed/jetified-play-services-auth-18.0.0/AndroidManifest.xml:25:13-46
+118            android:exported="false"
+118-->[com.google.android.gms:play-services-auth:18.0.0] /Users/hanabbun/.gradle/caches/transforms-3/79f00da4ed14f648105acb3d1b34bc1f/transformed/jetified-play-services-auth-18.0.0/AndroidManifest.xml:26:13-37
+119            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+119-->[com.google.android.gms:play-services-auth:18.0.0] /Users/hanabbun/.gradle/caches/transforms-3/79f00da4ed14f648105acb3d1b34bc1f/transformed/jetified-play-services-auth-18.0.0/AndroidManifest.xml:27:13-72
+120        <!--
+121            Service handling Google Sign-In user revocation. For apps that do not integrate with
+122            Google Sign-In, this service will never be started.
+123        -->
+124        <service
+124-->[com.google.android.gms:play-services-auth:18.0.0] /Users/hanabbun/.gradle/caches/transforms-3/79f00da4ed14f648105acb3d1b34bc1f/transformed/jetified-play-services-auth-18.0.0/AndroidManifest.xml:33:9-36:110
+125            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+125-->[com.google.android.gms:play-services-auth:18.0.0] /Users/hanabbun/.gradle/caches/transforms-3/79f00da4ed14f648105acb3d1b34bc1f/transformed/jetified-play-services-auth-18.0.0/AndroidManifest.xml:34:13-89
+126            android:exported="true"
+126-->[com.google.android.gms:play-services-auth:18.0.0] /Users/hanabbun/.gradle/caches/transforms-3/79f00da4ed14f648105acb3d1b34bc1f/transformed/jetified-play-services-auth-18.0.0/AndroidManifest.xml:35:13-36
+127            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION" />
+127-->[com.google.android.gms:play-services-auth:18.0.0] /Users/hanabbun/.gradle/caches/transforms-3/79f00da4ed14f648105acb3d1b34bc1f/transformed/jetified-play-services-auth-18.0.0/AndroidManifest.xml:36:13-107
+128
+129        <activity
+129-->[com.google.android.gms:play-services-base:18.0.1] /Users/hanabbun/.gradle/caches/transforms-3/dd61f4f03f5550add21efc50239b1a78/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
+130            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+130-->[com.google.android.gms:play-services-base:18.0.1] /Users/hanabbun/.gradle/caches/transforms-3/dd61f4f03f5550add21efc50239b1a78/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:19-85
+131            android:exported="false"
+131-->[com.google.android.gms:play-services-base:18.0.1] /Users/hanabbun/.gradle/caches/transforms-3/dd61f4f03f5550add21efc50239b1a78/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:22:19-43
+132            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+132-->[com.google.android.gms:play-services-base:18.0.1] /Users/hanabbun/.gradle/caches/transforms-3/dd61f4f03f5550add21efc50239b1a78/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:21:19-78
+133
+134        <uses-library
+134-->[androidx.window:window:1.0.0] /Users/hanabbun/.gradle/caches/transforms-3/47ffe86106d4ecc5f6f69fc8d2f487c7/transformed/jetified-window-1.0.0/AndroidManifest.xml:25:9-27:40
+135            android:name="androidx.window.extensions"
+135-->[androidx.window:window:1.0.0] /Users/hanabbun/.gradle/caches/transforms-3/47ffe86106d4ecc5f6f69fc8d2f487c7/transformed/jetified-window-1.0.0/AndroidManifest.xml:26:13-54
+136            android:required="false" />
+136-->[androidx.window:window:1.0.0] /Users/hanabbun/.gradle/caches/transforms-3/47ffe86106d4ecc5f6f69fc8d2f487c7/transformed/jetified-window-1.0.0/AndroidManifest.xml:27:13-37
+137        <uses-library
+137-->[androidx.window:window:1.0.0] /Users/hanabbun/.gradle/caches/transforms-3/47ffe86106d4ecc5f6f69fc8d2f487c7/transformed/jetified-window-1.0.0/AndroidManifest.xml:28:9-30:40
+138            android:name="androidx.window.sidecar"
+138-->[androidx.window:window:1.0.0] /Users/hanabbun/.gradle/caches/transforms-3/47ffe86106d4ecc5f6f69fc8d2f487c7/transformed/jetified-window-1.0.0/AndroidManifest.xml:29:13-51
+139            android:required="false" />
+139-->[androidx.window:window:1.0.0] /Users/hanabbun/.gradle/caches/transforms-3/47ffe86106d4ecc5f6f69fc8d2f487c7/transformed/jetified-window-1.0.0/AndroidManifest.xml:30:13-37
+140
+141        <receiver
+141-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:34:9-52:20
+142            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+142-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:35:13-76
+143            android:directBootAware="false"
+143-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:36:13-44
+144            android:enabled="true"
+144-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:37:13-35
+145            android:exported="true"
+145-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:38:13-36
+146            android:permission="android.permission.DUMP" >
+146-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:39:13-57
+147            <intent-filter>
+147-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:40:13-42:29
+148                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+148-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:41:17-91
+148-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:41:25-88
+149            </intent-filter>
+150            <intent-filter>
+150-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:43:13-45:29
+151                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+151-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:44:17-85
+151-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:44:25-82
+152            </intent-filter>
+153            <intent-filter>
+153-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:46:13-48:29
+154                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+154-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:47:17-88
+154-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:47:25-85
+155            </intent-filter>
+156            <intent-filter>
+156-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:49:13-51:29
+157                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+157-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:50:17-95
+157-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hanabbun/.gradle/caches/transforms-3/ebbb8728908f23c03636fc6201fa3813/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:50:25-92
+158            </intent-filter>
+159        </receiver>
+160    </application>
+161
+162</manifest>

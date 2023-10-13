@@ -58,14 +58,10 @@ public class MainActivity extends AppCompatActivity
 
     //// 포어그라운드 서비스 관련
     private Intent serviceIntent;
+    //private LocationViewModel locationViewModel;
 
     //// 권한 처리 관련 클래스 선언
     private PermissionSupport permission = new PermissionSupport(this, this);
-
-    // 권한 요청 시 발생하는 창에 대한 결과값을 받기 위해 지정해주는 int 형
-    // 원하는 임의의 숫자 지정 - 단지 결과 처리할 때 특정 요청을 식별하기 위한 도구로 사용됨!
-    // 요청에 대한 결과값 확인을 위해 RequestCode를 final로 정의
-    private final int MY_PERMISSIONS_REQUEST = 1004;
 
     /**
      * 액티비티가 실행되고 처음 시작될 때 호출
@@ -76,6 +72,8 @@ public class MainActivity extends AppCompatActivity
         Log.d("mixdog", "--------------------------우아시작!!!---------------------------");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //locationViewModel = new ViewModelProvider(this).get(LocationViewModel.class);
 
         Log.d("hanaBBun", "onCreate 위치/알림 권한 허용 상태 : " + permission.locationPermissionGranted + "/" + permission.notificationPermissionGranted);
         Log.d("hanaBBun", "onCreate 위치/알림 권한 거절 횟수 : " + permission.locationDeniedCount + "/" + permission.notificationDeniedCount);

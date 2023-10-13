@@ -1,5 +1,8 @@
 package org.mixdog.yongin1;
 
+import static org.mixdog.yongin1.fragment.MapFragment.startBtn;
+import static org.mixdog.yongin1.fragment.MapFragment.stopBtn;
+
 import android.app.Notification;
 
 import android.app.Service;
@@ -9,6 +12,10 @@ import android.os.IBinder;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
+import org.mixdog.yongin1.fragment.MapFragment;
 
 
 public class MapUpdateService extends Service {
@@ -62,11 +69,42 @@ public class MapUpdateService extends Service {
                     break;
                 case Actions.STOP_FOREGROUND:
                     Log.d("hanaBBun", "Stop Foreground 인텐트 받음");
-                    stopForegroundService();
+                    // 주행 종료 버튼 누르면 알림창 사라지게 함
+                    //stopForegroundService();
+                    break;
+                case Actions.start:
+                    // 뷰의 주행 시작 버튼이 눌러진 상태
+                    // 알림창의 주행 종료 버튼 누르면 뷰의 주행 종료 버튼 누른 것과 같다.
+                    Log.d("hanaBBun", "start 인텐트 받음");
+                    stopBtn.performClick();
+                    break;
+                case Actions.end:
+                    // 뷰의 주행 종료 버튼이 눌러진 상태
+                    // 알림창의 주행 시작 버튼 누르면 뷰의 주행 시작 버튼 누른 것과 같다.
+                    Log.d("hanaBBun", "end 인텐트 받음");
+                    startBtn.performClick();
                     break;
             }
         }
 
+        // viewModel로부터 action 값 얻어와서, 알림창의 버튼 이벤트 구현하기
+        // MapFragment.viewModel.getAction().observe(getViewLifecycleOwner(), new Observer<String>() {
+        // ↳ getViewLifecycleOwner()는 프레그먼트에서만 쓸 수 있는 것!
+
+        /*
+        locationViewModel.getAction().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String action) {
+                if (Actions.start.equals(action)){
+                    Log.d("hanaBBun", "알림창의 주행시작 버튼 눌림");
+                    startBtn.performClick();
+                } else if (Actions.end.equals(action)) {
+                    Log.d("hanaBBun", "알림창의 주행종료 버튼 눌림");
+                    stopBtn.performClick();
+                }
+            }
+        });
+         */
         return START_STICKY;
 
         // START_NOT_STICKY : 서비스가 죽어도 시스템에서 다시 재생성하지 않는다.

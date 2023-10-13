@@ -3628,6 +3628,7 @@ int layout notification_template_custom_big 0x7f0b0067
 int layout notification_template_icon_group 0x7f0b0068
 int layout notification_template_part_chronometer 0x7f0b0069
 int layout notification_template_part_time 0x7f0b006a
+int layout permission_dialog_layout 0x7f0b006f
 int layout select_dialog_item_material 0x7f0b006b
 int layout select_dialog_multichoice_material 0x7f0b006c
 int layout select_dialog_singlechoice_material 0x7f0b006d

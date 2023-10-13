@@ -3,22 +3,26 @@
     <string name="main_title">용인시 청소 차량 App</string>
     <string name="main_question">차량 번호를 입력해 주세요</string>
     <string name="user_location_permission_not_granted">
-        위치 권한 허용이 다시 거절되었습니다.
-        위치 정보 없이 이 앱을 사용할 수 없으므로 종료하겠습니다.
+        위치 권한 허용이 다시 거절되었습니다. \n
+        위치 정보 없이 이 앱을 사용할 수 없으므로 \n
+        앱을 종료하겠습니다.
     </string>
     <string name="user_location_permission_required">
-        위치 정보 접근 권한이 허용되어 있지 않습니다.
-        이 앱을 사용해 위치 추적 및 청소 기록을 하기 위해서는 위치 정보 접근 권한을 허용해주세요.
+        위치 권한이 허용되어 있지 않습니다. \n
+        위치 추적 및 청소 기록을 하기 위해서는 \n
+        위치 정보 접근 권한을 허용해주세요.
     </string>
     <string name="user_alarm_permission_not_granted">
-        알림 권한이 허용되어 있지 않습니다.
-        주행 기록 상태를 파악하기 위해 앱정소 > 권한 승인 후 이용해주세요.
+        알림 권한이 허용되어 있지 않습니다. \n
+        주행 기록 상태를 파악하기 위해 \n
+        앱 정보 > 권한 승인 후 이용해주세요.
     </string>
     <string name="user_alarm_permission_required">
-        이 앱을 사용해 주행 중일 시 알림창을 띄우기 위해서 알림 권한 허용이 필요합니다.
+        주행 중일 시 알림창을 띄우기 위해서 \n
+        알림 권한 허용이 필요합니다.
     </string>
     <string name="user_permissions_required">
-        위치와 알림 권한이 허용되어 있지 않습니다.
-        이 앱을 적절히 사용하기 위해서는 두 권한을 허용해주세요.
+        위치 및 알림 권한이 허용되어 있지 않습니다. \n
+        앱의 적절한 사용을 위해 두 권한을 허용해주세요.
     </string>
 </resources>

@@ -28,8 +28,10 @@ public class MapNotification {
                 PendingIntent.getActivity(
                         context, 0, mapFragmentIntent, PendingIntent.FLAG_IMMUTABLE);
 
-        // start 액션을 수신했을 때, MapUpdateService로 인텐트가 이동하면서 특정 액션을 취하도록 한다.
         // 각 버튼들에 관한 Intent
+        // start 또는 end 액션을 수신했을 때, MapUpdateService로 인텐트가 이동하면서 특정 액션을 취하도록 한다.
+        // PendingIntent에 의해서, 각 알림창의 버튼을 클릭하면
+        // MapUpdateService의 onStartCommand() 메서드에서 Actions.start/end에 대한 처리 수행하게 됨.
         Intent startIntent = new Intent(context, MapUpdateService.class);
         startIntent.setAction(Actions.start);
         PendingIntent startPendingIntent =
@@ -44,6 +46,7 @@ public class MapNotification {
                 .setContentTitle("용인시 청소차량 APP")
                 .setContentText("용인시 청소차량 추적 앱이 실행 중입니다.")
                 .setSmallIcon(R.drawable.app_icon)
+                .setPriority(NotificationCompat.PRIORITY_HIGH) // 알림 표시될 때 화면 상단에도 알림 표시될까?
                 .setWhen(System.currentTimeMillis())
                 .setOngoing(true);
 

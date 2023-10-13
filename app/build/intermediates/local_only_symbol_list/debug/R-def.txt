@@ -35,6 +35,7 @@ layout activity_main
 layout dropdown_layout
 layout fragment_main
 layout fragment_map
+layout permission_dialog_layout
 mipmap ic_launcher
 mipmap ic_launcher_foreground
 mipmap ic_launcher_round

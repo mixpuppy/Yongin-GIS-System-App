@@ -2,10 +2,12 @@ package org.mixdog.yongin1.permission;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,7 +21,12 @@ import java.util.List;
 
 public class PermissionSupport {
     private Context context;
+    // 현재 활성화된 Activity를 참조하는 변수
     private Activity activity;
+    // requireContext()를 사용하면 현재 Fragment 또는 View 컨텐스트를 얻게 된다!
+
+    // 권한 거부에 대한 메시지 표시할 대화상자
+    private View viewDialog;
 
     // 권한 허용 상태
     public boolean locationPermissionGranted = false;
@@ -41,6 +48,7 @@ public class PermissionSupport {
     private final int MY_PERMISSONS_REQUEST = 1004;
 
     // 생성자에서 Activity와 Context를 파라미터로 받음
+    // -> 클래스 내의 모든 메서드에서 이 변수들을 사용할 수 있다!
     public PermissionSupport(Activity _activity, Context _context) {
         this.activity = _activity;
         this.context = _context;
@@ -106,23 +114,70 @@ public class PermissionSupport {
         // 위치 1 알림 0 : 위치만 1차 요청 -> 위치 2 : Toast2 + 앱 종료
         if (locationDeniedCount == 1 && notificationDeniedCount == 0) {
             // 첫 번째 거절
+            Log.d("hanaBBun", "위치 권한만 한 번 거절당했다.");
             if (ActivityCompat.shouldShowRequestPermissionRationale(
                     activity, Manifest.permission.ACCESS_FINE_LOCATION)) {
+                Log.d("hanaBBun", "위치 권한이 필요한 이유에 대해 설명하자.");
                 // 사용자에게 권한이 필요한 이유 설명 (AlertDialog나 Toast 메시지 사용하기)
-                Toast.makeText(activity,
-                        R.string.user_location_permission_required,
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(activity,
+//                        R.string.user_location_permission_required,
+//                        Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity);
+                alertDialogBuilder.setMessage(R.string.user_location_permission_required);
+                alertDialogBuilder.setTitle("안내");
+                // View.inflate 로 dialog 레이아웃을 뷰로 구현
+                viewDialog = (View) View.inflate(activity, R.layout.permission_dialog_layout, null);
+                // setView 함수로 뷰를 dialog 변수에 전달
+                alertDialogBuilder.setView(viewDialog);
+
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        // alertDialog를 그냥 보여주고 버튼 이벤트를 만들거면 builder에 show() 해도 되지만
+                        // isShowing()과 dismiss()는 Builder에서는 지원하지 않는 메소드라
+                        // AlertDialog 객체를 별도 생성했다. (Builder.create())
+                        if (alertDialog.isShowing()) {
+                            alertDialog.dismiss();
+                        }
+                    }
+                }, 3000);
             }
-            // 위치 권한 요청 - onRequestPermissionResult 호출!
-            ActivityCompat.requestPermissions(
-                    activity, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSONS_REQUEST);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    // 위치 권한 요청 - onRequestPermissionResult 호출!
+                    ActivityCompat.requestPermissions(
+                            activity, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSONS_REQUEST);
+                }
+            }, 3000);
         }
         // 위치 2 알림 0 or 위치 2 알림 1 or 위치 2 알림 2 : 위치 Toast2 + 앱 종료
         else if ( locationDeniedCount == 2 ) {
             // 두 번째 거절
-            Toast.makeText(activity,
-                    R.string.user_location_permission_not_granted,
-                    Toast.LENGTH_SHORT).show();
+//            Toast.makeText(activity,
+//                    R.string.user_location_permission_not_granted,
+//                    Toast.LENGTH_SHORT).show();
+
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity);
+            alertDialogBuilder.setMessage(R.string.user_location_permission_not_granted);
+            alertDialogBuilder.setTitle("안내");
+            // View.inflate 로 dialog 레이아웃을 뷰로 구현
+            viewDialog = (View) View.inflate(activity, R.layout.permission_dialog_layout, null);
+            // setView 함수로 뷰를 dialog 변수에 전달
+            alertDialogBuilder.setView(viewDialog);
+
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (alertDialog.isShowing()) {
+                        alertDialog.dismiss();
+                    }
+                }
+            }, 3000);
 
             // 약간의 딜레이 후 앱 종료
             new Handler().postDelayed(new Runnable() {
@@ -131,15 +186,40 @@ public class PermissionSupport {
                     // 3초 후 앱 종료
                     activity.finish();
                 }
-            }, 2500);
+            }, 3000);
         }
         // 위치 1 알림 1 : 둘 다 1차 요청
         else if (locationDeniedCount == 1 && notificationDeniedCount == 1) {
-            Toast.makeText(activity,
-                    R.string.user_permissions_required,
-                    Toast.LENGTH_SHORT).show();
-            // 두 개 권한 모두 요청
-            requestPermission();
+//            Toast.makeText(activity,
+//                    R.string.user_permissions_required,
+//                    Toast.LENGTH_SHORT).show();
+
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity);
+            alertDialogBuilder.setMessage(R.string.user_permissions_required);
+            alertDialogBuilder.setTitle("안내");
+            // View.inflate 로 dialog 레이아웃을 뷰로 구현
+            viewDialog = (View) View.inflate(activity, R.layout.permission_dialog_layout, null);
+            // setView 함수로 뷰를 dialog 변수에 전달
+            alertDialogBuilder.setView(viewDialog);
+
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (alertDialog.isShowing()) {
+                        alertDialog.dismiss();
+                    }
+                }
+            }, 3000);
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    // 두 개 권한 모두 요청
+                    requestPermission();
+                }
+            }, 3000);
         }
         // 위치 0 알림 1 : 알림만 1차 요청
         else if (locationDeniedCount == 0 && notificationDeniedCount == 1) {
@@ -147,20 +227,64 @@ public class PermissionSupport {
             if (ActivityCompat.shouldShowRequestPermissionRationale(
                     activity, Manifest.permission.POST_NOTIFICATIONS)) {
                 // 사용자에게 권한이 필요한 이유 설명 (AlertDialog나 Toast 메시지 사용하기)
-                Toast.makeText(activity,
-                        R.string.user_alarm_permission_required,
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(activity,
+//                        R.string.user_alarm_permission_required,
+//                        Toast.LENGTH_SHORT).show();
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity);
+                alertDialogBuilder.setMessage(R.string.user_alarm_permission_required);
+                alertDialogBuilder.setTitle("안내");
+                // View.inflate 로 dialog 레이아웃을 뷰로 구현
+                viewDialog = (View) View.inflate(activity, R.layout.permission_dialog_layout, null);
+                // setView 함수로 뷰를 dialog 변수에 전달
+                alertDialogBuilder.setView(viewDialog);
+
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (alertDialog.isShowing()) {
+                            alertDialog.dismiss();
+                        }
+                    }
+                }, 3000);
             }
-            // 알림 권한 요청
-            ActivityCompat.requestPermissions(
-                    activity, new String[]{Manifest.permission.POST_NOTIFICATIONS}, MY_PERMISSONS_REQUEST);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    // 알림 권한 요청
+                    ActivityCompat.requestPermissions(
+                            activity, new String[]{Manifest.permission.POST_NOTIFICATIONS}, MY_PERMISSONS_REQUEST);
+                }
+            }, 3000);
         }
         // 위치 1 & 알림 2 또는 위치 0 알림 2 : 알림 Toast2 + 앱은 그냥 실행
         else if ( (locationDeniedCount == 1 && notificationDeniedCount == 2)
                 || (locationDeniedCount == 0 && notificationDeniedCount == 2) ) {
-            Toast.makeText(activity,
-                    R.string.user_alarm_permission_not_granted,
-                    Toast.LENGTH_SHORT).show();
+//            Toast.makeText(activity,
+//                    R.string.user_alarm_permission_not_granted,
+//                    Toast.LENGTH_SHORT).show();
+
+            AlertDialog.Builder alertDialogBuilder =
+                    new AlertDialog.Builder(activity, R.style.permissionAlertDialogStyle);
+            alertDialogBuilder.setMessage(R.string.user_alarm_permission_not_granted);
+            alertDialogBuilder.setTitle("안내");
+            // View.inflate 로 dialog 레이아웃을 뷰로 구현
+            //viewDialog = (View) View.inflate(activity, R.layout.permission_dialog_layout, null);
+            // setView 함수로 뷰를 dialog 변수에 전달
+            //alertDialogBuilder.setView(viewDialog);
+
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (alertDialog.isShowing()) {
+                        alertDialog.dismiss();
+                    }
+                }
+            }, 3000);
         }
     }
 }

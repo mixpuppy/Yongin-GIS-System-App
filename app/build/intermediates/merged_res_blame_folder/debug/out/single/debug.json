@@ -64,10 +64,6 @@
         "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/xml/data_extraction_rules.xml"
     },
     {
-        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/layout_dropdown_inner_layout.xml.flat",
-        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/layout/dropdown_inner_layout.xml"
-    },
-    {
         "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/mipmap-xhdpi_ic_launcher_round.webp.flat",
         "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/mipmap-xhdpi/ic_launcher_round.webp"
     },
@@ -100,16 +96,16 @@
         "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/layout/fragment_map.xml"
     },
     {
+        "merged": "org.mixdog.yongin1.app-merged_res-47:/layout_permission_dialog_layout.xml.flat",
+        "source": "org.mixdog.yongin1.app-main-49:/layout/permission_dialog_layout.xml"
+    },
+    {
         "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/drawable_clean_truck_non.png.flat",
         "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/drawable/clean_truck_non.png"
     },
     {
         "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/xml_network_security_config.xml.flat",
         "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/xml/network_security_config.xml"
-    },
-    {
-        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/layout_dialog.xml.flat",
-        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/layout/dialog.xml"
     },
     {
         "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/layout_fragment_main.xml.flat",
@@ -154,10 +150,6 @@
     {
         "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/drawable_pointer_route.png.flat",
         "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/drawable/pointer_route.png"
-    },
-    {
-        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/layout_dropdown_outer_layout.xml.flat",
-        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/layout/dropdown_outer_layout.xml"
     },
     {
         "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/xml_backup_rules.xml.flat",
