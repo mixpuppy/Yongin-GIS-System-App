@@ -4,7 +4,7 @@
             "outputFile": "org.mixdog.yongin1.app-mergeDebugResources-45:/values-v16/values-v16.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\82104\\.gradle\\caches\\transforms-3\\cf803a905104b546c88a18c8a8ffdc41\\transformed\\appcompat-1.6.1\\res\\values-v16\\values-v16.xml",
+                    "source": "/Users/hanabbun/.gradle/caches/transforms-3/cf803a905104b546c88a18c8a8ffdc41/transformed/appcompat-1.6.1/res/values-v16/values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\82104\\.gradle\\caches\\transforms-3\\36384791e541cef573ccc5e0e263c7fd\\transformed\\core-1.9.0\\res\\values-v16\\values-v16.xml",
+                    "source": "/Users/hanabbun/.gradle/caches/transforms-3/36384791e541cef573ccc5e0e263c7fd/transformed/core-1.9.0/res/values-v16/values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

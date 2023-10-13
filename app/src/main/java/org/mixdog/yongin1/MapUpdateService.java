@@ -1,7 +1,11 @@
 package org.mixdog.yongin1;
 
+import static org.mixdog.yongin1.fragment.MapFragment.startBtn;
+import static org.mixdog.yongin1.fragment.MapFragment.stopBtn;
+
 import android.app.Notification;
 
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.os.Build;
@@ -9,6 +13,10 @@ import android.os.IBinder;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
+import org.mixdog.yongin1.fragment.MapFragment;
 
 
 public class MapUpdateService extends Service {
@@ -62,7 +70,18 @@ public class MapUpdateService extends Service {
                     break;
                 case Actions.STOP_FOREGROUND:
                     Log.d("hanaBBun", "Stop Foreground 인텐트 받음");
+                    // 주행 종료 버튼 누르면 알림창 사라지게 함
                     stopForegroundService();
+                    break;
+                case Actions.start:
+                    // 알림창의 '주행 시작' 버튼을 클릭하면 뷰의 주행 시작 버튼이 눌러진 상태
+                    Log.d("hanaBBun", "start 인텐트 받음");
+                    startBtn.performClick();
+                    break;
+                case Actions.end:
+                    // 알림창의 '주행 종료' 버튼을 클릭하면 뷰의 주행 종료 버튼이 눌러진 상태
+                    Log.d("hanaBBun", "end 인텐트 받음");
+                    stopBtn.performClick();
                     break;
             }
         }
@@ -78,38 +97,6 @@ public class MapUpdateService extends Service {
     // 시스템 자원을 사용하고 있다는 것을 유저가 알 수 있도록 상태바의 알림(Notification)을 이용한다!
     private void startForegroundService() {
         Log.d("hanaBBun", "MapUpdateService | startForegroundService() 호출 성공");
-
-        /* 이거 대신에 MapNotification에 적은 걸로 해보자
-        //Intent notificationIntent = new Intent(this, MainActivity.class);
-        //Intent notificationIntent = new Intent(getApplicationContext(), MainActivity.class);
-        Intent notificationIntent = new Intent(this, MapFragment.class);
-        PendingIntent pendingIntent =
-                PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_IMMUTABLE);
-
-        // Android 8.0 이상에서는 알림 채널 설정
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-        NotificationChannel channel =
-                new NotificationChannel(
-                        "channel",
-                        "포어그라운드 서비스 알림",
-                        NotificationManager.IMPORTANCE_DEFAULT);
-        // Notification과 채널 연결
-        NotificationManager notificationManager =
-                ((NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE));
-        notificationManager.createNotificationChannel(channel);
-
-        // ⭐️️️️️️️️️️️️️️️️⭐️포어그라운드 서비스를 사용하기 위해 Notification 생성 필수!⭐️⭐️
-        NotificationCompat.Builder notification =
-                new NotificationCompat.Builder(getApplicationContext(), "channel")
-                        .setContentTitle("용인시 청소차 기록관리 앱")
-                        .setContentText("청소 차량이 주행 기록 중입니다.")
-                        .setSmallIcon(R.drawable.app_icon)
-                        .setContentIntent(pendingIntent);
-
-        notificationManager.notify(NOTIFICATION_ID, notification.build());
-        startForeground(NOTIFICATION_ID, notification.build());
-        }
-    */
 
     Notification notification = MapNotification.createNotification(this);
     // 알림 표시; 이것 실행 없으면 백그라운드 상태에서 1분 뒤 서비스 소멸됨!
@@ -141,7 +128,6 @@ public class MapUpdateService extends Service {
         }
         stopSelf();
     }
-
 
     // 위치 업데이트를 여기서 하라고 한다...
     // onCreate()나 onStartCommand() 메소드에서 startLocationUpdate()를 호출하는 방식으로 구현 가능

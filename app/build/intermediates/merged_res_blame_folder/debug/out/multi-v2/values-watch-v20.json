@@ -4,7 +4,7 @@
             "outputFile": "org.mixdog.yongin1.app-mergeDebugResources-45:/values-watch-v20/values-watch-v20.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\82104\\.gradle\\caches\\transforms-3\\79f00da4ed14f648105acb3d1b34bc1f\\transformed\\jetified-play-services-auth-18.0.0\\res\\values-watch-v20\\values.xml",
+                    "source": "/Users/hanabbun/.gradle/caches/transforms-3/79f00da4ed14f648105acb3d1b34bc1f/transformed/jetified-play-services-auth-18.0.0/res/values-watch-v20/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11",
                         "startColumns": "0,0,0,0,0,0,0,0",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\82104\\.gradle\\caches\\transforms-3\\cf803a905104b546c88a18c8a8ffdc41\\transformed\\appcompat-1.6.1\\res\\values-watch-v20\\values-watch-v20.xml",
+                    "source": "/Users/hanabbun/.gradle/caches/transforms-3/cf803a905104b546c88a18c8a8ffdc41/transformed/appcompat-1.6.1/res/values-watch-v20/values-watch-v20.xml",
                     "from": {
                         "startLines": "2,5,8",
                         "startColumns": "4,4,4",

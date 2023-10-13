@@ -2,29 +2,41 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="blue">#0000ff</color>
+    <color name="dialog_background">#f1efeb</color>
     <color name="ic_launcher_background">#FDFDFD</color>
+    <color name="light_purple">#e6e8f0</color>
     <color name="white">#FFFFFFFF</color>
     <string name="app_name">용인시 청소차량 기록 앱</string>
     <string name="main_question">차량 번호를 입력해 주세요</string>
     <string name="main_title">용인시 청소 차량 App</string>
     <string name="user_alarm_permission_not_granted">
         알림 권한이 허용되어 있지 않습니다.
-        주행 기록 상태를 파악하기 위해 앱정소 > 권한 승인 후 이용해주세요.
+        \n주행 기록 상태를 파악하기 위해
+        \n앱 정보 > 권한 승인 후 이용해주세요.
     </string>
     <string name="user_alarm_permission_required">
-        이 앱을 사용해 주행 중일 시 알림창을 띄우기 위해서 알림 권한 허용이 필요합니다.
+        주행 중일 시 알림창을 띄우기 위해서
+        \n알림 권한 허용이 필요합니다.
+    </string>
+    <string name="user_location_permission_needed">
+        위치 권한이 허용되어 있지 않은 상태입니다.
+        \n위치 정보 없이 이 앱을 사용할 수 없으므로
+        \n앱 정보 > 권한 승인 후 이용해주세요.
     </string>
     <string name="user_location_permission_not_granted">
         위치 권한 허용이 다시 거절되었습니다.
-        위치 정보 없이 이 앱을 사용할 수 없으므로 종료하겠습니다.
+        \n위치 정보 없이 이 앱을 사용할 수 없으므로
+        \n앱을 종료하겠습니다.
     </string>
     <string name="user_location_permission_required">
-        위치 정보 접근 권한이 허용되어 있지 않습니다.
-        이 앱을 사용해 위치 추적 및 청소 기록을 하기 위해서는 위치 정보 접근 권한을 허용해주세요.
+        위치 권한이 허용되어 있지 않습니다.
+        \n위치 추적 및 청소 기록을 하기 위해서는
+        \n위치 정보 접근 권한을 허용해주세요.
     </string>
     <string name="user_permissions_required">
-        위치와 알림 권한이 허용되어 있지 않습니다.
-        이 앱을 적절히 사용하기 위해서는 두 권한을 허용해주세요.
+        위치 및 알림 권한이 허용되어 있지 않습니다.
+        \n앱의 적절한 사용을 위해
+        \n두 권한을 허용해주세요.
     </string>
     <style name="AlertDialogButton.Negative" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
         
@@ -50,4 +62,11 @@
 
     </style>
     <style name="Theme.Yongin1" parent="Base.Theme.Yongin1"/>
+    <style name="permissionAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/permission_dialog_background</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:paddingVertical">4dp</item>
+        <item name="android:paddingHorizontal">4dp</item>
+    </style>
 </resources>
