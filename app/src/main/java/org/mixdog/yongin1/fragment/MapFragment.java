@@ -2,6 +2,7 @@ package org.mixdog.yongin1.fragment;
 
 
 import static org.mixdog.yongin1.MainActivity.isInitialMarkerSet;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -23,6 +24,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Environment;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -88,12 +90,12 @@ public class MapFragment extends Fragment
 //    private final String noiseUrl = "http://172.30.1.55:8081/getNoise";
 //    private final String vibrationUrl = "http://172.30.1.55:8081/getVibration";
 
-    private final String xyUrl = "http://172.30.1.21:80/gis/temp/gps";
-    private final String noiseUrl = "http://172.30.1.21:80/gis/temp/noise";
-    private final String vibrationUrl = "http://172.30.1.21:80/gis/temp/rpm";
-    private final String requestCarNumUrl = "http://172.30.1.21:80/gis/car";
-    private final String startSendUrl = "http://172.30.1.73:80/gis/start";
-    private final String stopSendUrl = "http://172.30.1.73:80/gis/stop";
+    private final String xyUrl = "http://172.30.1.65:80/gis/temp/gps";
+    private final String noiseUrl = "http://172.30.1.65:80/gis/temp/noise";
+    private final String vibrationUrl = "http://172.30.1.65:80/gis/temp/rpm";
+    private final String requestCarNumUrl = "http://172.30.1.65:80/gis/car";
+    private final String startSendUrl = "http://172.30.1.55:80/gis/start";
+    private final String stopSendUrl = "http://172.30.1.55:80/gis/stop";
 
     // DB 차량 넘버 조회
     private List<String> serverCarNums;
@@ -105,10 +107,9 @@ public class MapFragment extends Fragment
     // 위도 경도
     private double mLat, mLng;
 
-    // onConnected() 메소드를 사용할 수 있을때 사용하는 변수
     private FusedLocationProviderClient providerClient;
 
-    // 버튼 선언; 포어그라운드 서비스에서 활용하기 위해 public으로 바꿔보았다.
+    // 버튼 선언; 포어그라운드 서비스에서 활용하기 위해 public 선언
     public static Button startBtn;
     public static Button stopBtn;
     private Button resetBtn;
@@ -116,7 +117,7 @@ public class MapFragment extends Fragment
     // 서비스에 버튼 클릭 상태를 전달하기 위한 intent 객체
     Intent viewBtnIntent;
 
-    // Http 통신을 위한 변수
+    // Http 통신을 위한 변수; 네트워크 요청 및 응답 처리
     private RequestQueue queue;
 
     // 인터벌을 위한 변수
@@ -202,18 +203,15 @@ public class MapFragment extends Fragment
         LocationViewModel viewModel = new ViewModelProvider(requireActivity()).get(LocationViewModel.class);
         providerClient = viewModel.getProviderClient();
 
-        Log.d("mixpuppy", "MapFragment onCreateView 성공실행");
         // R.id.mapView 이라는 프래그먼트에 Google Maps API 지도를 로드
         SupportMapFragment mapFragment = (SupportMapFragment) requireActivity().getSupportFragmentManager()
                 .findFragmentById(R.id.mapView);
-        Log.d("mixpuppy", "mapFragment onCreateView if문 전");
         if (mapFragment != null) {
-            Log.d("mixpuppy", "mapFragment onCreateView 실행" + this + "mapFragment : " + mapFragment);
             mapFragment.getMapAsync(this); // 비동기적으로 Google Maps API 지도를 로드
         } else {
             Log.d("mixpuppy", "mapFragment 가 null 로 빠짐");
         }
-        // 프래그먼트의 레이아웃을 인플레이트.
+        // 프래그먼트의 레이아웃을 인플레이트
         View rootView = inflater.inflate(R.layout.fragment_map, container, false);
 
         // Btns를 레이아웃에서 찾기
@@ -238,16 +236,25 @@ public class MapFragment extends Fragment
                 Log.d("mixpuppy", "주행 시작 버튼을 눌렀습니다");
 
                 // 현재 위치 얻기
-                getLastLocation();
+                //getLastLocation();
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        getLastLocation();
+                    }
+                });
 
                 /**
                  * Spinner 위젯을 사용한 드롭다운 목록 만들기 - 차량 번호 선택
                  * ; 차량 번호를 선택하면 해당 선택을 처리하는 리스너 호출
                  *   선택 완료 버튼 클릭 시 선택된 차량 번호를 처리하는 로직 이어감
                  */
+                // 차량 드롭다운 목록에서 선택할 차량 번호 목록 준비 - 연습용
+//                List<String> carNums = Arrays.asList("103하2414", "114하6585");
+
                 // dialog 상자 생성 시작
-                AlertDialog.Builder dialog = new AlertDialog.Builder(requireContext(), R.style.AlertDialogCustom);
-                dialog.setTitle("차량 번호 선택");
+                AlertDialog.Builder carDialogBuilder = new AlertDialog.Builder(requireContext(), R.style.AlertDialogCustom);
+                carDialogBuilder.setTitle("차량 번호 선택");
 
                 // View.inflate 로 dialog 레이아웃을 뷰로 구현
                 viewDialog = (View) View.inflate(requireContext(), R.layout.dropdown_layout, null);
@@ -256,11 +263,13 @@ public class MapFragment extends Fragment
                 Spinner spinner = viewDialog.findViewById(R.id.spinner);
 
                 // setView 함수로 뷰를 dialog 변수에 전달
-                dialog.setView(viewDialog);
+                carDialogBuilder.setView(viewDialog);
 
                 // 1. requireContext() : 앱의 정보를 담고 있음
                 // 2. layout id. 기본으로 제공되는 simple_spinner_item
                 // 3. 내가 작성한 차 목록 배열 집어넣기
+//                ArrayAdapter<String> adapter = new ArrayAdapter<>(
+//                        requireContext(), android.R.layout.simple_spinner_item, carNums);
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(
                         requireContext(), android.R.layout.simple_spinner_item, serverCarNums);
                 spinner.setAdapter(adapter);
@@ -271,6 +280,7 @@ public class MapFragment extends Fragment
                     public void onItemSelected(
                             AdapterView<?> parent, View view, int position, long id) {
                         // 선택된 차량 번호를 carNum 변수 값으로 할당하기
+//                        carNum = carNums.get(position);
                         carNum = serverCarNums.get(position);
                         // 선택한 차량 번호를 활용한 원하는 작업 수행 가능 ...
                         Log.d("hanaBBun", "선택된 차량 번호 : " + carNum);
@@ -279,16 +289,20 @@ public class MapFragment extends Fragment
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
                         // 아무것도 선택되지 않았을 때?
+                        // ; 차량 목록을 조회만 할 수 있다면, 목록의 첫번째 차량이 기본으로 선택된 상태기 때문에
+                        // 사용자 의지로 아무 것도 선택하지 않고 주행 시작할 수는 없다.
                     }
                 });
 
                 // 선택 완료 버튼 추가
-                dialog.setPositiveButton("선택 완료",
+                carDialogBuilder.setPositiveButton("선택 완료",
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
 
                                 // 현재 위치 얻기
+                                // 왜 여기에서 좌표값을 얻으면 출발 마커가 제대로 안 찍히는지 의문이다.
+                                // 여기 대신 startBtn.onClick 하자마자 되도록 했다.
                                 //getLastLocation();
 
                                 Log.d("hanaBBun", "차량 번호 입력 완료");
@@ -333,16 +347,14 @@ public class MapFragment extends Fragment
                                         //   runOnUiThread를 사용하여 메인 스레드에서 해당 작업을 실행한다.
                                         // ... 근데 이건 액티비티의 메소드임으로 여기선 그냥 못 쓰기 때문에 앞에 getActivity() 붙이기!
                                         getActivity().runOnUiThread(new Runnable() {
-                                           @Override
-                                           public void run() {
-                                               getLastLocation();
-                                           }
+                                            @Override
+                                            public void run() {
+                                                getLastLocation();
+                                            }
                                         });
 
-                                        LatLng latLng = new LatLng(mLat, mLng);
-                                        //routeMarkerSetting(latLng);
                                         Log.d("mixpuppy", "타이머 위경도 잘찍혔나?");
-                                        Log.d("mixpuppy", "위경도" + mLat + "/" + mLng);
+                                        Log.d("mixpuppy", "timer 위경도 : " + mLat + "/" + mLng);
                                         // Json 데이터 보내기
                                         sendXYJsonData(xyUrl);
                                         sendNoiseJsonData(noiseUrl);
@@ -373,16 +385,54 @@ public class MapFragment extends Fragment
 //                                        }
 //                                );
                             }
-                });
+                        });
 
-                dialog.setNegativeButton("선택 취소", new DialogInterface.OnClickListener() {
+                carDialogBuilder.setNegativeButton("선택 취소", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Log.d("mixpuppy", "다이얼로그 취소버튼이 눌렸음");
+
+                        for (Marker marker : markerList) {
+                            marker.remove();
+                        }
+                        markerList.clear();
                     }
                 });
 
-                dialog.show();
+                AlertDialog carAlertDialog = carDialogBuilder.create();
+                carAlertDialog.show();
+
+                if (serverCarNums.isEmpty()) {
+                    // 서버로부터 가져온 차 목록이 비어있거나, 서버와 연결이 되어 있지 않은 경우
+                    // 현재 통신 상의 문제가 생겨 원활한 앱 사용이 어렵습니다.
+                    // 다시 앱이 실행해주세요., 하고 앱 종료시키기
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (carAlertDialog.isShowing()) {
+                                carAlertDialog.dismiss();
+                            }
+                            AlertDialog.Builder alertDialogBuilder =
+                                    new AlertDialog.Builder(requireContext(), R.style.permissionAlertDialogStyle);
+                            alertDialogBuilder.setMessage(R.string.carList_read_fail);
+                            alertDialogBuilder.setTitle("안내");
+
+                            AlertDialog alertDialog = alertDialogBuilder.create();
+                            alertDialog.show();
+
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (alertDialog.isShowing()) {
+                                        alertDialog.dismiss();
+                                    }
+                                    Log.d("hanabbun","앱 종료");
+                                    getActivity().finish();
+                                }
+                            }, 3000);
+                        }
+                    }, 1000);
+                }
             }
         });
 
@@ -486,9 +536,12 @@ public class MapFragment extends Fragment
                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                // 강제로 종료 버튼을 누르게 함
-                                stopBtn.performClick();
+                                if (isInitialMarkerSet == true) {
+                                    // 강제로 종료 버튼을 누르게 함
+                                    stopBtn.performClick();
+                                }
                                 // 앱 종료
+                                Log.d("hanabbun","앱 종료");
                                 requireActivity().finish();
                             }
                         })
@@ -525,26 +578,34 @@ public class MapFragment extends Fragment
 
     /**
      * 실시간 위치 좌표값 얻기 메소드
+     * (1014 코드 리뷰해본 바)
+     * -> 주행 시작 전에는 MainActivity의 InitializeLocation()이 좌표값을 얻어와서
+     *    그게 호출하는 MoveMap()이 지도 중심을 옮기며,
+     *    StartLocationUpdate()에 의해 fusedLocationClient가 가진 위치 정보를 업데이트해서 fragment와 정보 공유
+     * -> 주행 중에는 getLastLocation()에 의해 fusedLocationClient로부터 좌표값을 얻어오고,
+     *    이게 호출하는 MoveMap()에 의해 지도 중심을 옮기며 이동 경로 마커를 찍음.
      */
     private void getLastLocation() {
         if (ContextCompat.checkSelfPermission(requireContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED && providerClient != null) {
-            Log.d("mixpuppy", "getLastLocation 성공진입");
+            Log.d("mixpuppy", "MapFragment getLastLocation 성공진입");
             // 위치정보 얻기
             providerClient.getLastLocation()
                     .addOnSuccessListener(requireActivity(), new OnSuccessListener<Location>() {
                         @Override
                         public void onSuccess(Location location) {
                             if (location != null) {
-                                Log.d("mixpuppy", "로케이션 따오기 메소드 성공 진입");
+                                Log.d("mixpuppy", "MapFragment 로케이션 따오기 메소드 성공 진입");
                                 mLat = location.getLatitude();
                                 mLng = location.getLongitude();
                                 Log.d("mixpuppy", "getLastLocation - latitude:" + location.getLatitude());
                                 Log.d("mixpuppy", "getLastLocation - longitude:" + location.getLongitude());
-                                // 지도 중심 이동하기
+                                // 지도 중심 이동 및 마커 찍기
                                 moveMap(mLat, mLng);
                                 Log.d("mixpuppy", "getLastLocation으로 지도 중심 이동 끝");
+                            } else {
+                                Log.d("hanaBBun", "MapFragment getLastLocation() location == null");
                             }
                         }
                     });
@@ -555,13 +616,13 @@ public class MapFragment extends Fragment
     }
 
     /**
-     * 현재 실시간 위치로 지도 중심을 옮기는 메소드
+     * 현재 실시간 위치로 지도 중심을 옮기는 메소드 + 주행 중 이동 경로 마커 찍기
      * @param latitude
      * @param longitude
      */
     private void moveMap(double latitude, double longitude) {
+        Log.d("hanaBBun", "MapFragment의 moveMap() 호출");
         if(mMap != null) {
-            Log.d("mixpuppy", "MapFragment 의 moveMap 메소드 동작");
             LatLng latLng = new LatLng(latitude, longitude);
             // 중심 좌표 생성
             CameraPosition position = CameraPosition.builder()
@@ -654,29 +715,6 @@ public class MapFragment extends Fragment
         }
     }
 
-    /*private void routeMarkerSetting(LatLng latLng) {
-        if (mMap != null) {
-            // 경로 흔적 마커
-            MarkerOptions markerOptions = new MarkerOptions();
-            markerOptions.position(latLng);
-            markerOptions.title("MyMovedLocation");
-
-            // 이미지 세팅
-            Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.pointer_route);
-            int newWidth = 20;
-            int newHeight = 20;
-            Bitmap resizedBitmap = Bitmap.createScaledBitmap(originalBitmap, newWidth, newHeight, false);
-            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(resizedBitmap));
-
-            // 마커 표시
-            Marker marker = mMap.addMarker(markerOptions);
-            markerList.add(marker);
-            Log.d("mixpuppy", "MapFragment 의 moveMap 메소드 끝");
-        } else {
-            Log.d("mixpuppy", "mMap 이 null 이네!ㅜㅜ");
-        }
-    }*/
-
     private void endMarkerSetting() {
         Log.d("hanaBBun", "endMarkerSetting");
         if(mMap != null) {
@@ -701,9 +739,8 @@ public class MapFragment extends Fragment
             Log.d("hanaBBun", "endMarker의 latitude : " + endMarker.getPosition().latitude);
             Log.d("hanaBBun", "endMarker의 longitude : " + endMarker.getPosition().longitude);
 
-
             // 마커에 Z 인덱스 설정
-            endMarker.setZIndex(1.1f);
+            endMarker.setZIndex(1.3f);
         } else {
             Log.d("mixdog", "googleMap 이 널이여서 마커를 못찍음");
         }
@@ -795,7 +832,7 @@ public class MapFragment extends Fragment
             JsonObjectRequest jsonRequest = new JsonObjectRequest(
                     Request.Method.POST,
                     url,
-                    object,
+                    object,  // 전송하는 데이터
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {

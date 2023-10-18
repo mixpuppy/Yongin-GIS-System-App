@@ -11251,6 +11251,10 @@
         위치 및 알림 권한이 허용되어 있지 않습니다.
         \n앱의 적절한 사용을 위해
         \n두 권한을 허용해주세요.
+    </string><string name="carList_read_fail">
+        현재 통신 상의 문제로
+        \n원활한 앱 사용이 어렵습니다.
+        \n다시 앱이 실행해주세요.
     </string></file><file path="C:\app\yonginapp\appprac\app\src\main\res\values\styles.xml" qualifiers=""><style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert">
         
         <item name="android:background">#f1efeb</item>

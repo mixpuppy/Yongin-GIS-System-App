@@ -45,26 +45,31 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import org.mixdog.yongin1.permission.PermissionSupport;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity
         implements OnMapReadyCallback {
     // ↳ 지도가 준비되면 원하는 작업 수행하도록 구현
 
     // 프레그먼트 네비게이션 사용
     private NavController navController;
-    // onConnected() 메소드를 사용할 수 있을때 사용하는 변수
-    private FusedLocationProviderClient providerClient;
+
     // 지도 객체
     private GoogleMap mMap;
     // 지도 ui 객체
     private UiSettings mUi;
     // 위도 경도
-    private double mLat, mLng;
-    private FusedLocationProviderClient fusedLocationClient;
-    private LocationRequest locationRequest;
-    private LocationCallback locationCallback;
+    public static double mLat, mLng;
+
+    // 위치 정보를 가진 객체. LocationViewModel에 set되어 Fragment와 위치 정보가 공유되게 된다.
+    public static FusedLocationProviderClient fusedLocationClient;
+    public static LocationRequest locationRequest;
+    public static LocationCallback locationCallback;
     public static Marker nonStartMarker;
     // 시작버튼 활성화 여부 (true 시 활성화)
-    public static boolean isInitialMarkerSet = false;
+    public static boolean isInitialMarkerSet;
+
+    public static List<LatLng> backgroundRouteMarkers;
 
     //// 권한 처리 관련 클래스 선언
     private PermissionSupport permission = new PermissionSupport(this, this);
@@ -77,13 +82,20 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Log.d("hanaBBun", "--------------------앱 시작-------------------------");
         //locationViewModel = new ViewModelProvider(this).get(LocationViewModel.class);
 
         Log.d("hanaBBun", "onCreate 위치/알림 권한 허용 상태 : " + permission.locationPermissionGranted + "/" + permission.notificationPermissionGranted);
         Log.d("hanaBBun", "onCreate 위치/알림 권한 거절 횟수 : " + permission.locationDeniedCount + "/" + permission.notificationDeniedCount);
         // 권한 체크
         permissionCheck();
+
+        // 앱 재실행을 위한 초기화 작업들
+        isInitialMarkerSet = false;
+        Log.d("hanaBBun", "locationRequest == null? : " + (locationRequest == null));
+
+        // 앱을 종료하고 다시 실행했을 때도 지도 상 marker 기록이 남아있어서 초기화 시켜준다.
+        nonStartMarker = null;
 
         // NavHostFragment 가져오기
         NavHostFragment navHostFragment =
@@ -93,20 +105,30 @@ public class MainActivity extends AppCompatActivity
         navController = navHostFragment.getNavController();
 
         // 지도 호출
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.mapView);
-        Log.d("mixpuppy", "MainActivity Oncreate if 전");
-        if (mapFragment != null) {
-            Log.d("mixpuppy", "MainActivity Oncreate if 실행");
-            mapFragment.getMapAsync(this); // 비동기적으로 Google Maps API 지도를 로드
-        } else {
-            Log.d("mixpuppy", "MainActivity Oncreate else로 빠짐");
-        }
+//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+//                .findFragmentById(R.id.mapView);
+        SupportMapFragment mapFragment = new SupportMapFragment();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.mapView, mapFragment)
+                .commit();
+        mapFragment.getMapAsync(this);
+
+        Log.d("mixpuppy", "MainActivity Oncreate if mapFragment != null 전");
+//        if (mapFragment != null) {
+//            Log.d("mixpuppy", "MainActivity Oncreate if 실행");
+//            mapFragment.getMapAsync(this); // 비동기적으로 Google Maps API 지도를 로드
+//        } else {
+//            Log.d("mixpuppy", "MainActivity Oncreate else로 빠짐");
+//        }
+
     }
 
     // 인터페이스 구현체
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
+
+
+
         mMap = googleMap;
         Log.d("mixpuppy", "onMapReady: 지도 설정 성공적");
         // 컨트롤러 올리기
@@ -114,11 +136,15 @@ public class MainActivity extends AppCompatActivity
 
         if (mMap != null) {
             Log.d("MyApp", "onMapReady: 초기 좌표와 줌 레벨 설정");
-            // 초기 좌표와 줌 레벨 설정
-            LatLng initLatLng = new LatLng(37.2214872, 127.2218612);
-            float zoomLevel = 14.0f;
+            if (mLat == 0.0 && mLng == 0.0) {
+                // 초기 좌표와 줌 레벨 설정
+                LatLng initLatLng = new LatLng(37.2214872, 127.2218612);
+                float zoomLevel = 14.0f;
 
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(initLatLng, zoomLevel));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(initLatLng, zoomLevel));
+            } else {
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mLat, mLng), 17.0f));
+            }
         }
         // 나침반 추가
         mUi.setCompassEnabled(true);
@@ -126,7 +152,13 @@ public class MainActivity extends AppCompatActivity
         mUi.setZoomControlsEnabled(true);
     }
 
+    /**
+     * 지도 중심 옮기기 - initializeLocation()에 의해 호출됨
+     * @param latitude
+     * @param longitude
+     */
     private void moveMap(double latitude, double longitude){
+        Log.d("hanaBBun", "MainActivity의 moveMap() 호출");
         if(mMap != null) {
         LatLng latLng = new LatLng(latitude, longitude);
         // 중심 좌표 생성
@@ -140,14 +172,12 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    // mMap 변수의 fragment 사용 위한 메소드
-    public GoogleMap getMap() {
-        return mMap;
-    }
-
-    // 위치 서비스를 초기화하고 위치 업데이트를 요청하는 역할
+    /**
+     * 현재 죄표 가져오기; 위치 서비스를 초기화하고 위치 업데이트를 요청하는 역할
+     */
     private void initializeLocation() {
-        // 위치 서비스를 관리하는 클라이언트
+
+        // 위치 서비스를 관리하는 클라이언트 초기화
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         // 위치 업데이트에 대한 요청을 정의
         locationRequest = new LocationRequest();
@@ -178,6 +208,7 @@ public class MainActivity extends AppCompatActivity
         };
         // 위치 업데이트를 시작
         startLocationUpdates();
+
     }
 
     // 권한 체크
@@ -217,7 +248,9 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    // 위치 업데이트를 시작하는 역할
+    /**
+     * 위치 정보를 가진 fusedLocationClient 객체에 의해 위치 업데이트 요청
+     */
     private void startLocationUpdates() {
         // 만약 권한이 부여되어 있다면
         if (ContextCompat.checkSelfPermission(
@@ -232,13 +265,38 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    // 메모리 누수를 방지 (배터리 소모 방지)
-    // 액티비티가 파괴될 때 호출되는 메소드
+    /**
+     * 액티비티가 파괴될 때 호출되는 메소드 (강제 종료시킬 때)
+     * : 메모리 누수 방지(배터리 소모 방지)를 위해 앱 종료가 되자 마자 위치 업데이트를 종료한다.
+     */
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Log.d("hanabbun","onDestroy() 호출");
         stopLocationUpdates();
     }
+
+    /////// 사용자가 안드로이드 앱을 종료할 때 일반적으로 onPause()나 onStop() 메서드가 호출됨!
+    /**
+     * 사용자가 현재 앱을 나가거나 다른 앱으로 전환할 때 호출
+     * 앱이 화면에 보이지 않지만 여전히 실행 중이며 메모리에 상주하고 있음
+     */
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("hanaBBun", "onPause() 호출");
+    }
+
+    /**
+     * 사용자가 앱을 더 보고 있지 않고 다른 앱으로 이동하거나 홈화면으로 나갈 때 호출
+     * 백그라운드에서 실행될 수 있지만 화면에 보이지 않음.
+     */
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("hanaBBun", "onStop() 호출");
+    }
+
     // 위치 업데이트를 중지
     private void stopLocationUpdates() {
         // 객체가 초기화되었는지 확인

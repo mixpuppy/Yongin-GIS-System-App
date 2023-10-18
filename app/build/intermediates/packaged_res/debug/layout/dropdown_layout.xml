@@ -5,9 +5,6 @@
     android:textColor="@color/black"
     android:orientation="vertical"
     >
-    <!-- 여기에다가
-    android:background="@android:color/white" 해줬더니
-    선택 칸 배경만? 이상하게 하얀 색이 되었다. -->
 
     <!--
     <TextView

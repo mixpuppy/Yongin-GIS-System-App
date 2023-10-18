@@ -170,14 +170,8 @@ public class PermissionSupport {
                     if (alertDialog.isShowing()) {
                         alertDialog.dismiss();
                     }
-                }
-            }, 3500);
-
-            // 약간의 딜레이 후 앱 종료
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
                     // 3초 후 앱 종료
+                    Log.d("hanabbun","앱 종료");
                     activity.finish();
                 }
             }, 3500);
