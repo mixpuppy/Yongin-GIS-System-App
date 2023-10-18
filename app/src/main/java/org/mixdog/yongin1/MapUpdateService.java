@@ -13,21 +13,27 @@ import android.os.IBinder;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
 
 import org.mixdog.yongin1.fragment.MapFragment;
 
 
 public class MapUpdateService extends Service {
 
+    private FusedLocationProviderClient fusedLocationProviderClient;
+    private LocationRequest locationRequest;
+
     // 포어그라운드 서비스 알림을 고유하게 식별하는데 사용되는 정수값; 다른 서비스 또는 알림과 구별 위해 사용된다고...
     private static final int NOTIFICATION_ID = 1;
     // 안드로이드 8.0 이상에서 도입된 알림 채널 정의에 사용되는 문자열 값.
     // 다양한 종류의 알림 사용할 때 각각에 대한 CHANNEL_ID를 정의해 알림 관리 된다고....
     //private static final String CHANNEL_ID = "my_channel_id";
-
-    LocationViewModel locationViewModel;
 
     @Nullable
     @Override
@@ -40,9 +46,10 @@ public class MapUpdateService extends Service {
     public void onCreate() {
         super.onCreate();
 
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+        locationRequest = new LocationRequest();
+
         Log.d("hanaBBun", "MapUpdateService | onCreate()");
-        // 알림 채널 생성 및 서비스 시작!
-        //startForegroundService();
 
         // 알림 채널 생성
         Notification notification = MapNotification.createNotification(this);
@@ -61,6 +68,7 @@ public class MapUpdateService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d("hanaBBun", "MapUpdateService | onStartCommand() 호출");
         Log.d("hanaBBun", "MapUpdateService | Action Received = " + intent.getAction());
+
 
         if(intent != null && intent.getAction() != null) {
             switch (intent.getAction()) {
@@ -82,6 +90,18 @@ public class MapUpdateService extends Service {
                     // 알림창의 '주행 종료' 버튼을 클릭하면 뷰의 주행 종료 버튼이 눌러진 상태
                     Log.d("hanaBBun", "end 인텐트 받음");
                     stopBtn.performClick();
+
+                    // 앱의 메인 화면으로 이동
+                    Intent appOpenIntent = new Intent(this, MainActivity.class);
+                    // appOpenIntent.setAction(Actions.end);
+
+                    // 알림 클릭 이벤트 처리;
+//                    PendingIntent appOpenPendingIntent =
+//                            PendingIntent.getActivity(
+//                                    this, 0, appOpenIntent, PendingIntent.FLAG_IMMUTABLE);
+                    appOpenIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(appOpenIntent);
+
                     break;
             }
         }
@@ -93,6 +113,8 @@ public class MapUpdateService extends Service {
         // START_REDELIVER_IITENT : 재생성하며, onStartCommand() 호출 (same intent)
     }
 
+    // 사용자가 '주행 시작' 버튼을 클릭했을 때마다 포어그라운드 서비스 시작 및 알림 표시!
+    // (주행 종료를 클릭하면 포어그라운드 서비스가 종료되도록 했으므로, 다시 주행 시작 눌렀을 때 서비스가 시작되도록 해야 한다.)
     // 현재 휴대폰에서 Foreground Service가 돌아가고 있고,
     // 시스템 자원을 사용하고 있다는 것을 유저가 알 수 있도록 상태바의 알림(Notification)을 이용한다!
     private void startForegroundService() {

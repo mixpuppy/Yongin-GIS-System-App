@@ -54,9 +54,9 @@ public class MapNotification {
                 .setOngoing(true);
 
         // fragment의 start 버튼 클릭 여부를 뜻함
-        // addAction()을 이용해서 알림에 버튼 넣기 가능; Android N 이후로는 아이콘 정의해도 어차피 타이틀만 보인다고?
+        // addAction()을 이용해서 알림에 버튼 넣기 가능;
         // 각 버튼을 누르면 정의해둔 PendingIntent가 작동하게 됨
-        // ... 근데 버튼이 바뀌지 않았다. 알림창에 딱히 주행 시작 버튼이 필요하지 않아서 최종 사용되진 않았다.
+        // ... 알림창에 딱히 주행 시작 버튼이 필요하지 않아서 최종 사용되진 않았다.
         if (isInitialMarkerSet) { // 주행 시작된 경우; 알림 창에 주행 종료만 보인다.
             builder.addAction(android.R.drawable.btn_default, "주행 종료", endPendingIntent);
         } else {

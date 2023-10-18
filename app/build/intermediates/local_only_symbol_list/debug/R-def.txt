@@ -46,6 +46,7 @@ mipmap ic_launcher_foreground
 mipmap ic_launcher_round
 navigation nav_graph
 string app_name
+string carList_read_fail
 string main_question
 string main_title
 string user_alarm_permission_not_granted

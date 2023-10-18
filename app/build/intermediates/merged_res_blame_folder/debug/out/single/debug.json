@@ -164,6 +164,10 @@
         "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/drawable/pointer_route.png"
     },
     {
+        "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/drawable_ic_sms.xml.flat",
+        "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/drawable/ic_sms.xml"
+    },
+    {
         "merged": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-merged_res-47:/xml_backup_rules.xml.flat",
         "source": "/Users/hanabbun/.gradle/daemon/8.0/org.mixdog.yongin1.app-main-49:/xml/backup_rules.xml"
     },
