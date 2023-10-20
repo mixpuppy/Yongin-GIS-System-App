@@ -1,32 +1,21 @@
 package org.mixdog.yongin1;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
-import android.app.AlertDialog;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -42,10 +31,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.tasks.OnSuccessListener;
 import org.mixdog.yongin1.permission.PermissionSupport;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements OnMapReadyCallback {
@@ -69,10 +55,8 @@ public class MainActivity extends AppCompatActivity
     // 시작버튼 활성화 여부 (true 시 활성화)
     public static boolean isInitialMarkerSet;
 
-    public static List<LatLng> backgroundRouteMarkers;
-
     //// 권한 처리 관련 클래스 선언
-    private PermissionSupport permission = new PermissionSupport(this, this);
+    private PermissionSupport permission;
 
     /**
      * 액티비티가 실행되고 처음 시작될 때 호출
@@ -84,6 +68,9 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Log.d("hanaBBun", "--------------------앱 시작-------------------------");
         //locationViewModel = new ViewModelProvider(this).get(LocationViewModel.class);
+
+        // PermissionSupport 초기화
+        permission = new PermissionSupport(this, this);
 
         Log.d("hanaBBun", "onCreate 위치/알림 권한 허용 상태 : " + permission.locationPermissionGranted + "/" + permission.notificationPermissionGranted);
         Log.d("hanaBBun", "onCreate 위치/알림 권한 거절 횟수 : " + permission.locationDeniedCount + "/" + permission.notificationDeniedCount);
@@ -202,7 +189,19 @@ public class MainActivity extends AppCompatActivity
                     mLat = location.getLatitude();
                     mLng = location.getLongitude();
                     Log.d("mixpuppy", "MainActivity 위치정보 업데이트 | 위도 : " + mLat + ", 경도 : " + mLng);
-                    moveMap(mLat, mLng);
+                    if(!isInitialMarkerSet) {
+                        // 시작 버튼이 안 눌러져 있을 때만 MainFragment의 moveMap()이 호출되도록 한다.
+                        moveMap(mLat, mLng);
+                        if(nonStartMarker != null) {  // 앱 재시작 시 nullpointerexception 회피
+                            nonStartMarker.setVisible(true);
+                        }
+
+                    } else {
+                        if(nonStartMarker != null) {
+                            nonStartMarker.setVisible(false);
+                        }
+
+                    }
                 }
             }
         };
@@ -315,7 +314,7 @@ public class MainActivity extends AppCompatActivity
                 MarkerOptions markerOptions = new MarkerOptions()
                         .position(latLng)
                         .title("내 위치\n")
-                        .snippet("GPS로 확인한 위치");
+                        .snippet("청소 기록중이 아님");
 
                 // 마커 이미지 사이즈 조절
                 //markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.location_pin));

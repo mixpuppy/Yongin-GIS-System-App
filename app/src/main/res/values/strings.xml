@@ -5,7 +5,7 @@
     <string name="user_location_permission_needed">
         위치 권한이 허용되어 있지 않은 상태입니다.
         \n위치 정보 없이 이 앱을 사용할 수 없으므로
-        \n앱 정보 > 권한 승인 후 이용해주세요.
+        \n앱 정보 > \'권한 항상 허용\' 후 이용해주세요.
     </string>
     <string name="user_location_permission_not_granted">
         위치 권한 허용이 다시 거절되었습니다.

@@ -51,7 +51,6 @@ public class MainFragment extends Fragment {
             }
         });
 
-        // 다른 작업을 수행하거나 필요한 코드를 추가하세요.
     }
 
     public static MainFragment newInstance(String param1, String param2) {

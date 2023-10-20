@@ -4,7 +4,9 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
@@ -36,6 +38,7 @@ public class PermissionSupport {
     public static int notificationDeniedCount = 0;
 
     // 요청할 권한 배열 저장
+    // Manifest.permission.ACCESS_BACKGROUND_LOCATION는 별도로 권한 요청해줘야!
     private String[] permissions = {
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.POST_NOTIFICATIONS
@@ -77,6 +80,34 @@ public class PermissionSupport {
         ActivityCompat.requestPermissions(
                 activity, (String[]) permissionList.toArray(
                         new String[permissionList.size()]), MY_PERMISSONS_REQUEST);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            backgroundPermissionDialog(context);
+        }
+    }
+
+    // 백그라운드 권한 별도 요청; '항상허용'을 설정할 수 있는 앱 설정창으로 자동 넘어감!
+    private void backgroundPermissionDialog(Context context) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("백그라운드 위치 권한을 위해 \n항상 허용으로 설정해주세요.");
+
+        DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case DialogInterface.BUTTON_POSITIVE:
+                        ActivityCompat.requestPermissions(
+                                activity, new String[]{
+                                        Manifest.permission.ACCESS_BACKGROUND_LOCATION
+                                }, MY_PERMISSONS_REQUEST);
+                        break;
+                }
+            }
+        };
+
+        builder.setPositiveButton("네", listener);
+        builder.setNegativeButton("아니오", null);
+
+        builder.show();
     }
 
     // 요청한 권한에 대한 결과값 판단 및 처리; 권한 허용 상태 나타냄
@@ -109,6 +140,28 @@ public class PermissionSupport {
     // 권한 거절 횟수에 따른 처리
     public void handlePermissionRequest() {
 
+        // (앱 재실행 시) 위치 권한이 이전에 완전 거부된 적이 있어 다시 묻지 않을 때 앱 종료시키기
+        if(!ActivityCompat.shouldShowRequestPermissionRationale(
+                activity, Manifest.permission.ACCESS_FINE_LOCATION)) {
+            AlertDialog.Builder alertDialogBuilder =
+                    new AlertDialog.Builder(activity, R.style.permissionAlertDialogStyle);
+            alertDialogBuilder.setMessage(R.string.user_location_permission_needed);
+            alertDialogBuilder.setTitle("안내");
+
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (alertDialog.isShowing()) {
+                        alertDialog.dismiss();
+                    }
+                    // 3초 후 앱 종료
+                    Log.d("hanabbun","앱 종료");
+                    activity.finish();
+                }
+            }, 3500);
+        }
         Log.d("hanaBBun", "위치/알림 권한 거절 횟수 : " + locationDeniedCount + "/" + notificationDeniedCount);
 
         // 위치 1 알림 0 : 위치만 1차 요청 -> 위치 2 : Toast2 + 앱 종료
@@ -146,11 +199,13 @@ public class PermissionSupport {
                 public void run() {
                     // 위치 권한 요청 - onRequestPermissionResult 호출!
                     ActivityCompat.requestPermissions(
-                            activity, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSONS_REQUEST);
+                            activity, new String[]{
+                                    Manifest.permission.ACCESS_FINE_LOCATION
+                            }, MY_PERMISSONS_REQUEST);
                 }
             }, 3500);
         }
-        // 위치 2 알림 0 or 위치 2 알림 1 or 위치 2 알림 2 : 위치 Toast2 + 앱 종료
+        // 위치 2 (알림 0 or 알림 1 or 알림 2) : 위치 Toast2 + 앱 종료
         else if ( locationDeniedCount == 2 ) {
             // 두 번째 거절
 //            Toast.makeText(activity,

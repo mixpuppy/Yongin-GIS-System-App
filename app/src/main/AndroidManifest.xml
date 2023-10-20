@@ -6,10 +6,15 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET" /> <!-- 네트워크 통신 관련 권한 등록 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 네트워크 통신 관련 권한 등록 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 백그라운드 작업 위한 포어그라운드 서비스 권한 등록 -->
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!-- 알림 권한 허용 요청 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 백그라운드 작업 위한 포어그라운드 서비스 권한 등록 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <!-- 백그라운드 위치 사용위한 항상 허용 추가 -->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <!-- 알림 권한 허용 요청 -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application

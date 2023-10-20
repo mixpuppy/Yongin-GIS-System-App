@@ -6,7 +6,6 @@ import static org.mixdog.yongin1.MainActivity.isInitialMarkerSet;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.Notification;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -17,10 +16,8 @@ import android.os.Bundle;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Environment;
@@ -33,7 +30,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -73,7 +69,6 @@ import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -90,12 +85,12 @@ public class MapFragment extends Fragment
 //    private final String noiseUrl = "http://172.30.1.55:8081/getNoise";
 //    private final String vibrationUrl = "http://172.30.1.55:8081/getVibration";
 
-    private final String xyUrl = "http://172.30.1.65:80/gis/temp/gps";
-    private final String noiseUrl = "http://172.30.1.65:80/gis/temp/noise";
-    private final String vibrationUrl = "http://172.30.1.65:80/gis/temp/rpm";
-    private final String requestCarNumUrl = "http://172.30.1.65:80/gis/car";
-    private final String startSendUrl = "http://172.30.1.55:80/gis/start";
-    private final String stopSendUrl = "http://172.30.1.55:80/gis/stop";
+    private final String xyUrl = "http://172.30.1.22:80/gis/temp/gps";
+    private final String noiseUrl = "http://172.30.1.22:80/gis/temp/noise";
+    private final String vibrationUrl = "http://172.30.1.22:80/gis/temp/rpm";
+    private final String requestCarNumUrl = "http://172.30.1.22:80/gis/car";
+    private final String startSendUrl = "http://172.30.1.61:80/gis/start";
+    private final String stopSendUrl = "http://172.30.1.61:80/gis/stop";
 
     // DB 차량 넘버 조회
     private List<String> serverCarNums;
@@ -350,6 +345,8 @@ public class MapFragment extends Fragment
                                             @Override
                                             public void run() {
                                                 getLastLocation();
+                                                // 지도 중심 이동 및 마커 찍기
+                                                moveMap(mLat, mLng);
                                             }
                                         });
 
@@ -392,10 +389,18 @@ public class MapFragment extends Fragment
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Log.d("mixpuppy", "다이얼로그 취소버튼이 눌렸음");
 
+                        // 주행 시작 버튼을 누름과 동시에 찍히는 마커들 삭제
                         for (Marker marker : markerList) {
                             marker.remove();
                         }
                         markerList.clear();
+
+                        //시작버튼 없어짐 문제로 삭제
+//                        if (!startMarkerList.isEmpty()) {
+//                            Marker recentStartMarker = startMarkerList.get(startMarkerList.size() - 1);
+//                            recentStartMarker.remove();
+//                            startMarkerList.remove(recentStartMarker);
+//                        }
                     }
                 });
 
@@ -601,8 +606,8 @@ public class MapFragment extends Fragment
                                 mLng = location.getLongitude();
                                 Log.d("mixpuppy", "getLastLocation - latitude:" + location.getLatitude());
                                 Log.d("mixpuppy", "getLastLocation - longitude:" + location.getLongitude());
-                                // 지도 중심 이동 및 마커 찍기
-                                moveMap(mLat, mLng);
+//                                // 지도 중심 이동 및 마커 찍기
+//                                moveMap(mLat, mLng);
                                 Log.d("mixpuppy", "getLastLocation으로 지도 중심 이동 끝");
                             } else {
                                 Log.d("hanaBBun", "MapFragment getLastLocation() location == null");
