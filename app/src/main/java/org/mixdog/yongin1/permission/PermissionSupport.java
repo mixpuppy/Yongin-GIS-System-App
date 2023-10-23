@@ -141,8 +141,9 @@ public class PermissionSupport {
     public void handlePermissionRequest() {
 
         // (앱 재실행 시) 위치 권한이 이전에 완전 거부된 적이 있어 다시 묻지 않을 때 앱 종료시키기
-        if(!ActivityCompat.shouldShowRequestPermissionRationale(
-                activity, Manifest.permission.ACCESS_FINE_LOCATION)) {
+        if(!locationPermissionGranted &&
+                !ActivityCompat.shouldShowRequestPermissionRationale(
+                        activity, Manifest.permission.ACCESS_FINE_LOCATION)) {
             AlertDialog.Builder alertDialogBuilder =
                     new AlertDialog.Builder(activity, R.style.permissionAlertDialogStyle);
             alertDialogBuilder.setMessage(R.string.user_location_permission_needed);
