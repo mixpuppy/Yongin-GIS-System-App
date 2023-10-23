@@ -85,10 +85,10 @@ public class MapFragment extends Fragment
 //    private final String noiseUrl = "http://172.30.1.55:8081/getNoise";
 //    private final String vibrationUrl = "http://172.30.1.55:8081/getVibration";
 
-    private final String xyUrl = "http://172.30.1.22:80/gis/temp/gps";
-    private final String noiseUrl = "http://172.30.1.22:80/gis/temp/noise";
-    private final String vibrationUrl = "http://172.30.1.22:80/gis/temp/rpm";
-    private final String requestCarNumUrl = "http://172.30.1.22:80/gis/car";
+    private final String xyUrl = "http://172.30.1.62:80/gis/temp/gps";
+    private final String noiseUrl = "http://172.30.1.62:80/gis/temp/noise";
+    private final String vibrationUrl = "http://172.30.1.62:80/gis/temp/rpm";
+    private final String requestCarNumUrl = "http://172.30.1.62:80/gis/car";
     private final String startSendUrl = "http://172.30.1.61:80/gis/start";
     private final String stopSendUrl = "http://172.30.1.61:80/gis/stop";
 
