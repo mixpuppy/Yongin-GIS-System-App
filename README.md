@@ -25,7 +25,31 @@
 <h2 id="1">
   🧑‍💻 Technology
 </h2>
-🛠 Lnguage
+
+<B>🛠 Lnguage</B> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;`JDK17`, <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;`SDK 34 (min SDK 26)` <br/>
+<b>🛠 AndroidX</b> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;`Core-KTX: 1.9.0`, <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;`AppCompat: 1.6.1`, <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;`Material: 1.8.0`, <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;`ConstraintLayout: 2.1.4` <br/>
+<b>🛠 Navigation</b> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;`Navigation Fragment: 2.5.3`, <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;`Navigation UI: 2.5.3` <br/>
+<b>🛠 Kotlin</b> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;`Kotlin Standard : 1.8.22`, <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;`Kotlin Standard (JDK8 Extensions): 1.8.2` <br/>
+<b>🛠 Networking</b> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;`Volley: 1.2.1`, <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;`OpenCSV: 5.5` <br/>
+<b>🛠 Google Play Service</b> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;`Maps: 18.1.0`, <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;`Auth: 18.0.0`, <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;`Location: 18.0.0` <br/>
+<b>🛠 Build Tool</b> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;`Gradle` <br/>
+
 
 
 
