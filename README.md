@@ -5,10 +5,9 @@
 <h2>🌟<a href="https://motley-beach-4e9.notion.site/GIS-34d83db14bfe40f2bded60436ffbfec4?pvs=4">팀 노션 링크</a></h2>
 
 <h2>🗂️ Contents </h2>
--   <a href="#0"> 🔗 Service introduce </a> <br/>
+-   <a href="#0"> 🔗 Service Introduce </a> <br/>
 -   <a href="#1"> 🔗 Technology </a> <br/>
--   <a href="#1"> 🔗 Other Repositories & page </a> <br/>
--   <a href="#3"> 🔗 Result </a> <br/>
+-   <a href="#2"> 🔗 Result </a> <br/>
 
 <hr>
 <h2 id="0">
@@ -50,7 +49,35 @@
 <b>🛠 Build Tool</b> <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;`Gradle` <br/>
 
+<hr>
+<h2 id="2">
+  <b> 💻 Result </b>
+</h2>
 
+<div align="center">
+  <img src="https://github.com/mixpuppy/Yongin-GIS-System-App/blob/main/app/src/main/res/drawable/readme1.jpg"/>
+</div>
+<div align="center">
+  <img src="https://github.com/mixpuppy/Yongin-GIS-System-App/blob/main/app/src/main/res/drawable/readme2.jpg"/>
+</div>
+<div align="center">
+  <img src="https://github.com/mixpuppy/Yongin-GIS-System-App/blob/main/app/src/main/res/drawable/readme3.jpg"/>
+</div>
+<div align="center">
+  <img src="https://github.com/mixpuppy/Yongin-GIS-System-App/blob/main/app/src/main/res/drawable/readme4.jpg"/>
+</div>
+<div align="center">
+  <img src="https://github.com/mixpuppy/Yongin-GIS-System-App/blob/main/app/src/main/res/drawable/readme5.jpg"/>
+</div>
+<div align="center">
+  <img src="https://github.com/mixpuppy/Yongin-GIS-System-App/blob/main/app/src/main/res/drawable/readme6.jpg"/>
+</div>
+<div align="center">
+  <img src="https://github.com/mixpuppy/Yongin-GIS-System-App/blob/main/app/src/main/res/drawable/readme7.jpg"/>
+</div>
+<div align="center">
+  <img src="https://github.com/mixpuppy/Yongin-GIS-System-App/blob/main/app/src/main/res/drawable/readme8.jpg"/>
+</div>
 
 
 
