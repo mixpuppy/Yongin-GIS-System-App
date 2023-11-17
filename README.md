@@ -49,7 +49,6 @@
 <b>🛠 Build Tool</b> <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;`Gradle` <br/>
 
-<hr>
 <h2 id="2">
   <b> 💻 Result </b>
 </h2>
